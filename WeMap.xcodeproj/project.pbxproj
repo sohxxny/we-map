@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,10 +136,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96C04C932B67E8F1002D3E84 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				96C04C912B67E880002D3E84 /* AlertHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		96F17E442B60F94A003584D3 = {
 			isa = PBXGroup;
 			children = (
 				96F17E4F2B60F94A003584D3 /* WeMap */,
+				96C04C932B67E8F1002D3E84 /* Utilities */,
 				96F17E662B60F94B003584D3 /* WeMapTests */,
 				96F17E702B60F94B003584D3 /* WeMapUITests */,
 				96F17E4E2B60F94A003584D3 /* Products */,
@@ -354,6 +365,7 @@
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
+				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
