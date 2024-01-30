@@ -41,7 +41,7 @@ class SignUpViewController: UIViewController {
               let passwd = passwdTextField.text, !passwd.isEmpty,
               let passwdCheck = passwdCheckTextField.text, !passwdCheck.isEmpty,
               let userName = userNameTextField.text, !userName.isEmpty else {
-            // 하나라도 비어 있다면, 사용자에게 알리고, 여기서 함수를 종료합니다.
+            // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
             print("모든 정보를 기입해주세요.")
             return
         }

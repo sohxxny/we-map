@@ -45,7 +45,7 @@
                                 <rect key="frame" x="155" y="593" width="83" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="회원가입"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="회원가입"/>
                                 <connections>
                                     <action selector="SignUpButtonTapped:" destination="DY2-ga-kBH" eventType="touchUpInside" id="O4r-3Z-hla"/>
                                 </connections>
@@ -58,10 +58,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Bw-A5-WDx">
-                                <rect key="frame" x="148" y="655" width="98" height="35"/>
+                                <rect key="frame" x="100" y="655" width="195" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="로그인하기"/>
+                                <buttonConfiguration key="configuration" style="gray" title="로그인 화면으로 돌아가기"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9nl-Ni-kti"/>
@@ -111,20 +111,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="로그인"/>
+                                <connections>
+                                    <action selector="SignInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yxL-gN-lxL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHI-Ms-bkf">
                                 <rect key="frame" x="140" y="583" width="113" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="회원가입하기"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="회원가입하기"/>
                                 <connections>
-                                    <segue destination="DY2-ga-kBH" kind="show" id="LqC-gw-He1"/>
+                                    <segue destination="DY2-ga-kBH" kind="presentation" id="LqC-gw-He1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="emialLoginTextField" destination="u4X-hj-Usj" id="aqM-nR-z31"/>
+                        <outlet property="passwdLoginTextField" destination="8hR-3j-MFn" id="B7E-Zo-Qk5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
