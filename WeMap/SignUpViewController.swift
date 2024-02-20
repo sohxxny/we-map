@@ -41,7 +41,7 @@ class SignUpViewController: UIViewController {
               let passwd = passwdTextField.text, !passwd.isEmpty,
               let passwdCheck = passwdCheckTextField.text, !passwdCheck.isEmpty,
               let userName = userNameTextField.text, !userName.isEmpty else {
-            // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
+            // 하나라도 비어 있다면 사용자에게 알리고 함수 종료
             print("모든 정보를 기입해주세요.")
             return
         }
@@ -58,10 +58,9 @@ class SignUpViewController: UIViewController {
         AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
         
         // 로그인 화면으로 이동
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
+        
     }
-    
-    
     
     // 화면 터치 이벤트 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

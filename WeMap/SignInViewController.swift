@@ -59,5 +59,14 @@ class SignInViewController: UIViewController {
         AlertHelper.showAlertWithNoButton(on: self, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
     }
     
+    // 회원가입 화면에서 로그인 화면으로 돌아오기 위한 unwind segue
+    @IBAction func unwindToSignIn(unwindSegue: UIStoryboardSegue) {
+    }
+    
+    // 화면 터치 이벤트 함수
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        // 화면 터치 시 키보드 내리기
+        self.view.endEditing(true)
+    }
     
 }
