@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961F1F9E2B859CE300E2EF0A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
 				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
 				96F17E562B60F94A003584D3 /* Main.storyboard */,
+				961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */,
 				96F17EBF2B612327003584D3 /* SignUpViewController.swift */,
 				96F17EBD2B6122EC003584D3 /* SignInViewController.swift */,
 				96F17E592B60F94B003584D3 /* Assets.xcassets */,
@@ -365,6 +368,7 @@
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
+				961F1F9E2B859CE300E2EF0A /* MainTabBarViewController.swift in Sources */,
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 			);
