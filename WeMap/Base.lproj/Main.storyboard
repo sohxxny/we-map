@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Xy-L9-wQR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0ke-bp-tjk">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -139,109 +139,80 @@
             </objects>
             <point key="canvasLocation" x="815" y="19"/>
         </scene>
-        <!--Main Tab Bar View Controller-->
-        <scene sceneID="fmc-7A-f1b">
+        <!--Main View Controller-->
+        <scene sceneID="JVY-vL-bjH">
             <objects>
-                <tabBarController id="3Xy-L9-wQR" customClass="MainTabBarViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DML-U5-Oet">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="9Ge-Gu-fEE" kind="relationship" relationship="viewControllers" id="df2-Rg-YJT"/>
-                        <segue destination="Lvi-0X-7Tp" kind="relationship" relationship="viewControllers" id="7zZ-t1-doE"/>
-                        <segue destination="5Gw-jP-RFp" kind="relationship" relationship="viewControllers" id="JKX-PR-jbf"/>
-                        <segue destination="Lqg-bJ-cWg" kind="relationship" relationship="viewControllers" id="6k2-Gt-lX4"/>
-                        <segue destination="d35-e7-x3x" kind="relationship" relationship="viewControllers" id="uFe-eS-CtV"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZCz-iJ-YG7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="815" y="733"/>
-        </scene>
-        <!--추억 하루-->
-        <scene sceneID="hKt-zt-GlV">
-            <objects>
-                <viewController id="Lvi-0X-7Tp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SU2-6n-vht">
+                <viewController id="0ke-bp-tjk" customClass="MainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aRD-b1-ADA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Iob-Q3-1nj"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsW-OH-pPb" customClass="NMFMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzf-FU-zz3">
+                                        <rect key="frame" x="0.0" y="772" width="393" height="80"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Qk4-tu-kky"/>
+                                        </constraints>
+                                        <items>
+                                            <tabBarItem title="추억 공유 방" image="location.fill" catalog="system" id="7lR-po-ha0"/>
+                                            <tabBarItem tag="1" title="추억 하루" id="F3k-MV-kJj"/>
+                                            <tabBarItem tag="2" title="홈 지도" id="y01-VI-9bG"/>
+                                            <tabBarItem tag="3" title="북마크" id="VoQ-sK-Jsc"/>
+                                            <tabBarItem tag="4" title="내 친구" id="Rot-6z-efc"/>
+                                        </items>
+                                    </tabBar>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="장소를 검색하세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Idk-O9-Pih">
+                                        <rect key="frame" x="20" y="67" width="296" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="qs1-6t-aD0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLu-X3-hUV">
+                                        <rect key="frame" x="326" y="67" width="50" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="UUe-nc-59N"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="길찾기">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="10"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gzf-FU-zz3" secondAttribute="trailing" id="2KP-Fy-em0"/>
+                                    <constraint firstAttribute="trailing" secondItem="eLu-X3-hUV" secondAttribute="trailing" constant="17" id="Ff9-Sq-DAn"/>
+                                    <constraint firstItem="Idk-O9-Pih" firstAttribute="top" secondItem="QsW-OH-pPb" secondAttribute="top" constant="67" id="H8h-kW-Ql0"/>
+                                    <constraint firstItem="Idk-O9-Pih" firstAttribute="leading" secondItem="QsW-OH-pPb" secondAttribute="leading" constant="20" symbolic="YES" id="KEa-1o-5SX"/>
+                                    <constraint firstItem="eLu-X3-hUV" firstAttribute="centerY" secondItem="Idk-O9-Pih" secondAttribute="centerY" id="PRi-z8-qKH"/>
+                                    <constraint firstAttribute="bottom" secondItem="gzf-FU-zz3" secondAttribute="bottom" id="dOI-e8-fIr"/>
+                                    <constraint firstItem="eLu-X3-hUV" firstAttribute="leading" secondItem="Idk-O9-Pih" secondAttribute="trailing" constant="10" id="kqq-3k-f4T"/>
+                                    <constraint firstItem="gzf-FU-zz3" firstAttribute="leading" secondItem="QsW-OH-pPb" secondAttribute="leading" id="lvA-CI-MyB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HMC-nh-TlL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QsW-OH-pPb" firstAttribute="trailing" secondItem="HMC-nh-TlL" secondAttribute="trailing" id="DXt-pV-NXd"/>
+                            <constraint firstItem="QsW-OH-pPb" firstAttribute="top" secondItem="aRD-b1-ADA" secondAttribute="top" id="QUg-nd-D9W"/>
+                            <constraint firstItem="QsW-OH-pPb" firstAttribute="leading" secondItem="HMC-nh-TlL" secondAttribute="leading" id="boX-UO-Qbg"/>
+                            <constraint firstAttribute="bottom" secondItem="QsW-OH-pPb" secondAttribute="bottom" id="xor-EC-TIK"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="추억 하루" id="Qyg-GN-0zX"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2eN-i2-sZW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwW-Gh-wxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="1453"/>
-        </scene>
-        <!--홈 지도-->
-        <scene sceneID="E90-Fn-9yk">
-            <objects>
-                <viewController id="5Gw-jP-RFp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="96W-Sh-ecI">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="mnd-xg-Nkr"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="홈 지도" id="X0W-4J-Pti"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TLf-yh-sft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="815" y="1453"/>
-        </scene>
-        <!--내 친구-->
-        <scene sceneID="Bnz-vD-35v">
-            <objects>
-                <viewController id="d35-e7-x3x" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lCk-iV-zmE">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="wiq-54-dSF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="내 친구" id="vj5-Ze-hVo"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jA-Yy-KmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2347" y="1453"/>
-        </scene>
-        <!--추억 공유 방-->
-        <scene sceneID="HEg-L1-qFv">
-            <objects>
-                <viewController id="9Ge-Gu-fEE" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="265-Px-ad1">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="JOp-D4-gme"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="추억 공유 방" id="Dbo-HM-1RY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TIz-xg-Gdu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-721" y="1453"/>
-        </scene>
-        <!--북마크-->
-        <scene sceneID="Pv8-YK-bXq">
-            <objects>
-                <viewController id="Lqg-bJ-cWg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="c5X-ND-iKq">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="aof-gP-zT3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="북마크" id="x92-T7-UjJ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rif-0I-MXA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1581" y="1453"/>
+            <point key="canvasLocation" x="814.50381679389307" y="760.56338028169023"/>
         </scene>
     </scenes>
     <resources>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

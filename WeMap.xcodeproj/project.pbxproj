@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		153799391A913ABB3F151A3A /* Pods_WeMap_WeMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */; };
 		20D6EBF5C29EB99E7A02B901 /* Pods_WeMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD0EDFDE869E7AE875B1B91 /* Pods_WeMapTests.framework */; };
-		961F1F9E2B859CE300E2EF0A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */; };
+		96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96736B352B8CAEE2008FFB47 /* MainViewController.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
@@ -75,7 +75,7 @@
 		4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap_WeMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4EFCA0E86291369C30A83 /* Pods-WeMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.release.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.release.xcconfig"; sourceTree = "<group>"; };
 		6D14279E223235CA3A528B2F /* Pods-WeMap-WeMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.release.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.release.xcconfig"; sourceTree = "<group>"; };
-		961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		96736B352B8CAEE2008FFB47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +163,6 @@
 				438AB02395DDFE2378A00B4C /* Pods-WeMapTests.debug.xcconfig */,
 				0ABFF377F54C9F96DB341C38 /* Pods-WeMapTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -214,13 +213,13 @@
 				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
 				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
 				96F17E562B60F94A003584D3 /* Main.storyboard */,
-				961F1F9D2B859CE300E2EF0A /* MainTabBarViewController.swift */,
 				96F17EBF2B612327003584D3 /* SignUpViewController.swift */,
 				96F17EBD2B6122EC003584D3 /* SignInViewController.swift */,
 				96F17E592B60F94B003584D3 /* Assets.xcassets */,
 				96F17E5B2B60F94B003584D3 /* LaunchScreen.storyboard */,
 				96F17E822B610005003584D3 /* GoogleService-Info.plist */,
 				96F17E5E2B60F94B003584D3 /* Info.plist */,
+				96736B352B8CAEE2008FFB47 /* MainViewController.swift */,
 			);
 			path = WeMap;
 			sourceTree = "<group>";
@@ -517,7 +516,7 @@
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
-				961F1F9E2B859CE300E2EF0A /* MainTabBarViewController.swift in Sources */,
+				96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */,
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 			);
