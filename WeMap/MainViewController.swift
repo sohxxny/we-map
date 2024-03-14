@@ -9,10 +9,15 @@ import UIKit
 
 class MainViewController: UIViewController, UITabBarDelegate {
 
+    @IBOutlet weak var mainMapView: MainMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        // 지도 화면 터치 시 키보드 내리는 클로저 구현
+        mainMapView.onMapsTap = { [weak self] in
+                    self?.view.endEditing(true)
+                }
     }
     
     // 화면 터치 이벤트 함수

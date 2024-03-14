@@ -142,12 +142,12 @@
         <!--Main View Controller-->
         <scene sceneID="JVY-vL-bjH">
             <objects>
-                <viewController id="0ke-bp-tjk" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController id="0ke-bp-tjk" customClass="MainViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRD-b1-ADA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsW-OH-pPb" customClass="NMFMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QsW-OH-pPb" customClass="MainMapView" customModule="WeMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzf-FU-zz3">
@@ -205,6 +205,9 @@
                             <constraint firstAttribute="bottom" secondItem="QsW-OH-pPb" secondAttribute="bottom" id="xor-EC-TIK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainMapView" destination="QsW-OH-pPb" id="Yg1-Ad-kU0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwW-Gh-wxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
