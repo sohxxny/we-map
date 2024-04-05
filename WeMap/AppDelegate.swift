@@ -14,12 +14,10 @@ import FirebaseAuth
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // FirebaseApp 객체 초기화
+        // FirebaseApp 인스턴스 초기화
         FirebaseApp.configure()
         return true
     }
