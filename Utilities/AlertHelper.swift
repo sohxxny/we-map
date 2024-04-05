@@ -14,9 +14,14 @@ class AlertHelper {
     static func showAlertWithNoButton(on vc: UIViewController, with title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         vc.present(alert, animated: true, completion: nil)
-        
-        // 창 떠있는 시간 조절
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { _ in alert.dismiss(animated: true, completion: nil)} )
     }
+    
+    // 확인 버튼만 있는 alert
+    static func alertWithConfirmButton(on vc: UIViewController, with title : String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
     
 }

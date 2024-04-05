@@ -7,8 +7,8 @@
 
 import UIKit
 import FirebaseAuth
-
-
+import FirebaseCore
+import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
     
@@ -17,10 +17,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwdTextField: UITextField!
     @IBOutlet weak var passwdCheckTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
-
+    
+    // firestore 관련 변수
+    var db: Firestore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // firestore 인스턴스 초기화
+        db = Firestore.firestore()
         
     }
     
@@ -45,21 +50,22 @@ class SignUpViewController: UIViewController {
             print("모든 정보를 기입해주세요.")
             return
         }
-        
-        // 신규 사용자의 이메일 주소와 비밀번호를 createUser에 전달하여 새 계정 생성
+
         Auth.auth().createUser(withEmail: email, password: passwd) { authResult, error in
-            print("회원 가입 오류")
-            return
+            if let error = error {
+                print("회원 가입 오류: \(error.localizedDescription)")
+                return
+            }
+            // 회원 가입 성공 시 처리
+            // 이메일로 구분된 문서 생성
+            self.db.collection("userInfo").document(email).setData(["name": userName])
+            
+            // 회원가입 성공 팝업
+            AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
+            
+            // 로그인 화면으로 이동
+            self.performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
         }
-        
-        // 해당 계정에 이름 연결
-        
-        // 회원가입 성공 팝업 띄우기
-        AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
-        
-        // 로그인 화면으로 이동
-        performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
-        
     }
     
     // 화면 터치 이벤트 함수
