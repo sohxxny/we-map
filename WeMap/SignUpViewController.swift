@@ -52,13 +52,14 @@ class SignUpViewController: UIViewController {
         }
 
         Auth.auth().createUser(withEmail: email, password: passwd) { authResult, error in
-            if let error = error {
-                print("회원 가입 오류: \(error.localizedDescription)")
+            guard let user = authResult?.user, error == nil else {
+                print("회원 가입 오류: \(error!.localizedDescription)")
                 return
             }
+            
             // 회원 가입 성공 시 처리
-            // 이메일로 구분된 문서 생성
-            self.db.collection("userInfo").document(email).setData(["name": userName])
+            // uid로 구분된 문서 생성
+            self.createUserInfo(uid: user.uid, email: email, userName: userName)
             
             // 회원가입 성공 팝업
             AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
@@ -67,6 +68,24 @@ class SignUpViewController: UIViewController {
             self.performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
         }
     }
+    
+    // 사용자 uid로 된 파이어베이스 문서를 생성하는 함수
+    func createUserInfo(uid: String, email: String, userName: String) {
+        let userRef = db.collection("userInfo").document(uid)
+        userRef.setData([
+            // "uid": uid,
+            "email": email,
+            "userName": userName
+        ]) { error in
+            if let error = error {
+                print("사용자 정보 생성 오류: \(error.localizedDescription)")
+            } else {
+                print("사용자 정보가 성공적으로 생성되었습니다.")
+            }
+        }
+    }
+    
+    // 회원 가입 함수
     
     // 화면 터치 이벤트 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

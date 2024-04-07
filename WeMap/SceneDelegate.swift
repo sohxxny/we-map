@@ -6,17 +6,32 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        // 로그인 여부 판단
+        checkLogin(storyboard: UIStoryboard(name: "Main", bundle: nil), windowScene: windowScene)
+    }
+    
+    // 로그인 여부를 판단하여 화면을 전환하는 함수
+    func checkLogin(storyboard: UIStoryboard, windowScene: UIWindowScene) {
+        
+        var currentViewController: UIViewController
+        if Auth.auth().currentUser == nil {
+            currentViewController = storyboard.instantiateViewController(identifier: "SignInViewController")
+        } else {
+            // 사용자가 로그인한 상태인 경우 기본적으로 설정된 뷰 컨트롤러를 사용
+            currentViewController = storyboard.instantiateInitialViewController()!
+        }
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = currentViewController
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

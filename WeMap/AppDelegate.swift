@@ -19,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // FirebaseApp 인스턴스 초기화
         FirebaseApp.configure()
+        
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
