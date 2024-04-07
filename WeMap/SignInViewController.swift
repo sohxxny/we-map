@@ -14,11 +14,14 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emialLoginTextField: UITextField!
     @IBOutlet weak var passwdLoginTextField: UITextField!
     
+    // firestore 관련 변수
+    var db: Firestore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // firestore 인스턴스 초기화
+        db = Firestore.firestore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +43,13 @@ class SignInViewController: UIViewController {
             return
         }
         
+        // 로그인 함수 호출
+        signIn(email: email, passwd: passwd)
+        
+    }
+    
+    // 로그인 함수
+    func signIn(email: String, passwd: String) {
         Auth.auth().signIn(withEmail: email, password: passwd) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
 
@@ -52,11 +62,19 @@ class SignInViewController: UIViewController {
             // 로그인 성공시 ID 띄우기
             if let authResult = authResult {
                 print("로그인 성공: 사용자 ID - \(authResult.user.uid)")
+                
+                // 해당 ID에 대한 userModel 생성
+                var userInfo = loadUserData(uid: authResult.user.uid, db: self!.db)
+                print(userInfo)
             }
+            
+            
+            // 로그인 성공 팝업 띄우기
+            AlertHelper.showAlertWithNoButton(on: strongSelf, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
+            
+            // 메인 화면으로 이동하는 코드
+            
         }
-        
-        // 로그인 성공 팝업 띄우기
-        AlertHelper.showAlertWithNoButton(on: self, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
     }
     
     // 회원가입 화면에서 로그인 화면으로 돌아오기 위한 unwind segue
