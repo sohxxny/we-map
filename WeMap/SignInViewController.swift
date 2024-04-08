@@ -37,7 +37,7 @@ class SignInViewController: UIViewController {
     @IBAction func SignInButtonTapped(_ sender: UIButton) {
         // 텍스트 필드가 비어있는지 확인
         guard let email = emialLoginTextField.text, !email.isEmpty,
-              let passwd = emialLoginTextField.text, !passwd.isEmpty else {
+              let passwd = passwdLoginTextField.text, !passwd.isEmpty else {
             // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
             print("모든 정보를 기입해주세요.")
             return
@@ -45,7 +45,6 @@ class SignInViewController: UIViewController {
         
         // 로그인 함수 호출
         signIn(email: email, passwd: passwd)
-        
     }
     
     // 로그인 함수
@@ -64,15 +63,17 @@ class SignInViewController: UIViewController {
                 print("로그인 성공: 사용자 ID - \(authResult.user.uid)")
                 
                 // 해당 ID에 대한 userModel 생성
-                var userInfo = loadUserData(uid: authResult.user.uid, db: self!.db)
-                print(userInfo)
+                Task {
+                    var userInfo = await loadUserData(uid: authResult.user.uid, db: self!.db)
+                    print(userInfo)
+                }
             }
             
-            
             // 로그인 성공 팝업 띄우기
-            AlertHelper.showAlertWithNoButton(on: strongSelf, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
+            // AlertHelper.showAlertWithNoButton(on: strongSelf, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
             
             // 메인 화면으로 이동하는 코드
+            
             
         }
     }

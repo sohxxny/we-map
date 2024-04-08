@@ -50,7 +50,11 @@ class SignUpViewController: UIViewController {
             print("모든 정보를 기입해주세요.")
             return
         }
-
+        // 회원 가입 함수 호출
+        signUp(email: email, passwd: passwd, userName: userName)
+    }
+    
+    func signUp(email: String, passwd: String, userName: String) {
         Auth.auth().createUser(withEmail: email, password: passwd) { authResult, error in
             guard let user = authResult?.user, error == nil else {
                 print("회원 가입 오류: \(error!.localizedDescription)")
