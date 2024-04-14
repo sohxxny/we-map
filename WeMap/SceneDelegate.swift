@@ -25,9 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var currentViewController: UIViewController
         if Auth.auth().currentUser == nil {
             currentViewController = storyboard.instantiateViewController(identifier: "SignInViewController")
+            print("현재 로그인 상태가 아닙니다.")
         } else {
             // 사용자가 로그인한 상태인 경우 기본적으로 설정된 뷰 컨트롤러를 사용
             currentViewController = storyboard.instantiateInitialViewController()!
+            print("로그인되었습니다.")
         }
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = currentViewController
