@@ -20,6 +20,9 @@
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
 		967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF1912BC2ABE200D11E5B /* UserModel.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
+		96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2942BCE7C570034142E /* CustomTextField.swift */; };
+		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
+		96DDD29F2BCEA46E0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -28,7 +31,6 @@
 		96F17E682B60F94B003584D3 /* WeMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E672B60F94B003584D3 /* WeMapTests.swift */; };
 		96F17E722B60F94B003584D3 /* WeMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E712B60F94B003584D3 /* WeMapUITests.swift */; };
 		96F17E742B60F94B003584D3 /* WeMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E732B60F94B003584D3 /* WeMapUITestsLaunchTests.swift */; };
-		96F17E832B610005003584D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E822B610005003584D3 /* GoogleService-Info.plist */; };
 		96F17E862B6100CE003584D3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96F17E852B6100CE003584D3 /* FirebaseAnalytics */; };
 		96F17E882B6100CE003584D3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 96F17E872B6100CE003584D3 /* FirebaseAnalyticsOnDeviceConversion */; };
 		96F17E8A2B6100CE003584D3 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 96F17E892B6100CE003584D3 /* FirebaseAnalyticsSwift */; };
@@ -95,6 +97,9 @@
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		967EF1912BC2ABE200D11E5B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		96DDD2942BCE7C570034142E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +112,6 @@
 		96F17E6D2B60F94B003584D3 /* WeMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E712B60F94B003584D3 /* WeMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeMapUITests.swift; sourceTree = "<group>"; };
 		96F17E732B60F94B003584D3 /* WeMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		96F17E822B610005003584D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96F17EBD2B6122EC003584D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		96F17EBF2B612327003584D3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A9BCEFA84E5EAB2DF365979D /* Pods-WeMap-WeMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,15 +202,66 @@
 			isa = PBXGroup;
 			children = (
 				96C04C912B67E880002D3E84 /* AlertHelper.swift */,
+				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		96DDD2992BCE9F510034142E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				967EF1912BC2ABE200D11E5B /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		96DDD29A2BCE9F830034142E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
+				96DDD2962BCE807F0034142E /* CustomButton.swift */,
+				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
+				96646ED02BA34F130091C18A /* MainMapView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96DDD29B2BCE9FD40034142E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				96736B352B8CAEE2008FFB47 /* MainViewController.swift */,
+				960773732BC5537C00E587D9 /* MainTabBarController.swift */,
+				96F17EBF2B612327003584D3 /* SignUpViewController.swift */,
+				96F17EBD2B6122EC003584D3 /* SignInViewController.swift */,
+				9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */,
+				9622EE082BCBF0C000D0E677 /* HomeViewController.swift */,
+				9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */,
+				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		96DDD29C2BCEA01A0034142E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
+				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
+				96F17E5E2B60F94B003584D3 /* Info.plist */,
+				96F17E592B60F94B003584D3 /* Assets.xcassets */,
+				96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		96F17E442B60F94A003584D3 = {
 			isa = PBXGroup;
 			children = (
-				96F17E4F2B60F94A003584D3 /* WeMap */,
+				96F17E4F2B60F94A003584D3 /* Storyboards */,
+				96DDD29B2BCE9FD40034142E /* ViewControllers */,
+				96DDD29A2BCE9F830034142E /* Views */,
+				96DDD2992BCE9F510034142E /* Models */,
 				96C04C932B67E8F1002D3E84 /* Utilities */,
+				96DDD29C2BCEA01A0034142E /* Resources */,
 				96F17E662B60F94B003584D3 /* WeMapTests */,
 				96F17E702B60F94B003584D3 /* WeMapUITests */,
 				96F17E4E2B60F94A003584D3 /* Products */,
@@ -225,30 +280,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96F17E4F2B60F94A003584D3 /* WeMap */ = {
+		96F17E4F2B60F94A003584D3 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
-				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
 				96F17E562B60F94A003584D3 /* Main.storyboard */,
-				96F17E592B60F94B003584D3 /* Assets.xcassets */,
 				96F17E5B2B60F94B003584D3 /* LaunchScreen.storyboard */,
-				96F17E822B610005003584D3 /* GoogleService-Info.plist */,
-				96F17E5E2B60F94B003584D3 /* Info.plist */,
-				96736B352B8CAEE2008FFB47 /* MainViewController.swift */,
-				960773732BC5537C00E587D9 /* MainTabBarController.swift */,
-				96646ED02BA34F130091C18A /* MainMapView.swift */,
-				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
-				96F17EBF2B612327003584D3 /* SignUpViewController.swift */,
-				96F17EBD2B6122EC003584D3 /* SignInViewController.swift */,
-				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
-				967EF1912BC2ABE200D11E5B /* UserModel.swift */,
-				9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */,
-				9622EE082BCBF0C000D0E677 /* HomeViewController.swift */,
-				9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */,
-				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 			);
-			path = WeMap;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		96F17E662B60F94B003584D3 /* WeMapTests */ = {
@@ -410,7 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F17E5D2B60F94B003584D3 /* LaunchScreen.storyboard in Resources */,
-				96F17E832B610005003584D3 /* GoogleService-Info.plist in Resources */,
+				96DDD29F2BCEA46E0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
@@ -544,6 +582,7 @@
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
+				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,
 				967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */,
 				9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
@@ -552,6 +591,7 @@
 				96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */,
 				9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */,
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
+				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 				9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */,
@@ -734,7 +774,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3NSNDGXLF2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeMap/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -763,7 +803,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3NSNDGXLF2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WeMap/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -11,8 +11,10 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class SignInViewController: UIViewController {
-    @IBOutlet weak var emialLoginTextField: UITextField!
-    @IBOutlet weak var passwdLoginTextField: UITextField!
+    @IBOutlet weak var emailLoginTextField: CustomTextField!
+    @IBOutlet weak var passwdLoginTextField: CustomTextField!
+    @IBOutlet weak var signInButton: CustomButton!
+    
     
     // firestore 관련 변수
     var db: Firestore!
@@ -34,9 +36,9 @@ class SignInViewController: UIViewController {
         // Auth.auth().removeStateDidChangeListener(handle!)
     }
     
-    @IBAction func SignInButtonTapped(_ sender: UIButton) {
+    @IBAction func tapSignInButton(_ sender: UIButton) {
         // 텍스트 필드가 비어있는지 확인
-        guard let email = emialLoginTextField.text, !email.isEmpty,
+        guard let email = emailLoginTextField.text, !email.isEmpty,
               let passwd = passwdLoginTextField.text, !passwd.isEmpty else {
             // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
             print("모든 정보를 기입해주세요.")
@@ -45,6 +47,7 @@ class SignInViewController: UIViewController {
         
         // 로그인 함수 호출
         signIn(email: email, passwd: passwd)
+        
     }
     
     // 로그인 함수
