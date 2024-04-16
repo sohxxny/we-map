@@ -27,6 +27,7 @@ class CustomTextField: UITextField {
         self.leftViewMode = ViewMode.always
         
         // 기타 UI 설정
+        self.backgroundColor = UIColor.white
         self.layer.cornerRadius = 10
     }
 
