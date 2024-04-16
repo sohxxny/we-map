@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-// 지도를 전역적으로 관리하기 위한 싱글턴 클래스
+// 지도를 전역적으로 관리하기 위한 싱글톤 클래스
 class GlobalMapsManager {
     
-    static let shared = GlobalMapsManager() // 싱글턴 인스턴스
+    static let shared = GlobalMapsManager() // 싱글톤 인스턴스
     private(set) var globalMaps: MainMapView?    // 전역으로 사용될 지도
 
     // 초기화 방지
@@ -22,7 +22,7 @@ class GlobalMapsManager {
         if let view = globalMaps {
             return view
         } else {
-            let newView = MainMapView()
+            let newView = createMapView()
             globalMaps = newView
             return newView
         }
@@ -35,6 +35,7 @@ class GlobalMapsManager {
     }
 }
 
+// 검색 버튼을 전역적으로 관리하기 위한 싱글톤 클래스
 class GlobalSearchButtonManager {
     
     static let shared = GlobalSearchButtonManager()

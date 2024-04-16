@@ -245,8 +245,8 @@
 				967EF1912BC2ABE200D11E5B /* UserModel.swift */,
 				9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */,
 				9622EE082BCBF0C000D0E677 /* HomeViewController.swift */,
-				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 				9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */,
+				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 			);
 			path = WeMap;
 			sourceTree = "<group>";
