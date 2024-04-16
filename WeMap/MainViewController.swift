@@ -12,10 +12,6 @@ class MainViewController: UIViewController {
     var searchButton: UIButton?
     
     override func viewDidLoad() {
-        mainMapView = GlobalMapsManager.shared.getOrCreateView()
-        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
-        setupInitialViews(mainMapView: mainMapView!, searchButton: searchButton!)
-        
         // 지도 화면 터치 시 키보드 내리는 클로저
         mainMapView?.onMapsTap = { [weak self] in
             self?.view.endEditing(true)
@@ -25,15 +21,14 @@ class MainViewController: UIViewController {
     // 뷰 컨트롤러가 보이기 전에 호출
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let mapView = mainMapView, mapView.superview == nil {
-            view.addSubview(mapView)
-            setLayoutForMainMapView(mapView)
-        }
-        if let button = searchButton, button.superview == nil {
-            view.addSubview(button)
-            setLayoutForSearchButton(button)
-        }
-        updateViewLayouts()
+        mainMapView = GlobalMapsManager.shared.getOrCreateView()
+        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
+    }
+    
+    // 뷰 컨트롤러가 보인 후에 호출
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setViews(mainMapView: mainMapView!, searchButton: searchButton!)
     }
     
     // 뷰 컨트롤러가 사라지기 전에 호출
@@ -43,8 +38,8 @@ class MainViewController: UIViewController {
         searchButton?.removeFromSuperview()
     }
     
-    // 뷰를 처음 설정하고 추가
-    func setupInitialViews(mainMapView: MainMapView, searchButton: UIButton) {
+    // 뷰를 나타내기
+    func setViews(mainMapView: MainMapView, searchButton: UIButton) {
         if mainMapView.superview == nil {
             view.addSubview(mainMapView)
             setLayoutForMainMapView(mainMapView)
@@ -53,11 +48,6 @@ class MainViewController: UIViewController {
             view.addSubview(searchButton)
             setLayoutForSearchButton(searchButton)
         }
-    }
-    
-    // 뷰 레이아웃 업데이트
-    func updateViewLayouts() {
-        view.layoutIfNeeded()
     }
     
     // 지도 레이아웃 설정
