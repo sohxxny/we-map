@@ -41,7 +41,7 @@ class SignInViewController: UIViewController {
         guard let email = emailLoginTextField.text, !email.isEmpty,
               let passwd = passwdLoginTextField.text, !passwd.isEmpty else {
             // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
-            print("모든 정보를 기입해주세요.")
+            AlertHelper.alertWithConfirmButton(on: self, with: "로그인 실패", message: "모든 정보를 기입해주세요")
             return
         }
         

@@ -13,10 +13,17 @@ import FirebaseFirestore
 class SignUpViewController: UIViewController {
     
     // Outlet 변수들
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwdTextField: UITextField!
-    @IBOutlet weak var passwdCheckTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: CustomTextField!
+    @IBOutlet weak var passwdTextField: CustomTextField!
+    @IBOutlet weak var passwdCheckTextField: CustomTextField!
+    @IBOutlet weak var userNameTextField: CustomTextField!
+
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwdLabel: UILabel!
+    @IBOutlet weak var passwdCheckLabel: UILabel!
+    
+    @IBOutlet weak var signUpButton: CustomButton!
+    
     
     // firestore 관련 변수
     var db: Firestore!
@@ -27,16 +34,45 @@ class SignUpViewController: UIViewController {
         // firestore 인스턴스 초기화
         db = Firestore.firestore()
         
+        // 텍스트 필드 입력 감지
+        emailTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        passwdTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        passwdCheckTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // 리스너 연결
-        // handle = Auth.auth().addStateDidChangeListener {
-            
         }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        // 리스너 분리
-        // Auth.auth().removeStateDidChangeListener(handle!)
+    }
+    
+    // 텍스트 필드의 입력을 실시간으로 확인하는 함수
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let email = emailTextField.text, let passwd = passwdTextField.text, let passwdCheck = passwdCheckTextField.text else { return }
+
+        // 이메일 형식이 맞지 않은 경우
+        let emailRegEx = "[A-Z0-9a-z]+@[A-Za-z0-9]+\\.[a-z]{2,3}$"
+        if email.range(of: emailRegEx, options: .regularExpression) == nil {
+            emailLabel.text = "이메일 형식이 올바르지 않습니다."
+        } else {
+            emailLabel.text = ""
+        }
+        
+        // 비밀번호가 8자리 미만인 경우
+        if passwd.count != 0 && passwd.count < 8 {
+            passwdLabel.text = "비밀번호를 8자리 이상으로 설정해주세요."
+        } else {
+            passwdLabel.text = ""
+        }
+        
+        // 비밀번호와 비밀번호 확인이 다른 경우
+        if passwdCheck != passwd {
+            passwdCheckLabel.text = "비밀번호를 확인해주세요."
+        } else {
+            passwdCheckLabel.text = ""
+        }
+
     }
     
     // 회원가입 버튼 클릭 액션 함수
@@ -47,9 +83,19 @@ class SignUpViewController: UIViewController {
               let passwdCheck = passwdCheckTextField.text, !passwdCheck.isEmpty,
               let userName = userNameTextField.text, !userName.isEmpty else {
             // 하나라도 비어 있다면 사용자에게 알리고 함수 종료
-            print("모든 정보를 기입해주세요.")
+            AlertHelper.alertWithConfirmButton(on: self, with: "회원 가입 실패", message: "모든 정보를 기입해주세요.")
             return
         }
+        
+        // 텍스트 필드에 정상적으로 입력이 되었는지 확인
+        guard let emailError = emailLabel.text, emailError == "",
+              let passwdError = passwdLabel.text, passwdError == "",
+              let passwdCheckError = passwdCheckLabel.text, passwdCheckError == "" else {
+            // 잘못된 정보를 기입했다면 사용자에게 알리고 함수 종료
+            AlertHelper.alertWithConfirmButton(on: self, with: "회원 가입 실패", message: "정보를 다시 한 번 확인해 주세요.")
+            return
+        }
+        
         // 회원 가입 함수 호출
         signUp(email: email, passwd: passwd, userName: userName)
     }
@@ -89,7 +135,11 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    // 회원 가입 함수
+    
+    // 로그인 화면으로 돌아가기 버튼
+    @IBAction func tapBackToSignIn(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
+    }
     
     // 화면 터치 이벤트 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

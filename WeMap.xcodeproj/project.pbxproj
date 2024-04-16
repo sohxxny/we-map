@@ -22,7 +22,8 @@
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2942BCE7C570034142E /* CustomTextField.swift */; };
 		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
-		96DDD29F2BCEA46E0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */; };
+		96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2A02BCEA5C60034142E /* Colors.swift */; };
+		96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -99,7 +100,8 @@
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96DDD2942BCE7C570034142E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		96DDD2A02BCEA5C60034142E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -247,8 +249,9 @@
 				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
 				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
 				96F17E5E2B60F94B003584D3 /* Info.plist */,
+				96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */,
 				96F17E592B60F94B003584D3 /* Assets.xcassets */,
-				96DDD29E2BCEA46E0034142E /* GoogleService-Info.plist */,
+				96DDD2A02BCEA5C60034142E /* Colors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -448,7 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F17E5D2B60F94B003584D3 /* LaunchScreen.storyboard in Resources */,
-				96DDD29F2BCEA46E0034142E /* GoogleService-Info.plist in Resources */,
+				96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
@@ -579,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */,
+				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
