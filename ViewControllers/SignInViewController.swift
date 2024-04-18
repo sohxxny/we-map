@@ -81,9 +81,16 @@ class SignInViewController: UIViewController {
         }
     }
     
-    // 회원가입 화면에서 로그인 화면으로 돌아오기 위한 unwind segue
-    @IBAction func unwindToSignIn(unwindSegue: UIStoryboardSegue) {
+    // 회원가입 화면으로 이동하는 함수
+    @IBAction func tapGotoSignUp(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+            signUpViewController.modalPresentationStyle = .formSheet
+            present(signUpViewController, animated: true, completion: nil)
+            
+        }
     }
+    
     
     // 화면 터치 이벤트 함수
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

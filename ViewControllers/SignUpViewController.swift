@@ -138,7 +138,7 @@ class SignUpViewController: UIViewController {
     
     // 로그인 화면으로 돌아가기 버튼
     @IBAction func tapBackToSignIn(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
     // 화면 터치 이벤트 함수
