@@ -46,8 +46,19 @@ class SignInViewController: BaseViewController {
           guard let strongSelf = self else { return }
 
             // 로그인 실패 시 에러 메시지 출력 및 함수 탈출
-            if let error = error {
-                print("로그인 실패: \(error.localizedDescription)")
+            if let error = error as NSError? {
+                if error.domain == AuthErrorDomain {
+                    switch (error.code) {
+                    case AuthErrorCode.invalidEmail.rawValue:
+                        AlertHelper.alertWithConfirmButton(on: self!, with: "로그인 실패", message: "이메일 형식이 올바르지 않습니다.")
+                    case AuthErrorCode.userNotFound.rawValue:
+                        AlertHelper.alertWithConfirmButton(on: self!, with: "로그인 실패", message: "존재하지 않는 이메일입니다.")
+                    case AuthErrorCode.wrongPassword.rawValue:
+                        AlertHelper.alertWithConfirmButton(on: self!, with: "로그인 실패", message: "비밀번호가 올바르지 않습니다.")
+                    default:
+                        print("에러 발생 : \(error)")
+                    }
+                }
                 return
             }
 
@@ -60,8 +71,6 @@ class SignInViewController: BaseViewController {
             
             // 로그인 성공 팝업 띄우기
             AlertHelper.showAlertWithNoButton(on: strongSelf, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
-            
-            
         }
     }
     
@@ -71,8 +80,6 @@ class SignInViewController: BaseViewController {
         if let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
             signUpViewController.modalPresentationStyle = .formSheet
             present(signUpViewController, animated: true, completion: nil)
-            
         }
     }
-    
 }

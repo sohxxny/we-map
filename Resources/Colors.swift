@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    static let weMapBlue = UIColor(red: 95/255, green: 134/255, blue: 255/255, alpha: 1.0)
+    static let weMapBlue = UIColor(red: 95/255, green: 135/255, blue: 255/255, alpha: 1.0)
 }
