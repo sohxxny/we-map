@@ -97,7 +97,18 @@ class SignUpViewController: BaseViewController {
     func signUp(email: String, passwd: String, userName: String) {
         Auth.auth().createUser(withEmail: email, password: passwd) { authResult, error in
             guard let user = authResult?.user, error == nil else {
-                print("회원 가입 오류: \(error!.localizedDescription)")
+                if let error = error as NSError? {
+                    if error.domain == AuthErrorDomain {
+                        switch (error.code) {
+                        case AuthErrorCode.emailAlreadyInUse.rawValue:
+                            AlertHelper.alertWithConfirmButton(on: self, with: "회원가입 실패", message: "이미 존재하는 이메일입니다.")
+                        case AuthErrorCode.invalidEmail.rawValue:
+                            AlertHelper.alertWithConfirmButton(on: self, with: "회원가입 실패", message: "이메일 형식이 올바르지 않습니다.")
+                        default:
+                            print("회원 가입 오류: \(error)")
+                        }
+                    }
+                }
                 return
             }
             
@@ -106,7 +117,7 @@ class SignUpViewController: BaseViewController {
             self.createUserInfo(uid: user.uid, email: email, userName: userName)
             
             // 회원가입 성공 팝업
-            AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
+            AlertHelper.showAlertWithNoButton(on: self, with: "회원가입 성공", message: "로그인 화면으로 이동합니다.")
             
             // 로그인 화면으로 이동
             self.dismiss(animated: true, completion: nil)
