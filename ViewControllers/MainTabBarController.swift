@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBarController?.delegate = self
         self.delegate = self
         
-        // 'SecondViewController'가 디폴트 탭으로 설정
+        // 'HomeViewController'가 디폴트 탭으로 설정
         self.selectedIndex = 2
 
     }

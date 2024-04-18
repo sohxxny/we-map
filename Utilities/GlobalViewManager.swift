@@ -56,10 +56,18 @@ class GlobalSearchButtonManager {
     
     // 검색창 버튼 생성
     func createSearchButton(target: Any, action: Selector) -> UIButton {
-        let searchButton = UIButton(type: .system)
-        searchButton.setTitle("친구와 공유할 장소를 검색하세요", for: .normal)
-        searchButton.backgroundColor = UIColor.systemGray6
-        searchButton.tintColor = UIColor.gray
+        
+        var config = UIButton.Configuration.plain()
+        var titleFont = AttributedString.init("친구와 공유할 장소를 검색하세요")
+        titleFont.font = .systemFont(ofSize: 15)
+        config.attributedTitle = titleFont
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)
+        config.titleAlignment = .leading
+        
+        let searchButton = UIButton(configuration: config, primaryAction: nil)
+        
+        searchButton.backgroundColor = UIColor.white
+        searchButton.tintColor = UIColor.systemGray3
         searchButton.addTarget(target, action: action, for: .touchUpInside)
         return searchButton
     }

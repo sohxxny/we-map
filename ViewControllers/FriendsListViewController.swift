@@ -7,16 +7,13 @@
 
 import UIKit
 
-class FriendsListViewController: UIViewController {
+class FriendsListViewController: BaseViewController {
     
     @IBOutlet weak var friendsList: UITableView!
-    @IBOutlet weak var searchFriends: UISearchBar!
+    @IBOutlet weak var searchFriends: CustomSearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 검색창 선 없애기
-        searchFriends?.searchBarStyle = .minimal
         
         // delegate, dataSource 설정
 //        friendsList.delegate = self
@@ -24,6 +21,15 @@ class FriendsListViewController: UIViewController {
         
         // 친구 목록 불러오기
         
+    }
+    
+    // 친구 추가 화면으로 이동하기
+    @IBAction func tapGotoAddFriends(_ sender: CustomButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController {
+            addFriendsViewController.modalPresentationStyle = .pageSheet
+            present(addFriendsViewController, animated: true, completion: nil)
+        }
     }
 
 }

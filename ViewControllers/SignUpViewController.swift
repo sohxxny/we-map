@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
     
     // Outlet 변수들
     @IBOutlet weak var emailTextField: CustomTextField!
@@ -39,12 +39,6 @@ class SignUpViewController: UIViewController {
         passwdTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         passwdCheckTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        }
-    
-    override func viewWillDisappear(_ animated: Bool) {
     }
     
     // 텍스트 필드의 입력을 실시간으로 확인하는 함수
@@ -83,7 +77,7 @@ class SignUpViewController: UIViewController {
               let passwdCheck = passwdCheckTextField.text, !passwdCheck.isEmpty,
               let userName = userNameTextField.text, !userName.isEmpty else {
             // 하나라도 비어 있다면 사용자에게 알리고 함수 종료
-            AlertHelper.alertWithConfirmButton(on: self, with: "회원 가입 실패", message: "모든 정보를 기입해주세요.")
+            AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "모든 정보를 기입해주세요.")
             return
         }
         
@@ -92,7 +86,7 @@ class SignUpViewController: UIViewController {
               let passwdError = passwdLabel.text, passwdError == "",
               let passwdCheckError = passwdCheckLabel.text, passwdCheckError == "" else {
             // 잘못된 정보를 기입했다면 사용자에게 알리고 함수 종료
-            AlertHelper.alertWithConfirmButton(on: self, with: "회원 가입 실패", message: "정보를 다시 한 번 확인해 주세요.")
+            AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "정보를 다시 한 번 확인해 주세요.")
             return
         }
         
@@ -115,7 +109,7 @@ class SignUpViewController: UIViewController {
             AlertHelper.showAlertWithNoButton(on: self, with: "회원 가입 성공", message: "로그인 화면으로 이동합니다.")
             
             // 로그인 화면으로 이동
-            self.performSegue(withIdentifier: "SignUpCompleteUnwindSegue", sender: self)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -139,12 +133,6 @@ class SignUpViewController: UIViewController {
     // 로그인 화면으로 돌아가기 버튼
     @IBAction func tapBackToSignIn(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    // 화면 터치 이벤트 함수
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        // 화면 터치 시 키보드 내리기
-        self.view.endEditing(true)
     }
 
 }

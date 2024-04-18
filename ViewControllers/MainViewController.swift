@@ -7,15 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
+    
     var mainMapView: MainMapView?
     var searchButton: UIButton?
     
     override func viewDidLoad() {
-        // 지도 화면 터치 시 키보드 내리는 클로저
-        mainMapView?.onMapsTap = { [weak self] in
-            self?.view.endEditing(true)
-        }
+        super.viewDidLoad()
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -72,17 +70,10 @@ class MainViewController: UIViewController {
         ])
         button.contentHorizontalAlignment = .left
         button.layer.cornerRadius = 10
-        button.clipsToBounds = true
     }
     
     // 검색창을 눌렀을 때의 로직
     @objc func tapSearchButton() {
         print("검색 버튼 터치")
-    }
-    
-    // 화면 터치 이벤트 함수
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        // 화면 터치 시 키보드 내리기
-        self.view.endEditing(true)
     }
 }

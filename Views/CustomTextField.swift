@@ -8,20 +8,15 @@
 import UIKit
 
 class CustomTextField: UITextField {
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         commonInit()
     }
     
     private func commonInit() {
         
-        // placeholder 관련 설정
+        // 왼쪽 여백 관련 설정
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.frame.height))
         self.leftView = leftPaddingView
         self.leftViewMode = ViewMode.always

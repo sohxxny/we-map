@@ -7,33 +7,42 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        // 로그인 여부 판단
-        checkLogin(storyboard: UIStoryboard(name: "Main", bundle: nil), windowScene: windowScene)
+        window = UIWindow(windowScene: windowScene)
+        setupAuthListener()
+        window?.makeKeyAndVisible()
     }
     
-    // 로그인 여부를 판단하여 화면을 전환하는 함수
-    func checkLogin(storyboard: UIStoryboard, windowScene: UIWindowScene) {
-        
-        var currentViewController: UIViewController
-        if Auth.auth().currentUser == nil {
-            currentViewController = storyboard.instantiateViewController(identifier: "SignInViewController")
-            print("현재 로그인 상태가 아닙니다.")
-        } else {
-            // 사용자가 로그인한 상태인 경우 기본적으로 설정된 뷰 컨트롤러를 사용
-            currentViewController = storyboard.instantiateInitialViewController()!
-            print("로그인되었습니다.")
+    func setupAuthListener() {
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if let user = user {
+                print("로그인 상태: \(user.uid)")
+                self?.showMainViewController()
+            } else {
+                print("로그아웃 상태")
+                self?.showLoginViewController()
+            }
         }
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = currentViewController
-        window?.makeKeyAndVisible()
+    }
+    
+    func showMainViewController() {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
+            window?.rootViewController = mainTabBarController
+        }
+
+    func showLoginViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signInViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        window?.rootViewController = signInViewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
