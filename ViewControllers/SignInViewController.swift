@@ -16,14 +16,8 @@ class SignInViewController: BaseViewController {
     @IBOutlet weak var passwdLoginTextField: CustomTextField!
     @IBOutlet weak var signInButton: CustomButton!
     
-    var db: Firestore!
-    // var userInfo: UserModel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // firestore 인스턴스 초기화
-        db = Firestore.firestore()
     }
     
     @IBAction func tapSignInButton(_ sender: UIButton) {

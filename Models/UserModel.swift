@@ -22,20 +22,6 @@ struct UserModel {
     }
 }
 
-// 다른 유저 정보를 담는 모델
-struct UserViewModel {
-    var uid: String
-    var email: String
-    var userName: String
-    
-    // 구조체 초기화
-    init(uid: String, email: String, userName: String) {
-        self.uid = uid
-        self.email = email
-        self.userName = userName
-    }
-}
-
 // 내 정보에 대한 UserModel을 만드는 함수
 func loadUserData(uid: String, db: Firestore) async -> UserModel {
     let (userName, email) = await getUserInfo(uid: uid, db: db)

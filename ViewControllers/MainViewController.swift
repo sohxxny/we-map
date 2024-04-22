@@ -21,6 +21,7 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         mainMapView = GlobalMapsManager.shared.getOrCreateView()
         searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
+        
     }
     
     // 뷰 컨트롤러가 보인 후에 호출

@@ -32,7 +32,7 @@ class GlobalUserManager {
             globalUser = nil
         }
     
-    // 비동기적으로 친구 목록 및 정보를 갖고 오는 함수
+    // 비동기적으로 친구 목록 및 정보를 갖고 오는 함수 (수정 필요)
     // let friendsList: Array<UserViewModel> = await getFriendsInfo(uid: uid, db: db)
     func getFriendsInfo(uid: String, db: Firestore) async -> [UserViewModel] {
         let friendsCollection = db.collection("userInfo").document(uid).collection("friends")
@@ -46,7 +46,7 @@ class GlobalUserManager {
                     group.addTask {
                         // 유저 정보를 가져오는 함수를 통해 정보 가져오기
                         let (userName, email) = await getUserInfo(uid: document.documentID, db: db)
-                        return UserViewModel(uid: document.documentID, email: email, userName: userName)
+                        return UserViewModel(uid: document.documentID, email: email, userName: userName, photo: "")
                     }
                 }
                 for await userViewModel in group {

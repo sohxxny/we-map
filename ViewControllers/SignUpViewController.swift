@@ -24,15 +24,8 @@ class SignUpViewController: BaseViewController {
     
     @IBOutlet weak var signUpButton: CustomButton!
     
-    
-    // firestore 관련 변수
-    var db: Firestore!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // firestore 인스턴스 초기화
-        db = Firestore.firestore()
         
         // 텍스트 필드 입력 감지
         emailTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
