@@ -22,6 +22,4 @@ class AlertHelper {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         vc.present(alert, animated: true, completion: nil)
     }
-    
-    
 }

@@ -32,9 +32,43 @@ class GlobalUserManager {
             globalUser = nil
         }
     
+    // 내 친구인지 확인하는 코드
+    func isFriends(userEmail: String, db: Firestore) async -> Bool? {
+        do {
+            let uid = self.globalUser!.uid
+            let friendsCollection = try await db.collection("userInfo").document(uid).collection("friends").getDocuments()
+            for document in friendsCollection.documents {
+                if userEmail == document.documentID {
+                    return true
+                }
+            }
+            return false
+        } catch {
+            print("친구 확인 에러 발생")
+            return nil
+        }
+    }
+    
+    // 친구 신청 중인지 확인하는 코드
+    func isFriendsRequesting(userEmail: String, db: Firestore) async -> Bool? {
+        do {
+            let uid = self.globalUser!.uid
+            let friendsCollection = try await db.collection("userInfo").document(uid).collection("friendsRequest").getDocuments()
+            for document in friendsCollection.documents {
+                if userEmail == document.documentID {
+                    return true
+                }
+            }
+            return false
+        } catch {
+            print("친구 확인 에러 발생")
+            return nil
+        }
+    }
+    
     // 비동기적으로 친구 목록 및 정보를 갖고 오는 함수 (수정 필요)
-    // let friendsList: Array<UserViewModel> = await getFriendsInfo(uid: uid, db: db)
-    func getFriendsInfo(uid: String, db: Firestore) async -> [UserViewModel] {
+    func getFriendsInfo(userInfo : UserModel, db: Firestore) async -> [UserViewModel] {
+        let uid = userInfo.uid
         let friendsCollection = db.collection("userInfo").document(uid).collection("friends")
         do {
             let querySnapshot = try await friendsCollection.getDocuments()
