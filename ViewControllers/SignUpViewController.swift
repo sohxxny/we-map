@@ -113,17 +113,18 @@ class SignUpViewController: BaseViewController {
             AlertHelper.showAlertWithNoButton(on: self, with: "회원가입 성공", message: "로그인 화면으로 이동합니다.")
             
             // 로그인 화면으로 이동
-            self.dismiss(animated: true, completion: nil)
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
-    // 사용자 uid로 된 파이어베이스 문서를 생성하는 함수
+    // 사용자 이메일로 된 파이어베이스 문서를 생성하는 함수
     func createUserInfo(uid: String, email: String, userName: String) {
         let userRef = db.collection("userInfo").document(uid)
         userRef.setData([
-            // "uid": uid,
-            "email": email,
-            "userName": userName
+            "uid": uid,
+            "email" : email,
+            "userName": userName,
+            "profilePhoto" : ""
         ]) { error in
             if let error = error {
                 print("사용자 정보 생성 오류: \(error.localizedDescription)")
@@ -132,7 +133,6 @@ class SignUpViewController: BaseViewController {
             }
         }
     }
-    
     
     // 로그인 화면으로 돌아가기 버튼
     @IBAction func tapBackToSignIn(_ sender: UIButton) {

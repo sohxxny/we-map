@@ -13,36 +13,15 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var userInfo: UserModel!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        setupAuthListener()
-        window?.makeKeyAndVisible()
-    }
-    
-    func setupAuthListener() {
-        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            if let user = user {
-                print("로그인 상태: \(user.uid)")
-                self?.showMainViewController()
-            } else {
-                print("로그아웃 상태")
-                self?.showLoginViewController()
-            }
-        }
-    }
-    
-    func showMainViewController() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
-            window?.rootViewController = mainTabBarController
-        }
-
-    func showLoginViewController() {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let signInViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-        window?.rootViewController = signInViewController
+        window?.rootViewController = storyboard.instantiateInitialViewController()
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

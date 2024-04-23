@@ -17,7 +17,6 @@ class AddFriendsViewController: BaseViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmail: UILabel!
     @IBOutlet weak var invalidFriendRequestLabel: UILabel!
-    
     @IBOutlet weak var addFriendButton: CustomButton!
     
     override func viewDidLoad() {
@@ -33,6 +32,7 @@ class AddFriendsViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         // 처음 로드 시 뷰 숨기기
         hideProfile(value: true)
         addFriendButton.isHidden = true
@@ -76,15 +76,40 @@ class AddFriendsViewController: BaseViewController {
                 profileName.text = foundUser.userName
                 profileEmail.text = foundUser.email
                 
-                // 만약 해당 유저가 내가 아니면 버튼 보이기
-                if userEmail != userInfo.email {
-                    addFriendButton.isHidden = false
-                } else {
-                    // 만약 해당 유저가 나일 경우 버튼 대신 라벨 보이기
-                    invalidFriendRequestLabel.isHidden = false
+                if let userInfo = self.userInfo {
+                    // 해당 유저가 나일 경우
+                    if userEmail == userInfo.email {
+                        addFriendButton.isHidden = true
+                        invalidFriendRequestLabel.text = "자신에게 친구 요청을 보낼 수 없습니다."
+                        invalidFriendRequestLabel.isHidden = false
+                    // 해당 유저가 내가 아닐 경우
+                    } else {
+                        addFriendButton.isHidden = true
+                        invalidFriendRequestLabel.isHidden = true
+                        if let isMyFriends = await GlobalUserManager.shared.isFriends(userEmail: userEmail, db: db) {
+                            // 만약 이미 친구인 유저일 경우
+                            if isMyFriends {
+                                invalidFriendRequestLabel.text = "이미 친구인 사용자입니다."
+                                invalidFriendRequestLabel.isHidden = false
+                            // 친구가 아닐 경우
+                            } else {
+                                if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail, db: db) {
+                                    // 친구 신청 중일 경우
+                                    if isRequesting {
+                                        addFriendButton.setTitle("친구 신청 취소", for: .normal)
+                                        addFriendButton.isHidden = false
+                                    } else {
+                                        addFriendButton.setTitle("친구 신청", for: .normal)
+                                        addFriendButton.isHidden = false
+                                    }
+                                }
+                            }
+                        } else {
+                            print("오류")
+                        }
+                    }
                 }
-                
-                
+            // 해당 이메일이 존재하지 않을 경우
             } else {
                 AlertHelper.alertWithConfirmButton(on: self, with: "검색 실패", message: "존재하지 않는 이메일입니다.")
             }
@@ -92,7 +117,24 @@ class AddFriendsViewController: BaseViewController {
     }
     
     @IBAction func tapAddFriend(_ sender: CustomButton) {
-        print("친구 신청 버튼")
+        guard let buttonType = addFriendButton.titleLabel?.text else { return }
+        Task {
+            // profileEmail으로 친구 UID를 찾기
+            if let profileEmail = profileEmail.text, let userInfo = userInfo, let userUid = await searchUserByEmail(email: profileEmail, db: db) {
+                // 상대방과 내 문서에 서로의 이메일 저장
+                if buttonType == "친구 신청" {
+                    try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
+                    try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).setData(["isSender": true])
+                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 완료", message: "친구 신청이 완료되었습니다.")
+                    addFriendButton.setTitle("친구 신청 취소", for: .normal)
+                } else {
+                    try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).delete()
+                    try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).delete()
+                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 취소 완료", message: "친구 신청이 취소되었습니다.")
+                    addFriendButton.setTitle("친구 신청", for: .normal)
+                }
+            }
+        }
     }
     
     // X 버튼 누르면 팝업 닫기
@@ -106,15 +148,13 @@ class AddFriendsViewController: BaseViewController {
         profileName.isHidden = value
         profileEmail.isHidden = value
     }
-    
-    // 임시 로그아웃 버튼
-//    @IBAction func logOut(_ sender: UIButton) {
-//        do {
-//            try Auth.auth().signOut()
-//            print("로그아웃 성공")
-//        } catch let signOutError as NSError {
-//            print("로그아웃 에러: ", signOutError)
-//        }
-//    }
-    
+
+    @IBAction func logOut(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            print("로그아웃 성공")
+        } catch let signOutError as NSError {
+            print("로그아웃 에러: ", signOutError)
+        }
+    }
 }
