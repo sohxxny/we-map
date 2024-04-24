@@ -125,12 +125,12 @@ class AddFriendsViewController: BaseViewController {
                 if buttonType == "친구 신청" {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
                     try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).setData(["isSender": true])
-                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 완료", message: "친구 신청이 완료되었습니다.")
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 완료되었습니다.")
                     addFriendButton.setTitle("친구 신청 취소", for: .normal)
                 } else {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).delete()
                     try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).delete()
-                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 취소 완료", message: "친구 신청이 취소되었습니다.")
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 취소되었습니다.")
                     addFriendButton.setTitle("친구 신청", for: .normal)
                 }
             }

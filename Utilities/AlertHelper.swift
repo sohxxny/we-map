@@ -14,6 +14,9 @@ class AlertHelper {
     static func showAlertWithNoButton(on vc: UIViewController, with title: String?, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         vc.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            alert.dismiss(animated: true, completion: nil)
+        }
     }
     
     // 확인 버튼만 있는 alert
