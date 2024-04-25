@@ -373,7 +373,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTd-gK-q4B">
                                 <rect key="frame" x="39" y="213" width="350" height="500"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdf-KU-LKf">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdf-KU-LKf" customClass="UIImageView">
                                         <rect key="frame" x="125" y="181.66666666666669" width="100" height="100"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
@@ -606,9 +606,9 @@
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="magnifyingglass" catalog="system" width="32" height="32"/>
+        <image name="person.crop.circle.badge.plus" catalog="system" width="32" height="32"/>
+        <image name="person.fill" catalog="system" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">

@@ -13,7 +13,7 @@ class AddFriendsViewController: BaseViewController {
     
     @IBOutlet weak var searchUserTextField: CustomSearchBar!
     @IBOutlet weak var popUpBackgroundView: UIView!
-    @IBOutlet weak var profilePhotoView: UIView!
+    @IBOutlet weak var profilePhotoView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmail: UILabel!
     @IBOutlet weak var invalidFriendRequestLabel: UILabel!
@@ -75,6 +75,16 @@ class AddFriendsViewController: BaseViewController {
                 let foundUser = await loadUserViewData(uid: searchUid, db: db)
                 profileName.text = foundUser.userName
                 profileEmail.text = foundUser.email
+                
+                // 프로필 사진 지정
+                if foundUser.photo == "" {
+                    if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
+                        profilePhotoView.image = image
+                        profilePhotoView.tintColor = .weMapBlue
+                        profilePhotoView.contentMode = .scaleAspectFit
+                        profilePhotoView.clipsToBounds = true
+                            }
+                }
                 
                 if let userInfo = self.userInfo {
                     // 해당 유저가 나일 경우
