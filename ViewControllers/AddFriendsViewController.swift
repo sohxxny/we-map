@@ -13,7 +13,7 @@ class AddFriendsViewController: BaseViewController {
     
     @IBOutlet weak var searchUserTextField: CustomSearchBar!
     @IBOutlet weak var popUpBackgroundView: UIView!
-    @IBOutlet weak var profilePhotoView: UIView!
+    @IBOutlet weak var profilePhotoView: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmail: UILabel!
     @IBOutlet weak var invalidFriendRequestLabel: UILabel!
@@ -76,6 +76,16 @@ class AddFriendsViewController: BaseViewController {
                 profileName.text = foundUser.userName
                 profileEmail.text = foundUser.email
                 
+                // 프로필 사진 지정
+                if foundUser.photo == "" {
+                    if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
+                        profilePhotoView.image = image
+                        profilePhotoView.tintColor = .weMapBlue
+                        profilePhotoView.contentMode = .scaleAspectFit
+                        profilePhotoView.clipsToBounds = true
+                            }
+                }
+                
                 if let userInfo = self.userInfo {
                     // 해당 유저가 나일 경우
                     if userEmail == userInfo.email {
@@ -125,12 +135,12 @@ class AddFriendsViewController: BaseViewController {
                 if buttonType == "친구 신청" {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
                     try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).setData(["isSender": true])
-                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 완료", message: "친구 신청이 완료되었습니다.")
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 완료되었습니다.")
                     addFriendButton.setTitle("친구 신청 취소", for: .normal)
                 } else {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).delete()
                     try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).delete()
-                    // AlertHelper.showAlertWithNoButton(on: self, with: "친구 신청 취소 완료", message: "친구 신청이 취소되었습니다.")
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 취소되었습니다.")
                     addFriendButton.setTitle("친구 신청", for: .normal)
                 }
             }
