@@ -110,7 +110,7 @@ class SignUpViewController: BaseViewController {
             self.createUserInfo(uid: user.uid, email: email, userName: userName)
             
             // 회원가입 성공 팝업
-            // AlertHelper.showAlertWithNoButton(on: self, with: "회원가입 성공", message: "로그인 화면으로 이동합니다.")
+            AlertHelper.showAlertWithNoButton(on: self, with: "회원가입 성공", message: "로그인 화면으로 이동합니다.")
             
             // 로그인 화면으로 이동
             self.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -124,7 +124,8 @@ class SignUpViewController: BaseViewController {
             "uid": uid,
             "email" : email,
             "userName": userName,
-            "profilePhoto" : ""
+            "profilePhoto" : "",
+            "profileMessage" : ""
         ]) { error in
             if let error = error {
                 print("사용자 정보 생성 오류: \(error.localizedDescription)")

@@ -7,25 +7,36 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 // 다른 유저 정보를 담는 모델
 struct UserViewModel {
-    var uid: String
     var email: String
+    var uid: String
     var userName: String
-    var photo: String
+    var profilePhoto: String
+    var profileMessage: String
     
     // 구조체 초기화
-    init(uid: String, email: String, userName: String, photo: String) {
-        self.uid = uid
+    init(email: String, uid: String, userName: String, profilePhoto: String, profileMessage: String) {
         self.email = email
+        self.uid = uid
         self.userName = userName
-        self.photo = photo
+        self.profilePhoto = profilePhoto
+        self.profileMessage = profileMessage
+    }
+    
+    // UserViewModel을 만드는 함수
+    static func createUserViewModel(email: String) async -> UserViewModel? {
+        guard let uid = await searchUserByEmail(email: email) else { return nil }
+        let (userName, profilePhoto, profileMessage) = await getUserViewInfo(uid: uid)
+        return UserViewModel(email: email, uid: uid, userName: userName, profilePhoto: profilePhoto, profileMessage: profileMessage)
     }
 }
 
 // 이메일로 유저 UID를 찾는 함수
-func searchUserByEmail(email: String, db: Firestore) async -> String? {
+func searchUserByEmail(email: String) async -> String? {
+    let db = Firestore.firestore()
     do {
         let userInfo = try await db.collection("userInfo").getDocuments()
         for document in userInfo.documents {
@@ -40,24 +51,20 @@ func searchUserByEmail(email: String, db: Firestore) async -> String? {
     }
 }
 
-// 유저 정보에 대한 UserViewModel을 만드는 함수 (아직 프로필 사진 부분 수정 필요)
-func loadUserViewData(uid: String, db: Firestore) async -> UserViewModel {
-    let (userName, email) = await getUserViewInfo(uid: uid, db: db)
-    return UserViewModel(uid: uid, email: email, userName: userName, photo: "")
-}
-
-// 비동기적으로 내 정보(이름, 이메일)를 갖고 오는 함수
-func getUserViewInfo(uid: String, db: Firestore) async -> (String, String) {
-    await withCheckedContinuation { continuation in
+// 비동기적으로 유저 정보(이름, 사진, 프로필 메시지)를 갖고 오는 함수
+func getUserViewInfo(uid: String) async -> (String, String, String) {
+    return await withCheckedContinuation { continuation in
+        let db = Firestore.firestore()
         let myInfo = db.collection("userInfo").document(uid)
         myInfo.getDocument { document, error in
             if let document = document, document.exists {
                 let data = document.data()
-                let email = data?["email"] as? String ?? "empty email"
-                let userName = data?["userName"] as? String ?? "empty name"
-                continuation.resume(returning: (userName, email))
+                let userName = data?["userName"] as? String
+                let profilePhoto = data?["profilePhoto"] as? String
+                let profileMessage = data?["profileMessage"] as? String
+                continuation.resume(returning: (userName!, profilePhoto!, profileMessage!))
             } else {
-                continuation.resume(returning: ("empty name", "empty email"))
+                continuation.resume(returning: ("empty name", "empty photo", "empty message"))
             }
         }
     }

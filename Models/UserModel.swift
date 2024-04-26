@@ -20,6 +20,26 @@ struct UserModel {
         self.email = email
         self.userName = userName
     }
+    
+    // 비동기적으로 친구 목록 및 정보를 갖고 오는 함수
+    func getFriendsInfo() async -> [UserViewModel] {
+        let db = Firestore.firestore()
+        let uid = self.uid
+        let friendsCollection = db.collection("userInfo").document(uid).collection("friends")
+        do {
+            let querySnapshot = try await friendsCollection.getDocuments()
+            var friendsList: [UserViewModel] = []
+            for document in querySnapshot.documents {
+                if let userInfo = await UserViewModel.createUserViewModel(email: document.documentID) {
+                    friendsList.append(userInfo)
+                }
+            }
+            return friendsList
+        } catch {
+            print("친구 목록 가져오기 에러: \(error)")
+            return []
+        }
+    }
 }
 
 // 내 정보에 대한 UserModel을 만드는 함수
