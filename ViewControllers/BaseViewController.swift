@@ -14,6 +14,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     var userInfo: UserModel!
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
+    var userViewModelList: [UserViewModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +34,18 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         setupAuthListener()
     }
     
-    // 로그인 상태가 아닐 경우 로그인 화면으로 전환하는 함수
-    func setupAuthListener() {
+    // 로그인 여부 판단 리스너
+    func setupAuthListener() async {
         // 로그인 상태인 경우
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if let user = user {
-                Task {
-                    if let self = self {
-                        self.userInfo = await GlobalUserManager.shared.getOrCreateUserModel(uid: user.uid, db: self.db)
-                        print("로그인 상태, userInfo: \(String(describing: self.userInfo))")
+                if let self = self {
+                    self.userInfo = await GlobalUserManager.shared.getOrCreateUserModel(uid: user.uid, db: self.db)
+                    print("로그인 상태, userInfo: \(String(describing: self.userInfo))")
+                    
+                    // 친구 목록 화면이라면  친구 목록을 생성
+                    if self is FriendsListViewController {
+                        self.userViewModelList = await self.createFriendsList()
                     }
                 }
             // 로그아웃 상태인 경우
@@ -53,6 +57,16 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
                 }
             }
         }
+    }
+    
+    // 나를 포함한 친구 리스트를 불러오기
+    func createFriendsList() async -> [UserViewModel] {
+        guard let myUserViewModel = await UserViewModel.createUserViewModel(email: userInfo.email) else {
+            print("친구 가져오기 실패")
+            return []
+        }
+        let friendsViewModel = await userInfo.getFriendsInfo()
+        return [myUserViewModel] + friendsViewModel
     }
     
     // 로그인 화면으로 이동하는 함수

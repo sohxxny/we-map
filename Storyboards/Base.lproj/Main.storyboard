@@ -275,35 +275,49 @@
                                 <rect key="frame" x="20" y="179" width="388" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gUm-Q4-gSN" customClass="ProfileTableViewCell" customModule="WeMap" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gUm-Q4-gSN" customClass="ProfileTableViewCell" customModule="WeMap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="388" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUm-Q4-gSN" id="vPN-zU-1ej">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afp-Dg-xp8">
-                                                    <rect key="frame" x="10" y="10" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afp-Dg-xp8">
+                                                    <rect key="frame" x="10" y="15" width="50" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="DTc-Ap-4Zr"/>
+                                                        <constraint firstAttribute="height" constant="50" id="DhX-p2-MrM"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상태 메시지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boy-5U-TVj">
-                                                    <rect key="frame" x="68" y="39" width="69" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 메시지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boy-5U-TVj">
+                                                    <rect key="frame" x="70" y="41" width="288" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2q-yE-oPv">
-                                                    <rect key="frame" x="68" y="12" width="32" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2q-yE-oPv">
+                                                    <rect key="frame" x="70" y="11" width="288" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="C2q-yE-oPv" firstAttribute="leading" secondItem="Afp-Dg-xp8" secondAttribute="trailing" constant="10" id="3WG-fv-e5o"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="C2q-yE-oPv" secondAttribute="trailing" constant="10" id="AM6-vM-82r"/>
+                                                <constraint firstItem="Afp-Dg-xp8" firstAttribute="top" secondItem="vPN-zU-1ej" secondAttribute="top" constant="15" id="KSn-DQ-n8e"/>
+                                                <constraint firstAttribute="bottom" secondItem="Afp-Dg-xp8" secondAttribute="bottom" constant="15" id="KvP-GP-sHg"/>
+                                                <constraint firstItem="Boy-5U-TVj" firstAttribute="leading" secondItem="Afp-Dg-xp8" secondAttribute="trailing" constant="10" id="jF3-eh-8ZZ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Boy-5U-TVj" secondAttribute="bottom" id="jHn-kX-W6o"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Boy-5U-TVj" secondAttribute="trailing" constant="10" id="jr0-9V-fiQ"/>
+                                                <constraint firstItem="Afp-Dg-xp8" firstAttribute="leading" secondItem="vPN-zU-1ej" secondAttribute="leading" constant="10" id="nTT-fu-BhL"/>
+                                                <constraint firstItem="C2q-yE-oPv" firstAttribute="top" secondItem="vPN-zU-1ej" secondAttribute="topMargin" id="rhD-aC-Bka"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="profileImageView" destination="Afp-Dg-xp8" id="NIG-Xi-aIn"/>
+                                            <outlet property="profileMessageLabel" destination="Boy-5U-TVj" id="Tdp-is-BVx"/>
+                                            <outlet property="profileNameLabel" destination="C2q-yE-oPv" id="xqC-9j-qTy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -354,7 +368,7 @@
                     <tabBarItem key="tabBarItem" tag="4" title="내 친구" image="person.fill" catalog="system" id="9E0-3S-5ZU"/>
                     <navigationItem key="navigationItem" id="Wpo-VN-XVK"/>
                     <connections>
-                        <outlet property="friendsList" destination="qdk-uT-Dbj" id="tea-Wf-pee"/>
+                        <outlet property="friendsListTableView" destination="qdk-uT-Dbj" id="5dg-ME-eDZ"/>
                         <outlet property="searchFriends" destination="anE-Q6-mGL" id="rEk-cU-daD"/>
                     </connections>
                 </viewController>
@@ -610,7 +624,7 @@
         <image name="person.crop.circle.badge.plus" catalog="system" width="32" height="32"/>
         <image name="person.fill" catalog="system" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="32" height="32"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

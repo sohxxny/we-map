@@ -20,7 +20,6 @@
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
-		9671BD3E2BDAA4CA00AFD305 /* user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9671BD3D2BDAA4CA00AFD305 /* user-icon.png */; };
 		96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96736B352B8CAEE2008FFB47 /* MainViewController.swift */; };
 		967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */; };
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
@@ -68,6 +67,7 @@
 		96F17EBA2B6100CE003584D3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 96F17EB92B6100CE003584D3 /* FirebaseStorageCombine-Community */; };
 		96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17EBD2B6122EC003584D3 /* SignInViewController.swift */; };
 		96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17EBF2B612327003584D3 /* SignUpViewController.swift */; };
+		96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F3B42B2BDB761000B858C9 /* user-icon.png */; };
 		E89206BEE0EE346C34FD3007 /* Pods_WeMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,7 +105,6 @@
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
-		9671BD3D2BDAA4CA00AFD305 /* user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon.png"; sourceTree = "<group>"; };
 		96736B352B8CAEE2008FFB47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		96F17E732B60F94B003584D3 /* WeMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		96F17EBD2B6122EC003584D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		96F17EBF2B612327003584D3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		96F3B42B2BDB761000B858C9 /* user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon.png"; sourceTree = "<group>"; };
 		A9BCEFA84E5EAB2DF365979D /* Pods-WeMap-WeMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC934A2C4439C482F8DEF38 /* Pods-WeMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.debug.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.debug.xcconfig"; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 		9671BD392BDA902F00AFD305 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
-				9671BD3D2BDAA4CA00AFD305 /* user-icon.png */,
+				96F3B42B2BDB761000B858C9 /* user-icon.png */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -226,8 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				96C04C912B67E880002D3E84 /* AlertHelper.swift */,
-				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
 				961ECBBE2BD116490060512A /* GlobalUserManager.swift */,
+				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
 				961ECBB82BD0E4370060512A /* Extensions.swift */,
 			);
 			path = Utilities;
@@ -436,7 +436,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					96F17E4C2B60F94A003584D3 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -482,7 +482,7 @@
 				96F17E5D2B60F94B003584D3 /* LaunchScreen.storyboard in Resources */,
 				96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
-				9671BD3E2BDAA4CA00AFD305 /* user-icon.png in Resources */,
+				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -726,6 +726,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -786,6 +787,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

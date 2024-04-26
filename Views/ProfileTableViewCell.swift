@@ -13,6 +13,9 @@ import FirebaseFirestore
 class ProfileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var profileMessageLabel: UILabel!
+    
     
     // firestore 관련 변수
     var db: Firestore!

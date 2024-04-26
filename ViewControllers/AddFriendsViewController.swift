@@ -69,53 +69,51 @@ class AddFriendsViewController: BaseViewController {
         
         // 문서에서 해당 이메일 찾기
         Task {
-            if let searchUid = await searchUserByEmail(email: userEmail, db: db) {
+            if (await searchUserByEmail(email: userEmail)) != nil {
                 // 프로필 다시 보이기
                 hideProfile(value: false)
-                let foundUser = await loadUserViewData(uid: searchUid, db: db)
-                profileName.text = foundUser.userName
-                profileEmail.text = foundUser.email
-                
-                // 프로필 사진 지정
-                if foundUser.photo == "" {
-                    if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
-                        profilePhotoView.image = image
-                        profilePhotoView.tintColor = .weMapBlue
-                        profilePhotoView.contentMode = .scaleAspectFit
-                        profilePhotoView.clipsToBounds = true
-                            }
-                }
-                
-                if let userInfo = self.userInfo {
-                    // 해당 유저가 나일 경우
-                    if userEmail == userInfo.email {
-                        addFriendButton.isHidden = true
-                        invalidFriendRequestLabel.text = "자신에게 친구 요청을 보낼 수 없습니다."
-                        invalidFriendRequestLabel.isHidden = false
-                    // 해당 유저가 내가 아닐 경우
-                    } else {
-                        addFriendButton.isHidden = true
-                        invalidFriendRequestLabel.isHidden = true
-                        if let isMyFriends = await GlobalUserManager.shared.isFriends(userEmail: userEmail, db: db) {
-                            // 만약 이미 친구인 유저일 경우
-                            if isMyFriends {
-                                invalidFriendRequestLabel.text = "이미 친구인 사용자입니다."
-                                invalidFriendRequestLabel.isHidden = false
-                            // 친구가 아닐 경우
-                            } else {
-                                if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail, db: db) {
-                                    // 친구 신청 중일 경우
-                                    if isRequesting {
-                                        addFriendButton.setTitle("친구 신청 취소", for: .normal)
-                                        addFriendButton.isHidden = false
-                                    } else {
-                                        addFriendButton.setTitle("친구 신청", for: .normal)
-                                        addFriendButton.isHidden = false
+                if let foundUser = await UserViewModel.createUserViewModel(email: userEmail) {
+                    // 프로필 사진 지정
+                    if foundUser.profilePhoto == "" {
+                        if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
+                            profilePhotoView.image = image
+                            profilePhotoView.tintColor = .weMapBlue
+                            profilePhotoView.contentMode = .scaleAspectFit
+                            profilePhotoView.clipsToBounds = true
+                                }
+                    }
+                    
+                    if let userInfo = self.userInfo {
+                        // 해당 유저가 나일 경우
+                        if userEmail == userInfo.email {
+                            addFriendButton.isHidden = true
+                            invalidFriendRequestLabel.text = "자신에게 친구 요청을 보낼 수 없습니다."
+                            invalidFriendRequestLabel.isHidden = false
+                        // 해당 유저가 내가 아닐 경우
+                        } else {
+                            addFriendButton.isHidden = true
+                            invalidFriendRequestLabel.isHidden = true
+                            if let isMyFriends = await GlobalUserManager.shared.isFriends(userEmail: userEmail, db: db) {
+                                // 만약 이미 친구인 유저일 경우
+                                if isMyFriends {
+                                    invalidFriendRequestLabel.text = "이미 친구인 사용자입니다."
+                                    invalidFriendRequestLabel.isHidden = false
+                                // 친구가 아닐 경우
+                                } else {
+                                    if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail, db: db) {
+                                        // 친구 신청 중일 경우
+                                        if isRequesting {
+                                            addFriendButton.setTitle("친구 신청 취소", for: .normal)
+                                            addFriendButton.isHidden = false
+                                        } else {
+                                            addFriendButton.setTitle("친구 신청", for: .normal)
+                                            addFriendButton.isHidden = false
+                                        }
                                     }
                                 }
+                            } else {
+                                print("오류")
                             }
-                        } else {
-                            print("오류")
                         }
                     }
                 }
@@ -130,7 +128,7 @@ class AddFriendsViewController: BaseViewController {
         guard let buttonType = addFriendButton.titleLabel?.text else { return }
         Task {
             // profileEmail으로 친구 UID를 찾기
-            if let profileEmail = profileEmail.text, let userInfo = userInfo, let userUid = await searchUserByEmail(email: profileEmail, db: db) {
+            if let profileEmail = profileEmail.text, let userInfo = userInfo, let userUid = await searchUserByEmail(email: profileEmail) {
                 // 상대방과 내 문서에 서로의 이메일 저장
                 if buttonType == "친구 신청" {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
