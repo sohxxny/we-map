@@ -50,7 +50,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
             } else {
                 print("로그아웃 상태")
                 if !(self is SignInViewController) && !(self is SignUpViewController) {
-                    self!.goToSignIn()
+                    self?.goToSignIn()
                 }
             }
         }

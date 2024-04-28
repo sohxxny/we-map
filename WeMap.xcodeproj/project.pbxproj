@@ -68,6 +68,7 @@
 		96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17EBD2B6122EC003584D3 /* SignInViewController.swift */; };
 		96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17EBF2B612327003584D3 /* SignUpViewController.swift */; };
 		96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */; };
+		96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F216A62BDE8679005D58BC /* MyPageViewController.swift */; };
 		96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F3B42B2BDB761000B858C9 /* user-icon.png */; };
 		E89206BEE0EE346C34FD3007 /* Pods_WeMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		96F17EBD2B6122EC003584D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		96F17EBF2B612327003584D3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFriendsManager.swift; sourceTree = "<group>"; };
+		96F216A62BDE8679005D58BC /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		96F3B42B2BDB761000B858C9 /* user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon.png"; sourceTree = "<group>"; };
 		A9BCEFA84E5EAB2DF365979D /* Pods-WeMap-WeMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 				9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */,
 				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 				961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */,
+				96F216A62BDE8679005D58BC /* MyPageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
+				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
 				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
 				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,

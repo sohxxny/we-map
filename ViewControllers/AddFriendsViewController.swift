@@ -159,13 +159,4 @@ class AddFriendsViewController: BaseViewController {
         profileName.isHidden = value
         profileEmail.isHidden = value
     }
-
-//    @IBAction func logOut(_ sender: UIButton) {
-//        do {
-//            try Auth.auth().signOut()
-//            print("로그아웃 성공")
-//        } catch let signOutError as NSError {
-//            print("로그아웃 에러: ", signOutError)
-//        }
-//    }
 }
