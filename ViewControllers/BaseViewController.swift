@@ -11,20 +11,14 @@ import FirebaseFirestore
 
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    var userInfo: UserModel!
     var handle: AuthStateDidChangeListenerHandle?
-    var db: Firestore!
-    var userViewModelList: [UserViewModel] = []
+    var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // firestore 인스턴스 초기화
-        db = Firestore.firestore()
-        
         // 화면 터치 시 키보드 내리기
         setupHideKeyboardOnTap()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,41 +26,64 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // 로그인 여부 판단 리스너
         setupAuthListener()
+        
+        // userInfo 생성 및 친구 목록 생성
+        Task {
+            await createUserInfo()
+            if let userInfo = GlobalUserManager.shared.globalUser {
+                await GlobalFriendsManager.shared.createMyViewModel(userInfo: userInfo)
+                await GlobalFriendsManager.shared.createFriendsList(userInfo: userInfo)
+                
+                // 데이터 로드 완료되면 UI 띄우기
+                updateUI()
+            }
+        }
     }
     
     // 로그인 여부 판단 리스너
-    func setupAuthListener() async {
-        // 로그인 상태인 경우
+    func setupAuthListener() {
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            if let user = user {
-                if let self = self {
-                    self.userInfo = await GlobalUserManager.shared.getOrCreateUserModel(uid: user.uid, db: self.db)
-                    print("로그인 상태, userInfo: \(String(describing: self.userInfo))")
-                    
-                    // 친구 목록 화면이라면  친구 목록을 생성
-                    if self is FriendsListViewController {
-                        self.userViewModelList = await self.createFriendsList()
-                    }
-                }
-            // 로그아웃 상태인 경우
+            // 로그인 상태인 경우
+            if user != nil {
+                print("로그인 상태")
+            // 로그아웃 상태인 경우 현재 로그인 화면이 아니라면 로그인 화면으로 이동
             } else {
                 print("로그아웃 상태")
-                // 현재 로그인 화면이 아니라면 로그인 화면으로 이동
                 if !(self is SignInViewController) && !(self is SignUpViewController) {
-                    self!.goToSignIn()
+                    self?.goToSignIn()
                 }
             }
         }
     }
     
-    // 나를 포함한 친구 리스트를 불러오기
-    func createFriendsList() async -> [UserViewModel] {
-        guard let myUserViewModel = await UserViewModel.createUserViewModel(email: userInfo.email) else {
-            print("친구 가져오기 실패")
-            return []
+    // userInfo 생성하기
+    func createUserInfo() async {
+        if let user = Auth.auth().currentUser {
+            await GlobalUserManager.shared.createUserModel(uid: user.uid)
         }
-        let friendsViewModel = await userInfo.getFriendsInfo()
-        return [myUserViewModel] + friendsViewModel
+    }
+
+    // UI 업데이트
+    func updateUI() {
+        OnOffLoadingIndicator(isOn: false)
+    }
+    
+    // 로딩 인디케이터 설정
+    func setupLoadingIndicator() {
+        loadingIndicator.center = view.center
+        view.addSubview(loadingIndicator)
+        OnOffLoadingIndicator(isOn: true)
+    }
+    
+    // 로딩 인디케이터 켜거나 끄기
+    func OnOffLoadingIndicator(isOn: Bool) {
+        if isOn {
+            loadingIndicator.startAnimating()
+            loadingIndicator.isHidden = false
+        } else {
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
+        }
     }
     
     // 로그인 화면으로 이동하는 함수
@@ -78,7 +95,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
-    // 화면 터치 시 작동하는 메서드
+    // 화면 터치 시 작동하는 함수
     func setupHideKeyboardOnTap() {
         let hideKeyboardTapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         hideKeyboardTapGesture.delegate = self
@@ -91,6 +108,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
         view.endEditing(true)
     }
     
+    // 제스처 이벤트 받는 함수
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

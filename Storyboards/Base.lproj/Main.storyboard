@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -271,47 +270,49 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qdk-uT-Dbj">
-                                <rect key="frame" x="20" y="179" width="388" height="664"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qdk-uT-Dbj">
+                                <rect key="frame" x="20" y="184" width="388" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gUm-Q4-gSN" customClass="ProfileTableViewCell" customModule="WeMap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="388" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="70" id="gUm-Q4-gSN" customClass="ProfileTableViewCell" customModule="WeMap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="388" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUm-Q4-gSN" id="vPN-zU-1ej">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afp-Dg-xp8">
-                                                    <rect key="frame" x="10" y="15" width="50" height="40"/>
+                                                    <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="DTc-Ap-4Zr"/>
                                                         <constraint firstAttribute="height" constant="50" id="DhX-p2-MrM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 메시지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boy-5U-TVj">
-                                                    <rect key="frame" x="70" y="41" width="288" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2q-yE-oPv">
-                                                    <rect key="frame" x="70" y="11" width="288" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-qr-8Gg">
+                                                    <rect key="frame" x="75" y="16.333333333333332" width="65.666666666666686" height="37.333333333333343"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2q-yE-oPv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="65.666666666666671" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 메시지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boy-5U-TVj">
+                                                            <rect key="frame" x="0.0" y="23.000000000000004" width="65.666666666666671" height="14.333333333333332"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="C2q-yE-oPv" firstAttribute="leading" secondItem="Afp-Dg-xp8" secondAttribute="trailing" constant="10" id="3WG-fv-e5o"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="C2q-yE-oPv" secondAttribute="trailing" constant="10" id="AM6-vM-82r"/>
-                                                <constraint firstItem="Afp-Dg-xp8" firstAttribute="top" secondItem="vPN-zU-1ej" secondAttribute="top" constant="15" id="KSn-DQ-n8e"/>
-                                                <constraint firstAttribute="bottom" secondItem="Afp-Dg-xp8" secondAttribute="bottom" constant="15" id="KvP-GP-sHg"/>
-                                                <constraint firstItem="Boy-5U-TVj" firstAttribute="leading" secondItem="Afp-Dg-xp8" secondAttribute="trailing" constant="10" id="jF3-eh-8ZZ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Boy-5U-TVj" secondAttribute="bottom" id="jHn-kX-W6o"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Boy-5U-TVj" secondAttribute="trailing" constant="10" id="jr0-9V-fiQ"/>
+                                                <constraint firstItem="U4u-qr-8Gg" firstAttribute="leading" secondItem="Afp-Dg-xp8" secondAttribute="trailing" constant="15" id="4dd-u6-Ppf"/>
+                                                <constraint firstItem="U4u-qr-8Gg" firstAttribute="centerY" secondItem="Afp-Dg-xp8" secondAttribute="centerY" id="JTG-sw-Yzk"/>
+                                                <constraint firstItem="Afp-Dg-xp8" firstAttribute="top" secondItem="vPN-zU-1ej" secondAttribute="top" constant="10" id="KSn-DQ-n8e"/>
+                                                <constraint firstAttribute="bottom" secondItem="Afp-Dg-xp8" secondAttribute="bottom" constant="10" id="KvP-GP-sHg"/>
                                                 <constraint firstItem="Afp-Dg-xp8" firstAttribute="leading" secondItem="vPN-zU-1ej" secondAttribute="leading" constant="10" id="nTT-fu-BhL"/>
-                                                <constraint firstItem="C2q-yE-oPv" firstAttribute="top" secondItem="vPN-zU-1ej" secondAttribute="topMargin" id="rhD-aC-Bka"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -354,7 +355,7 @@
                             <constraint firstItem="p7K-11-LIa" firstAttribute="leading" secondItem="Qoi-db-d91" secondAttribute="leading" constant="35" id="1vf-KX-3W0"/>
                             <constraint firstItem="anE-Q6-mGL" firstAttribute="centerY" secondItem="fzx-PY-BLe" secondAttribute="centerY" id="4TC-UI-U44"/>
                             <constraint firstItem="Qoi-db-d91" firstAttribute="trailing" secondItem="fzx-PY-BLe" secondAttribute="trailing" constant="30" id="GgF-Vb-J2m"/>
-                            <constraint firstItem="qdk-uT-Dbj" firstAttribute="top" secondItem="anE-Q6-mGL" secondAttribute="bottom" constant="15" id="JJo-De-Zgg"/>
+                            <constraint firstItem="qdk-uT-Dbj" firstAttribute="top" secondItem="anE-Q6-mGL" secondAttribute="bottom" constant="20" id="JJo-De-Zgg"/>
                             <constraint firstItem="anE-Q6-mGL" firstAttribute="top" secondItem="p7K-11-LIa" secondAttribute="bottom" constant="20" id="KDa-EK-APK"/>
                             <constraint firstItem="Qoi-db-d91" firstAttribute="trailing" secondItem="p7K-11-LIa" secondAttribute="trailing" constant="35" id="QFe-E6-CV4"/>
                             <constraint firstItem="qdk-uT-Dbj" firstAttribute="bottom" secondItem="Qoi-db-d91" secondAttribute="bottom" id="UO2-JM-ng2"/>
@@ -370,11 +371,42 @@
                     <connections>
                         <outlet property="friendsListTableView" destination="qdk-uT-Dbj" id="5dg-ME-eDZ"/>
                         <outlet property="searchFriends" destination="anE-Q6-mGL" id="rEk-cU-daD"/>
+                        <segue destination="nMJ-tG-0eZ" kind="show" identifier="showMyPage" id="r25-cW-Le0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qt5-UG-nRD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3114" y="1515"/>
+        </scene>
+        <!--My Page View Controller-->
+        <scene sceneID="y5a-UW-fa7">
+            <objects>
+                <viewController id="nMJ-tG-0eZ" customClass="MyPageViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DSC-75-a9a">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ot-IE-jiO">
+                                <rect key="frame" x="172.66666666666666" y="445.66666666666669" width="83" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="로그아웃"/>
+                                <connections>
+                                    <action selector="logOut:" destination="nMJ-tG-0eZ" eventType="touchUpInside" id="FXT-xN-egg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="F3s-mK-p0M"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Ot-IE-jiO" firstAttribute="centerX" secondItem="DSC-75-a9a" secondAttribute="centerX" id="Yfj-8Z-P6Y"/>
+                            <constraint firstItem="7Ot-IE-jiO" firstAttribute="centerY" secondItem="DSC-75-a9a" secondAttribute="centerY" id="vof-vZ-NqM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KE7-PI-CWi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Fu-kt-jhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3113.5514018691588" y="2282.7213822894169"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="Tq4-dw-adG">
@@ -429,18 +461,6 @@
                                         <color key="textColor" systemColor="systemGray2Color"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-qr-CrP">
-                                        <rect key="frame" x="30" y="129" width="75" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="AccentColor"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="로그아웃">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOut:" destination="uIz-Jc-QNK" eventType="touchUpInside" id="y4U-TG-sml"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -620,14 +640,11 @@
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
-        <image name="magnifyingglass" catalog="system" width="32" height="32"/>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="32" height="32"/>
-        <image name="person.fill" catalog="system" width="32" height="32"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="xmark" catalog="system" width="32" height="32"/>
-        <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
