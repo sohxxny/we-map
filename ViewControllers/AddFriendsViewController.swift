@@ -82,8 +82,10 @@ class AddFriendsViewController: BaseViewController {
                             profilePhotoView.clipsToBounds = true
                                 }
                     }
+                    profileName.text = foundUser.userName
+                    profileEmail.text = foundUser.email
                     
-                    if let userInfo = self.userInfo {
+                    if let userInfo = GlobalUserManager.shared.globalUser {
                         // 해당 유저가 나일 경우
                         if userEmail == userInfo.email {
                             addFriendButton.isHidden = true
@@ -93,14 +95,14 @@ class AddFriendsViewController: BaseViewController {
                         } else {
                             addFriendButton.isHidden = true
                             invalidFriendRequestLabel.isHidden = true
-                            if let isMyFriends = await GlobalUserManager.shared.isFriends(userEmail: userEmail, db: db) {
+                            if let isMyFriends = await GlobalUserManager.shared.isFriends(userEmail: userEmail) {
                                 // 만약 이미 친구인 유저일 경우
                                 if isMyFriends {
                                     invalidFriendRequestLabel.text = "이미 친구인 사용자입니다."
                                     invalidFriendRequestLabel.isHidden = false
                                 // 친구가 아닐 경우
                                 } else {
-                                    if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail, db: db) {
+                                    if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail) {
                                         // 친구 신청 중일 경우
                                         if isRequesting {
                                             addFriendButton.setTitle("친구 신청 취소", for: .normal)
@@ -125,10 +127,11 @@ class AddFriendsViewController: BaseViewController {
     }
     
     @IBAction func tapAddFriend(_ sender: CustomButton) {
+        let db = Firestore.firestore()
         guard let buttonType = addFriendButton.titleLabel?.text else { return }
         Task {
             // profileEmail으로 친구 UID를 찾기
-            if let profileEmail = profileEmail.text, let userInfo = userInfo, let userUid = await searchUserByEmail(email: profileEmail) {
+            if let profileEmail = profileEmail.text, let userInfo = GlobalUserManager.shared.globalUser, let userUid = await searchUserByEmail(email: profileEmail) {
                 // 상대방과 내 문서에 서로의 이메일 저장
                 if buttonType == "친구 신청" {
                     try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
@@ -157,12 +160,12 @@ class AddFriendsViewController: BaseViewController {
         profileEmail.isHidden = value
     }
 
-    @IBAction func logOut(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            print("로그아웃 성공")
-        } catch let signOutError as NSError {
-            print("로그아웃 에러: ", signOutError)
-        }
-    }
+//    @IBAction func logOut(_ sender: UIButton) {
+//        do {
+//            try Auth.auth().signOut()
+//            print("로그아웃 성공")
+//        } catch let signOutError as NSError {
+//            print("로그아웃 에러: ", signOutError)
+//        }
+//    }
 }

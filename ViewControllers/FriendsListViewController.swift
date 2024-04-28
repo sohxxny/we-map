@@ -18,29 +18,33 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         // delegate, dataSource 설정
         friendsListTableView.delegate = self
         friendsListTableView.dataSource = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        print(userViewModelList)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        // 로딩 인디케이터 설정
+        setupLoadingIndicator()
         
-        print(self.userViewModelList)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 테이블뷰 보이지 않기
+        friendsListTableView.isHidden = true
+    }
+
+    // 테이블의 데이터 개수 (내 정보 포함)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userViewModelList.count
+        let friendsList = GlobalFriendsManager.shared.globalFriendsList
+        return friendsList.count + 1
     }
     
+    // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let myInfo = GlobalFriendsManager.shared.globalMyViewModel
+        let friendsList = [myInfo] + GlobalFriendsManager.shared.globalFriendsList
         let friendsCell = friendsListTableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
         
         // 프로필 사진 없으면 기본 사진 넣기
-        if userViewModelList[indexPath.row].profilePhoto == "" {
+        if friendsList[indexPath.row]?.profilePhoto == "" {
             if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
                 friendsCell.profileImageView.image = image
                 friendsCell.profileImageView.tintColor = .weMapBlue
@@ -49,9 +53,15 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
                     }
         }
         
-        friendsCell.profileNameLabel.text = userViewModelList[indexPath.row].userName
-        friendsCell.profileMessageLabel.text = userViewModelList[indexPath.row].profileMessage
+        friendsCell.profileNameLabel.text = friendsList[indexPath.row]?.userName
+        friendsCell.profileMessageLabel.text = friendsList[indexPath.row]?.profileMessage
         return friendsCell
+    }
+    
+    override func updateUI() {
+        super.updateUI()
+        friendsListTableView.reloadData()
+        friendsListTableView.isHidden = false
     }
     
     // 친구 추가 화면으로 이동하기

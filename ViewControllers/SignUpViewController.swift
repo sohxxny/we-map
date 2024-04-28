@@ -119,6 +119,7 @@ class SignUpViewController: BaseViewController {
     
     // 사용자 이메일로 된 파이어베이스 문서를 생성하는 함수
     func createUserInfo(uid: String, email: String, userName: String) {
+        let db = Firestore.firestore()
         let userRef = db.collection("userInfo").document(uid)
         userRef.setData([
             "uid": uid,
