@@ -28,7 +28,6 @@ class AddFriendsViewController: BaseViewController {
         // 뷰 모서리 둥글게
         popUpBackgroundView.layer.cornerRadius = 15
         profilePhotoView.layer.cornerRadius = profilePhotoView.frame.width / 2
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,12 +74,7 @@ class AddFriendsViewController: BaseViewController {
                 if let foundUser = await UserViewModel.createUserViewModel(email: userEmail) {
                     // 프로필 사진 지정
                     if foundUser.profilePhoto == "" {
-                        if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
-                            profilePhotoView.image = image
-                            profilePhotoView.tintColor = .weMapBlue
-                            profilePhotoView.contentMode = .scaleAspectFit
-                            profilePhotoView.clipsToBounds = true
-                                }
+                        setCustomImage(imageView: profilePhotoView, color: .weMapSkyBlue, icon: "user-icon")
                     }
                     profileName.text = foundUser.userName
                     profileEmail.text = foundUser.email
