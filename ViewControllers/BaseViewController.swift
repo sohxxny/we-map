@@ -12,8 +12,6 @@ import FirebaseFirestore
 class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var handle: AuthStateDidChangeListenerHandle?
-    var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .medium)
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,25 +63,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // UI 업데이트
     func updateUI() {
-        OnOffLoadingIndicator(isOn: false)
-    }
-    
-    // 로딩 인디케이터 설정
-    func setupLoadingIndicator() {
-        loadingIndicator.center = view.center
-        view.addSubview(loadingIndicator)
-        OnOffLoadingIndicator(isOn: true)
-    }
-    
-    // 로딩 인디케이터 켜거나 끄기
-    func OnOffLoadingIndicator(isOn: Bool) {
-        if isOn {
-            loadingIndicator.startAnimating()
-            loadingIndicator.isHidden = false
-        } else {
-            loadingIndicator.stopAnimating()
-            loadingIndicator.isHidden = true
-        }
+        // 상속된 클래스에서 정의
     }
     
     // 로그인 화면으로 이동하는 함수
@@ -112,6 +92,4 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-
-    
 }

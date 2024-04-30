@@ -19,6 +19,8 @@
 		9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */; };
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
+		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
+		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
 		96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96736B352B8CAEE2008FFB47 /* MainViewController.swift */; };
 		967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */; };
@@ -26,6 +28,7 @@
 		967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF1912BC2ABE200D11E5B /* UserModel.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F0962BD696C2005306C5 /* UserViewModel.swift */; };
+		96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD74442BE114A200A3A261 /* pencil-icon.png */; };
 		96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2942BCE7C570034142E /* CustomTextField.swift */; };
 		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
 		96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2A02BCEA5C60034142E /* Colors.swift */; };
@@ -106,6 +109,8 @@
 		9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDaysViewController.swift; sourceTree = "<group>"; };
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
+		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		96736B352B8CAEE2008FFB47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		967EF1912BC2ABE200D11E5B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96C3F0962BD696C2005306C5 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		96DD74442BE114A200A3A261 /* pencil-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencil-icon.png"; sourceTree = "<group>"; };
 		96DDD2942BCE7C570034142E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		96DDD2A02BCEA5C60034142E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				96F3B42B2BDB761000B858C9 /* user-icon.png */,
+				96DD74442BE114A200A3A261 /* pencil-icon.png */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -230,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				96C04C912B67E880002D3E84 /* AlertHelper.swift */,
+				9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */,
+				9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */,
 				961ECBBE2BD116490060512A /* GlobalUserManager.swift */,
 				96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */,
 				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
@@ -488,6 +497,7 @@
 				96F17E5D2B60F94B003584D3 /* LaunchScreen.storyboard in Resources */,
 				96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
+				96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */,
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
@@ -622,6 +632,7 @@
 				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
+				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
@@ -642,6 +653,7 @@
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
+				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
 				9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

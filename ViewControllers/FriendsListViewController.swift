@@ -12,6 +12,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var friendsListTableView: UITableView!
     @IBOutlet weak var searchFriends: CustomSearchBar!
     
+    var loadingIndicator: LoadingIndicator!
     var sectionTitles = ["내 정보", "내 친구 목록"]
     
     override func viewDidLoad() {
@@ -22,7 +23,11 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         friendsListTableView.dataSource = self
         
         // 로딩 인디케이터 설정
-        setupLoadingIndicator()
+        loadingIndicator = LoadingIndicator(in: self.view)
+        loadingIndicator.setupLoadingIndicator()
+        
+        // 백 버튼 설정 함수
+        setBackButton(vc: self)
         
     }
     
@@ -42,12 +47,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         // 프로필 사진 없으면 기본 사진 넣기
         if infoList[indexPath.section][indexPath.row]?.profilePhoto == "" {
-            if let image = UIImage(named: "user-icon")?.withRenderingMode(.alwaysTemplate) {
-                friendsCell.profileImageView.image = image
-                friendsCell.profileImageView.tintColor = .weMapBlue
-                friendsCell.profileImageView.contentMode = .scaleAspectFit
-                friendsCell.profileImageView.clipsToBounds = true
-                    }
+            setCustomImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
         }
         
         // 이름, 프로필 메시지 넣기
@@ -113,6 +113,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     // UI 업데이트 및 테이블 뷰 보이기
     override func updateUI() {
         super.updateUI()
+        loadingIndicator.OnOffLoadingIndicator(isOn: false)
         friendsListTableView.reloadData()
         friendsListTableView.isHidden = false
     }

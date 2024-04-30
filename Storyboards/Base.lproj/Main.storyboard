@@ -394,15 +394,66 @@
                                     <action selector="logOut:" destination="nMJ-tG-0eZ" eventType="touchUpInside" id="FXT-xN-egg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7n-Ve-bFu">
+                                <rect key="frame" x="164" y="91" width="100" height="100"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="A4N-8w-zB9"/>
+                                    <constraint firstAttribute="width" constant="100" id="ivj-dc-lfX"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="changeProfileImage:" destination="nMJ-tG-0eZ" eventType="touchUpInside" id="8ii-s6-b3f"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ww-hM-R9U">
+                                <rect key="frame" x="211.66666666666666" y="206" width="5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-RM-tDK">
+                                <rect key="frame" x="226.66666666666666" y="213" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="qU1-gf-HRD"/>
+                                    <constraint firstAttribute="height" constant="12" id="tyP-Kq-6cf"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F3s-mK-p0M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="XVZ-RM-tDK" firstAttribute="bottom" secondItem="8Ww-hM-R9U" secondAttribute="bottom" constant="-5" id="6Ya-87-6JH"/>
+                            <constraint firstItem="a7n-Ve-bFu" firstAttribute="centerX" secondItem="DSC-75-a9a" secondAttribute="centerX" id="DiM-t2-Pfc"/>
+                            <constraint firstItem="8Ww-hM-R9U" firstAttribute="top" secondItem="a7n-Ve-bFu" secondAttribute="bottom" constant="15" id="HgQ-tt-KEY"/>
+                            <constraint firstItem="8Ww-hM-R9U" firstAttribute="centerX" secondItem="DSC-75-a9a" secondAttribute="centerX" id="O32-DD-bai"/>
+                            <constraint firstItem="a7n-Ve-bFu" firstAttribute="top" secondItem="F3s-mK-p0M" secondAttribute="top" id="U9y-21-grU"/>
                             <constraint firstItem="7Ot-IE-jiO" firstAttribute="centerX" secondItem="DSC-75-a9a" secondAttribute="centerX" id="Yfj-8Z-P6Y"/>
+                            <constraint firstItem="XVZ-RM-tDK" firstAttribute="leading" secondItem="8Ww-hM-R9U" secondAttribute="trailing" constant="10" id="m5l-Zo-CAF"/>
                             <constraint firstItem="7Ot-IE-jiO" firstAttribute="centerY" secondItem="DSC-75-a9a" secondAttribute="centerY" id="vof-vZ-NqM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KE7-PI-CWi"/>
+                    <navigationItem key="navigationItem" id="KE7-PI-CWi">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="6Xw-Ih-Gsp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZQj-UG-p6r">
+                                <rect key="frame" x="388" y="11" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="awg-wa-tnK"/>
+                                    <constraint firstAttribute="height" constant="20" id="vfE-JZ-1OX"/>
+                                </constraints>
+                                <color key="tintColor" red="0.52941176470588236" green="0.68627450980392157" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="bell.fill" catalog="system"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editNameButton" destination="XVZ-RM-tDK" id="Nqt-Wb-6bx"/>
+                        <outlet property="profileImage" destination="a7n-Ve-bFu" id="X8e-Hk-ATJ"/>
+                        <outlet property="profileName" destination="8Ww-hM-R9U" id="pl8-B4-8YU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Fu-kt-jhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,6 +688,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
