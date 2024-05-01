@@ -21,6 +21,9 @@ class MyPageViewController: BaseViewController {
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         setCustomImageButton(button: editNameButton, color: .systemGray3, icon: "pencil-icon")
         
+        // 백 버튼 설정 함수
+        setBackButton(vc: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

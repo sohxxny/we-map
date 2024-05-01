@@ -17,7 +17,7 @@ class AddFriendsViewController: BaseViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileEmail: UILabel!
     @IBOutlet weak var invalidFriendRequestLabel: UILabel!
-    @IBOutlet weak var addFriendButton: CustomButton!
+    @IBOutlet weak var addFriendButton: CustomFilledButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class AddFriendsViewController: BaseViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
-    @IBAction func tapSearchUser(_ sender: CustomButton) {
+    @IBAction func tapSearchUser(_ sender: CustomFilledButton) {
         guard let userEmail = searchUserTextField.text, !userEmail.isEmpty else { // 하나라도 비어 있다면 사용자에게 알리고 함수를 종료한다.
             AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "검색할 이메일을 입력해주세요.")
             return }
@@ -120,7 +120,7 @@ class AddFriendsViewController: BaseViewController {
         }
     }
     
-    @IBAction func tapAddFriend(_ sender: CustomButton) {
+    @IBAction func tapAddFriend(_ sender: CustomFilledButton) {
         let db = Firestore.firestore()
         guard let buttonType = addFriendButton.titleLabel?.text else { return }
         Task {

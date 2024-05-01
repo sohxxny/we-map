@@ -18,7 +18,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // delegate, dataSource 설정
+        // tableView delegate, dataSource 설정
         friendsListTableView.delegate = self
         friendsListTableView.dataSource = self
         
@@ -119,7 +119,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     }
     
     // 친구 추가 화면으로 이동하기
-    @IBAction func tapGotoAddFriends(_ sender: CustomButton) {
+    @IBAction func tapGotoAddFriends(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController {
             addFriendsViewController.modalPresentationStyle = .overCurrentContext

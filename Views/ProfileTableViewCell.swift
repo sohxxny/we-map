@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseCore
-import FirebaseFirestore
 
 class ProfileTableViewCell: UITableViewCell {
     
@@ -16,15 +13,8 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileMessageLabel: UILabel!
     
-    
-    // firestore 관련 변수
-    var db: Firestore!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // firestore 인스턴스 초기화
-        db = Firestore.firestore()
         
         // 이미지 뷰를 원형으로 만들기
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2

@@ -22,7 +22,7 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var passwdLabel: UILabel!
     @IBOutlet weak var passwdCheckLabel: UILabel!
     
-    @IBOutlet weak var signUpButton: CustomButton!
+    @IBOutlet weak var signUpButton: CustomFilledButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +63,7 @@ class SignUpViewController: BaseViewController {
     }
     
     // 회원가입 버튼 클릭 액션 함수
-    @IBAction func SignUpButtonTapped(_ sender: UIButton) {
+    @IBAction func SignUpButtonTapped(_ sender: CustomFilledButton) {
         // 텍스트 필드가 비어 있는지 확인
         guard let email = emailTextField.text, !email.isEmpty,
               let passwd = passwdTextField.text, !passwd.isEmpty,

@@ -14,13 +14,13 @@ class SignInViewController: BaseViewController {
     
     @IBOutlet weak var emailLoginTextField: CustomTextField!
     @IBOutlet weak var passwdLoginTextField: CustomTextField!
-    @IBOutlet weak var signInButton: CustomButton!
+    @IBOutlet weak var signInButton: CustomFilledButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func tapSignInButton(_ sender: UIButton) {
+    @IBAction func tapSignInButton(_ sender: CustomFilledButton) {
         // 텍스트 필드가 비어있는지 확인
         guard let email = emailLoginTextField.text, !email.isEmpty,
               let passwd = passwdLoginTextField.text, !passwd.isEmpty else {
