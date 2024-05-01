@@ -73,6 +73,8 @@
 		96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */; };
 		96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F216A62BDE8679005D58BC /* MyPageViewController.swift */; };
 		96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F3B42B2BDB761000B858C9 /* user-icon.png */; };
+		96F773C02BE24E4D0061E343 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */; };
+		96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */; };
 		E89206BEE0EE346C34FD3007 /* Pods_WeMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,8 @@
 		96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFriendsManager.swift; sourceTree = "<group>"; };
 		96F216A62BDE8679005D58BC /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		96F3B42B2BDB761000B858C9 /* user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon.png"; sourceTree = "<group>"; };
+		96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRequestTableViewCell.swift; sourceTree = "<group>"; };
 		A9BCEFA84E5EAB2DF365979D /* Pods-WeMap-WeMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB2F652B5A2CFCF1D0CD39AE /* Pods_WeMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC934A2C4439C482F8DEF38 /* Pods-WeMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.debug.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
+				96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
@@ -282,6 +287,7 @@
 				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 				961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */,
 				96F216A62BDE8679005D58BC /* MyPageViewController.swift */,
+				96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -649,10 +655,12 @@
 				9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */,
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
+				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
+				96F773C02BE24E4D0061E343 /* NotificationViewController.swift in Sources */,
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
 				9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */,
 			);
