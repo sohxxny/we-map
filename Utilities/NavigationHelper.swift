@@ -13,3 +13,4 @@ func setBackButton(vc: UIViewController) {
     let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: vc, action: nil)
     vc.navigationItem.backBarButtonItem = backBarButtonItem
 }
+

@@ -21,17 +21,19 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
     
     // 테이블 데이터 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let notificationCell = notificationTableView.dequeueReusableCell(withIdentifier: "FriendsRequestCell", for: indexPath) as! FriendsRequestTableViewCell
+        let friendsRequestCell = notificationTableView.dequeueReusableCell(withIdentifier: "FriendsRequestCell", for: indexPath) as! FriendsRequestTableViewCell
+        let inviteCell = notificationTableView.dequeueReusableCell(withIdentifier: "InviteCell", for: indexPath) as! InviteTableViewCell
         
-        setCustomImage(imageView: notificationCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
-        notificationCell.friendsRequestUserName.text = "무지무지하게긴이름"
+        setCustomImage(imageView: friendsRequestCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
+        friendsRequestCell.friendsRequestUserName.text = "김성규"
         
-        return notificationCell
+        if indexPath.row == 0 { return friendsRequestCell}
+        else { return inviteCell }
     }
 
 }
