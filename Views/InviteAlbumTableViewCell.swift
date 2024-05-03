@@ -7,15 +7,17 @@
 
 import UIKit
 
-class InviteTableViewCell: UITableViewCell {
+class InviteAlbumTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var inviteUserImage: UIImageView!
-
+    @IBOutlet weak var inviteAlbumUserImage: UIImageView!
+    @IBOutlet weak var inviteAlbumLocation: UILabel!
+    @IBOutlet weak var inviteAlbumUserName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        inviteUserImage.layer.cornerRadius = inviteUserImage.frame.width / 2
-        inviteUserImage.clipsToBounds = true
+        inviteAlbumUserImage.layer.cornerRadius = inviteAlbumUserImage.frame.width / 2
+        inviteAlbumUserImage.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

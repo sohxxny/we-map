@@ -42,6 +42,7 @@ class SignInViewController: BaseViewController {
             // 로그인 성공 팝업 띄우기
             AlertHelper.showAlertWithNoButton(on: self, with: "로그인 성공", message: "메인 화면으로 이동합니다.")
             presentingViewController?.dismiss(animated: true, completion: nil)
+
         } catch {
             // 로그인 실패 시 에러 메시지 출력 및 함수 탈출
             if let error = error as NSError? {
