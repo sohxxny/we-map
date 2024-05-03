@@ -7,12 +7,15 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
 
-class MyPageViewController: BaseViewController {
+class MyPageViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var profileImage: UIButton!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var editNameButton: UIButton!
+    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,9 @@ class MyPageViewController: BaseViewController {
         
         // 백 버튼 설정 함수
         setBackButton(vc: self)
+        
+        // 이미지 피커 딜리게이트 설정
+        self.imagePicker.delegate = self
         
     }
     
@@ -44,7 +50,39 @@ class MyPageViewController: BaseViewController {
     
     // 프로필 이미지 변경 버튼 클릭 이벤트 함수
     @IBAction func changeProfileImage(_ sender: UIButton) {
-        UIAlertController(title: "프로필 사진 편집", message: "원하는 @@을 선택해주세요.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "프로필 사진 편집", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "사진 업로드", style: .default, handler: {_ in 
+            self.accessPhotoLibrary()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "기본 이미지로 변경", style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    // 앨범에서 사진을 선택하는 함수
+    func accessPhotoLibrary() {
+        self.imagePicker.sourceType = .photoLibrary
+        self.imagePicker.modalPresentationStyle = .currentContext
+        self.present(self.imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage, let imageData = image.jpegData(compressionQuality: 0.75) {
+            
+            // 참조 작성
+            let storageRef = Storage.storage().reference()
+            let imageRef = storageRef.child("profileImage/image.jpg")
+            
+            // 파일을 해당 경로로 업로드
+            let uploadTask = imageRef.putData(imageData, metadata: nil) { metadata, error in
+                if let error = error {
+                    print("에러 발생 : \(error)")
+                } else {
+                    print("image info : \(image)")
+                }
+            }
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     // 로그아웃 버튼
