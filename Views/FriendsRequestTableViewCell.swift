@@ -11,7 +11,8 @@ class FriendsRequestTableViewCell: UITableViewCell {
     
     @IBOutlet weak var friendsRequestUserImage: UIImageView!
     @IBOutlet weak var friendsRequestUserName: UILabel!
-    
+    @IBOutlet weak var friendsRequestAcceptButton: CustomFilledButton!
+    @IBOutlet weak var friendsRequestRejectButton: CustomPlainButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

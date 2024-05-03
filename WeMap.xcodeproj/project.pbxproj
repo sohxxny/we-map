@@ -19,10 +19,11 @@
 		9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */; };
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
-		9639FE842BE3950F000D3066 /* InviteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639FE832BE3950F000D3066 /* InviteTableViewCell.swift */; };
+		9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */; };
 		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
 		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
+		966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966678CF2BE4B8B300966022 /* NotificationModel.swift */; };
 		96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96736B352B8CAEE2008FFB47 /* MainViewController.swift */; };
 		967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */; };
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
@@ -112,10 +113,11 @@
 		9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDaysViewController.swift; sourceTree = "<group>"; };
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
-		9639FE832BE3950F000D3066 /* InviteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteTableViewCell.swift; sourceTree = "<group>"; };
+		9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAlbumTableViewCell.swift; sourceTree = "<group>"; };
 		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		966678CF2BE4B8B300966022 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		96736B352B8CAEE2008FFB47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			children = (
 				967EF1912BC2ABE200D11E5B /* UserModel.swift */,
 				96C3F0962BD696C2005306C5 /* UserViewModel.swift */,
+				966678CF2BE4B8B300966022 /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,7 +270,7 @@
 			children = (
 				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
 				96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */,
-				9639FE832BE3950F000D3066 /* InviteTableViewCell.swift */,
+				9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
@@ -642,10 +645,11 @@
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
-				9639FE842BE3950F000D3066 /* InviteTableViewCell.swift in Sources */,
+				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
+				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
 				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
 				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,

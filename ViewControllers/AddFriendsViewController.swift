@@ -96,13 +96,13 @@ class AddFriendsViewController: BaseViewController {
                                     invalidFriendRequestLabel.isHidden = false
                                 // 친구가 아닐 경우
                                 } else {
-                                    if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(userEmail: userEmail) {
+                                    if let isRequesting = await GlobalUserManager.shared.isFriendsRequesting(senderEmail: userInfo.email, receiverEmail: userEmail) {
                                         // 친구 신청 중일 경우
                                         if isRequesting {
-                                            addFriendButton.setTitle("친구 신청 취소", for: .normal)
+                                            addFriendButton.setTitle("친구 요청 취소", for: .normal)
                                             addFriendButton.isHidden = false
                                         } else {
-                                            addFriendButton.setTitle("친구 신청", for: .normal)
+                                            addFriendButton.setTitle("친구 요청", for: .normal)
                                             addFriendButton.isHidden = false
                                         }
                                     }
@@ -124,19 +124,27 @@ class AddFriendsViewController: BaseViewController {
         let db = Firestore.firestore()
         guard let buttonType = addFriendButton.titleLabel?.text else { return }
         Task {
-            // profileEmail으로 친구 UID를 찾기
             if let profileEmail = profileEmail.text, let userInfo = GlobalUserManager.shared.globalUser, let userUid = await searchUserByEmail(email: profileEmail) {
-                // 상대방과 내 문서에 서로의 이메일 저장
-                if buttonType == "친구 신청" {
-                    try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).setData(["isSender": false])
-                    try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).setData(["isSender": true])
-                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 완료되었습니다.")
-                    addFriendButton.setTitle("친구 신청 취소", for: .normal)
+                // 상대방과 문서에 이메일 저장
+                if buttonType == "친구 요청" {
+                    if let isRequested = await GlobalUserManager.shared.isFriendsRequesting(senderEmail: profileEmail, receiverEmail: userInfo.email) {
+                        if isRequested {
+                            AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "상대방이 이미 친구 요청 응답을 기다리는 중입니다.")
+                        } else {
+                            try await db.collection("userInfo").document(userUid).collection("notification").addDocument(data: [
+                                "type": "friendsRequest",
+                                "userName": userInfo.userName,
+                                "userEmail": userInfo.email
+                            ])
+                            AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 요청이 완료되었습니다.")
+                            addFriendButton.setTitle("친구 요청 취소", for: .normal)
+                        }
+                    }
                 } else {
-                    try await db.collection("userInfo").document(userUid).collection("friendsRequest").document(userInfo.email).delete()
-                    try await db.collection("userInfo").document(userInfo.uid).collection("friendsRequest").document(profileEmail).delete()
-                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 신청이 취소되었습니다.")
-                    addFriendButton.setTitle("친구 신청", for: .normal)
+                    // 친구 요청 삭제하기
+                    await GlobalUserManager.shared.deleteFriendsRequest(senderEmail: userInfo.email, receiverEmail: profileEmail, receiverUid: userUid)
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 요청이 취소되었습니다.")
+                    addFriendButton.setTitle("친구 요청", for: .normal)
                 }
             }
         }

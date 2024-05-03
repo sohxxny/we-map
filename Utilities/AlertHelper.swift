@@ -25,4 +25,17 @@ class AlertHelper {
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    // 클로저를 받는 alert
+    static func alertWithTwoButton(on vc: UIViewController, with title: String?, message: String, completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "확인", style: .default) { _ in
+            completion()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        vc.present(alert, animated: true, completion: nil)
+    }
 }
