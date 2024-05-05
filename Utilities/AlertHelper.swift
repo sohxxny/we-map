@@ -34,8 +34,8 @@ class AlertHelper {
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
-        alert.addAction(confirm)
         alert.addAction(cancel)
+        alert.addAction(confirm)
         vc.present(alert, animated: true, completion: nil)
     }
 }

@@ -28,6 +28,9 @@
 		967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */; };
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
 		967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF1912BC2ABE200D11E5B /* UserModel.swift */; };
+		96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BABB352BE806180094F7E7 /* EditProfileViewController.swift */; };
+		96BABB3A2BE8071C0094F7E7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BABB392BE8071C0094F7E7 /* SettingViewController.swift */; };
+		96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F0962BD696C2005306C5 /* UserViewModel.swift */; };
 		96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD74442BE114A200A3A261 /* pencil-icon.png */; };
@@ -122,6 +125,9 @@
 		967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		967EF1912BC2ABE200D11E5B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		96BABB352BE806180094F7E7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		96BABB392BE8071C0094F7E7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96C3F0962BD696C2005306C5 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		96DD74442BE114A200A3A261 /* pencil-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencil-icon.png"; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
 				96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */,
 				9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */,
+				96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
@@ -294,6 +301,8 @@
 				961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */,
 				96F216A62BDE8679005D58BC /* MyPageViewController.swift */,
 				96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */,
+				96BABB392BE8071C0094F7E7 /* SettingViewController.swift */,
+				96BABB352BE806180094F7E7 /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -644,15 +653,18 @@
 				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
+				96BABB3A2BE8071C0094F7E7 /* SettingViewController.swift in Sources */,
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
+				96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */,
 				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
 				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,
+				96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */,
 				967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */,
 				961ECBB92BD0E4370060512A /* Extensions.swift in Sources */,
 				9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */,
