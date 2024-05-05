@@ -90,10 +90,19 @@ class GlobalUserManager {
                 } else {
                     type = .inviteAlbum
                 }
-                let userName = data["userName"] as! String
                 let userEmail = data["userEmail"] as! String
                 let location = data["location"] as? String
-                notificationModelList.append(NotificationModel(type: type, userName: userName, userEmail: userEmail, location: location))
+                // 이메일로 친구 이름 찾기
+                if let userUid = await searchUserByEmail(email: userEmail) {
+                    let userDoc = db.collection("userInfo").document(userUid)
+                    do {
+                        let document = try await userDoc.getDocument()
+                        if document.exists {
+                            let userName = document.data()?["userName"] as! String
+                            notificationModelList.append(NotificationModel(type: type, userName: userName, userEmail: userEmail, location: location))
+                        }
+                    }
+                }
             }
         } catch {
             print("notification 컬렉션 가져오기 실패")
@@ -126,6 +135,18 @@ class GlobalUserManager {
             ])
         } catch {
             print("친구 추가 에러")
+        }
+    }
+    
+    // 내 프로필 이미지 경로 변경 (이메일 또는 공백)
+    func setProfileImagePath(path: String) async {
+        let db = Firestore.firestore()
+        let userInfoDoc = db.collection("userInfo").document(self.globalUser!.uid)
+        do {
+            try await userInfoDoc.updateData([
+                "profilePhoto" : path])
+        } catch {
+            print("프로필 이미지 경로 수정 에러 발생")
         }
     }
 }

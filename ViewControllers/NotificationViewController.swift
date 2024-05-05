@@ -52,7 +52,7 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         // 친구 요청 알림
         case .friendsRequest:
             let friendsRequestCell = notificationTableView.dequeueReusableCell(withIdentifier: "FriendsRequestCell", for: indexPath) as! FriendsRequestTableViewCell
-            setCustomImage(imageView: friendsRequestCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
+            setIconImage(imageView: friendsRequestCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
             friendsRequestCell.friendsRequestUserName.text = notificationModelList[indexPath.row].userName
             
             friendsRequestCell.friendsRequestAcceptButton.tag = indexPath.row
@@ -61,7 +61,7 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         // 앨범 초대 알림
         case .inviteAlbum:
             let inviteAlbumCell = notificationTableView.dequeueReusableCell(withIdentifier: "inviteAlbumCell", for: indexPath) as! InviteAlbumTableViewCell
-            setCustomImage(imageView: inviteAlbumCell.inviteAlbumUserImage, color: .weMapSkyBlue, icon: "user-icon")
+            setIconImage(imageView: inviteAlbumCell.inviteAlbumUserImage, color: .weMapSkyBlue, icon: "user-icon")
             inviteAlbumCell.inviteAlbumUserName.text = notificationModelList[indexPath.row].userName
             inviteAlbumCell.inviteAlbumLocation.text = notificationModelList[indexPath.row].location
             return inviteAlbumCell
@@ -95,6 +95,11 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
             // 서로의 친구 리스트에 추가
             if let userUid = await searchUserByEmail(email: userEmail) {
                 await GlobalUserManager.shared.addFriends(firstUserUid: userUid, firstUserEmail: userEmail, secondUserUid: GlobalUserManager.shared.globalUser!.uid, secondUserEmail: GlobalUserManager.shared.globalUser!.email)
+            }
+            
+            // 친구 리스트 다시 불러오기
+            if let userInfo = GlobalUserManager.shared.globalUser {
+                GlobalFriendsManager.shared.globalFriendsList = await GlobalFriendsManager.shared.getFriendsInfo(userInfo: userInfo)
             }
             
             // 데이터베이스 친구 요청 삭제 및 notificationModel 삭제

@@ -73,8 +73,10 @@ class AddFriendsViewController: BaseViewController {
                 hideProfile(value: false)
                 if let foundUser = await UserViewModel.createUserViewModel(email: userEmail) {
                     // 프로필 사진 지정
-                    if foundUser.profilePhoto == "" {
-                        setCustomImage(imageView: profilePhotoView, color: .weMapSkyBlue, icon: "user-icon")
+                    if let userProfilePhoto = foundUser.profilePhoto {
+                        setCustomImage(imageView: profilePhotoView, image: userProfilePhoto)
+                    } else {
+                        setIconImage(imageView: profilePhotoView, color: .weMapSkyBlue, icon: "user-icon")
                     }
                     profileName.text = foundUser.userName
                     profileEmail.text = foundUser.email
@@ -133,7 +135,6 @@ class AddFriendsViewController: BaseViewController {
                         } else {
                             try await db.collection("userInfo").document(userUid).collection("notification").addDocument(data: [
                                 "type": "friendsRequest",
-                                "userName": userInfo.userName,
                                 "userEmail": userInfo.email
                             ])
                             AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 요청이 완료되었습니다.")

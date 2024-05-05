@@ -42,8 +42,8 @@ class LoadingIndicator: UIActivityIndicatorView {
     }
 }
 
-// 프로필 사진 없을 때의 디폴트 이미지 세팅
-func setCustomImage(imageView: UIImageView, color: UIColor, icon: String) {
+// 아이콘 이미지
+func setIconImage(imageView: UIImageView, color: UIColor, icon: String) {
     if let image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate) {
         imageView.image = image
         imageView.tintColor = color
@@ -52,8 +52,8 @@ func setCustomImage(imageView: UIImageView, color: UIColor, icon: String) {
     }
 }
 
-// 프로필 사진 없을 때의 디폴트 이미지 세팅
-func setCustomImageButton(button: UIButton, color: UIColor, icon: String) {
+// 아이콘 이미지 버튼
+func setIconImageButton(button: UIButton, color: UIColor, icon: String) {
     if let image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate) {
         button.setImage(image, for: .normal)
         button.tintColor = color
@@ -61,3 +61,18 @@ func setCustomImageButton(button: UIButton, color: UIColor, icon: String) {
         button.clipsToBounds = true
     }
 }
+
+// 이미지 경로를 받아 이미지뷰에 적용
+func setCustomImage(imageView: UIImageView, image: UIImage) {
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+}
+
+// 이미지 경로를 받아 이미지뷰에 적용
+func setCustomImageButton(button: UIButton, image: UIImage) {
+    button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+    button.imageView?.contentMode = .scaleAspectFill
+    button.clipsToBounds = true
+}
+

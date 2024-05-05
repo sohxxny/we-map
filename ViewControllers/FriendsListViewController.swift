@@ -46,8 +46,10 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         let friendsCell = friendsListTableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
         
         // 프로필 사진 없으면 기본 사진 넣기
-        if infoList[indexPath.section][indexPath.row]?.profilePhoto == "" {
-            setCustomImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
+        if let profilePhoto = infoList[indexPath.section][indexPath.row]?.profilePhoto {
+            setCustomImage(imageView: friendsCell.profileImageView, image: profilePhoto)
+        } else {
+            setIconImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
         }
         
         // 이름, 프로필 메시지 넣기
@@ -56,7 +58,10 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         return friendsCell
     }
     
+    // 셀 클릭 시 동작하는 함수
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        friendsListTableView.deselectRow(at: indexPath, animated: true)
+        
         if indexPath.section == 0 {
             self.performSegue(withIdentifier: "showMyPage", sender: self)
         }
