@@ -12,13 +12,16 @@ class SettingViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var settingTableView: UITableView!
     
-    let settingTitle = ["프로필 편집", "로그아웃"]
+    let settingTitle = ["프로필 수정", "로그아웃"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         settingTableView.delegate = self
         settingTableView.dataSource = self
+        
+        // 백 버튼 설정 함수
+        setBackButton(vc: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
