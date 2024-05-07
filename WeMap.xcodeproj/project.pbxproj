@@ -10,6 +10,7 @@
 		153799391A913ABB3F151A3A /* Pods_WeMap_WeMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */; };
 		20D6EBF5C29EB99E7A02B901 /* Pods_WeMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD0EDFDE869E7AE875B1B91 /* Pods_WeMapTests.framework */; };
 		960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960773732BC5537C00E587D9 /* MainTabBarController.swift */; };
+		960B8D802BEA8DBC003A1B32 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B8D7F2BEA8DBC003A1B32 /* InitialViewController.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
 		961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */; };
 		961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */; };
@@ -107,6 +108,7 @@
 		61C4EFCA0E86291369C30A83 /* Pods-WeMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.release.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.release.xcconfig"; sourceTree = "<group>"; };
 		6D14279E223235CA3A528B2F /* Pods-WeMap-WeMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.release.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		960773732BC5537C00E587D9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		960B8D7F2BEA8DBC003A1B32 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		96DDD29B2BCE9FD40034142E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				960B8D7F2BEA8DBC003A1B32 /* InitialViewController.swift */,
 				961ECBC02BD13C9D0060512A /* BaseViewController.swift */,
 				96736B352B8CAEE2008FFB47 /* MainViewController.swift */,
 				960773732BC5537C00E587D9 /* MainTabBarController.swift */,
@@ -651,6 +654,7 @@
 				967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */,
 				96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */,
 				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
+				960B8D802BEA8DBC003A1B32 /* InitialViewController.swift in Sources */,
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
 				96BABB3A2BE8071C0094F7E7 /* SettingViewController.swift in Sources */,
