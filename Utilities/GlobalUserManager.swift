@@ -149,4 +149,28 @@ class GlobalUserManager {
             print("프로필 이미지 경로 수정 에러 발생")
         }
     }
+    
+    // 내 프로필 이름 바꾸기
+    func setProfileName(newName: String) async {
+        let db = Firestore.firestore()
+        let userInfoDoc = db.collection("userInfo").document(self.globalUser!.uid)
+        do {
+            try await userInfoDoc.updateData([
+                "userName" : newName])
+        } catch {
+            print("프로필 이름 수정 에러 발생")
+        }
+    }
+    
+    // 내 프로필 메시지 바꾸기
+    func setProfileMessage(newMessage: String) async {
+        let db = Firestore.firestore()
+        let userInfoDoc = db.collection("userInfo").document(self.globalUser!.uid)
+        do {
+            try await userInfoDoc.updateData([
+                "profileMessage" : newMessage])
+        } catch {
+            print("프로필 이름 수정 에러 발생")
+        }
+    }
 }

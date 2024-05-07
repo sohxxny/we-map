@@ -32,6 +32,12 @@ class GlobalFriendsManager {
         }
     }
     
+    // 내 정보 업데이트
+    func updateMyViewModel(name: String, message: String) {
+        self.globalMyViewModel?.userName = name
+        self.globalMyViewModel?.profileMessage = message
+    }
+    
     // 친구 리스트를 불러오기
     func getFriendsInfo(userInfo: UserModel) async -> [UserViewModel] {
         let db = Firestore.firestore()

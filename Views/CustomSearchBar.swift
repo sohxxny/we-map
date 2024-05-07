@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomSearchBar: UITextField {
+class CustomSearchBar: UITextField, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +24,7 @@ class CustomSearchBar: UITextField {
         setIcon()
         
         // 글자 지우기 버튼
+        self.delegate = self
         self.clearButtonMode = .whileEditing
     }
     
@@ -37,6 +38,12 @@ class CustomSearchBar: UITextField {
 
         self.leftView = leftPaddingView
         self.leftViewMode = .always // 아이콘이 항상 보이도록 설정
+    }
+    
+    // 클리어 버튼을 누르면 키보드가 자동으로 내려가도록 하기 (작동안함)
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }
