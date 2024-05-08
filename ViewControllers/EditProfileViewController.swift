@@ -19,8 +19,6 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
     @IBOutlet weak var invalidNameWarning: UILabel!
     
     let profileImagePicker = UIImagePickerController()
-    let maxNameLength = 20
-    let maxProfileMessageLength = 40
     
     var originalImage: UIImage?
     var isImagePickerActive = false
@@ -191,18 +189,17 @@ class EditProfileViewController: BaseViewController, UIImagePickerControllerDele
         }
         Task {
             // 이미지 저장 (빠른 로딩을 위해 변경되었을 때만 실행)
+            let profileImageName: String = userInfo.email.replacingOccurrences(of: "[@.]", with: "_", options: .regularExpression)
             if myViewModel.profilePhoto != originalImage {
                 // 이미지를 기본 이미지로 변경했을 경우
                 if myViewModel.profilePhoto == nil {
                     // 파이어베이스 데이터베이스의 프로필 사진 삭제 및 이미지 경로 공백으로 변경
-                    let profileImageName: String = userInfo.email.replacingOccurrences(of: "[@.]", with: "_", options: .regularExpression)
                     await deleteImage(path: "profileImage/\(profileImageName).jpg")
                     await GlobalUserManager.shared.setProfileImagePath(path: "")
                     
                 // 이미지를 설정했을 경우
                 } else {
                     // 프로필 사진 이름을 유저 이메일로 설정 및 유저 프로필 정보 업데이트
-                    let profileImageName: String = userInfo.email.replacingOccurrences(of: "[@.]", with: "_", options: .regularExpression)
                     await GlobalUserManager.shared.setProfileImagePath(path: profileImageName)
                     
                     // 파일을 해당 경로로 업로드

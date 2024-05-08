@@ -40,9 +40,17 @@ class CustomSearchBar: UITextField, UITextFieldDelegate {
         self.leftViewMode = .always // 아이콘이 항상 보이도록 설정
     }
     
-    // 클리어 버튼을 누르면 키보드가 자동으로 내려가도록 하기 (작동안함)
+    // 클리어 버튼을 누르면 키보드가 자동으로 내려가도록 하기
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        DispatchQueue.main.async {
+            textField.endEditing(true)
+        }
+        return true
+    }
+    
+    // 완료 버튼을 누르면 키보드가 내려가도록 하기
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
         return true
     }
 

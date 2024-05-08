@@ -52,7 +52,12 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         // 친구 요청 알림
         case .friendsRequest:
             let friendsRequestCell = notificationTableView.dequeueReusableCell(withIdentifier: "FriendsRequestCell", for: indexPath) as! FriendsRequestTableViewCell
-            setIconImage(imageView: friendsRequestCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
+            if let image = notificationsModel.userImage {
+                setCustomImage(imageView: friendsRequestCell.friendsRequestUserImage, image: image)
+            } else {
+                setIconImage(imageView: friendsRequestCell.friendsRequestUserImage, color: .weMapSkyBlue, icon: "user-icon")
+            }
+            
             friendsRequestCell.friendsRequestUserName.text = notificationModelList[indexPath.row].userName
             
             friendsRequestCell.friendsRequestAcceptButton.tag = indexPath.row

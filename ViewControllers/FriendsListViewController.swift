@@ -14,7 +14,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     
     var loadingIndicator: LoadingIndicator!
     var sectionTitles = ["내 정보", "내 친구 목록"]
-    var filteredFriendsList: [UserViewModel]!
+    var filteredFriendsList: [UserViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +38,6 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if searchFriends.text == "" {
-            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
-        }
-        
         // 테이블뷰 보이지 않기 (데이터 로딩이 완료되면 보이도록)
         friendsListTableView.isHidden = true
     }
@@ -60,7 +56,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myInfo = [[GlobalFriendsManager.shared.globalMyViewModel]]
-        let friendsList = [filteredFriendsList!]
+        let friendsList = [filteredFriendsList]
         let infoList = myInfo + friendsList
         let friendsCell = friendsListTableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
         
@@ -92,7 +88,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         if section == 0 {
             return 1
         } else {
-            return friendsList!.count
+            return friendsList.count
         }
     }
     
@@ -137,6 +133,12 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     // UI 업데이트 및 테이블 뷰 보이기
     override func updateUI() {
         super.updateUI()
+        
+        // 데이터가 다 불러와지면 friendsList에 데이터 넣기
+        if searchFriends.text == "" {
+            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
+        }
+        
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
         friendsListTableView.reloadData()
         friendsListTableView.isHidden = false
