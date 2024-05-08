@@ -21,6 +21,8 @@ class SignUpViewController: BaseViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwdLabel: UILabel!
     @IBOutlet weak var passwdCheckLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLength: UILabel!
     
     @IBOutlet weak var signUpButton: CustomFilledButton!
     
@@ -31,12 +33,19 @@ class SignUpViewController: BaseViewController {
         emailTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         passwdTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         passwdCheckTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        userNameTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let name = userNameTextField.text {
+            nameLength.text = "\(name.count) / \(maxNameLength)"
+        }
     }
     
     // 텍스트 필드의 입력을 실시간으로 확인하는 함수
     @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let email = emailTextField.text, let passwd = passwdTextField.text, let passwdCheck = passwdCheckTextField.text else { return }
+        guard let email = emailTextField.text, let passwd = passwdTextField.text, let passwdCheck = passwdCheckTextField.text, let name = userNameTextField.text else { return }
 
         // 이메일 형식이 맞지 않은 경우
         let emailRegEx = "[A-Z0-9a-z]+@[A-Za-z0-9]+\\.[a-z]{2,3}$"
@@ -59,6 +68,19 @@ class SignUpViewController: BaseViewController {
         } else {
             passwdCheckLabel.text = ""
         }
+        
+        // 이름이 공백으로 이루어졌을 경우
+        if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            nameLabel.text = "이름은 공백일 수 없습니다."
+        } else {
+            nameLabel.text = ""
+        }
+        
+        // 이름 입력 시 글자 세고 글자 제한 두기
+        nameLength.text = (name.count > maxNameLength ? "\(maxNameLength)" : "\(name.count)") +  " / \(maxNameLength)"
+        if name.count > maxNameLength {
+            userNameTextField.text = String(name.prefix(maxNameLength))
+        }
 
     }
     
@@ -77,7 +99,7 @@ class SignUpViewController: BaseViewController {
         // 텍스트 필드에 정상적으로 입력이 되었는지 확인
         guard let emailError = emailLabel.text, emailError == "",
               let passwdError = passwdLabel.text, passwdError == "",
-              let passwdCheckError = passwdCheckLabel.text, passwdCheckError == "" else {
+              let passwdCheckError = passwdCheckLabel.text, passwdCheckError == "", let nameError = nameLabel.text, nameError == "" else {
             // 잘못된 정보를 기입했다면 사용자에게 알리고 함수 종료
             AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "정보를 다시 한 번 확인해 주세요.")
             return
@@ -105,9 +127,9 @@ class SignUpViewController: BaseViewController {
                 return
             }
             
-            // 회원 가입 성공 시 처리
-            // uid로 구분된 문서 생성
-            self.createUserInfo(uid: user.uid, email: email, userName: userName)
+            // uid로 구분된 문서 생성 (이름 양쪽의 공백 제거)
+            let editedName = userName.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.createUserInfo(uid: user.uid, email: email, userName: editedName)
             
             // 회원가입 성공 팝업
             AlertHelper.showAlertWithNoButton(on: self, with: "회원가입 성공", message: "로그인 화면으로 이동합니다.")
