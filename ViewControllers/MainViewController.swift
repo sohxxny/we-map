@@ -22,7 +22,6 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         mainMapView = GlobalMapsManager.shared.getOrCreateView()
         searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
-        
     }
     
     // 뷰 컨트롤러가 보인 후에 호출
@@ -72,6 +71,11 @@ class MainViewController: BaseViewController {
         ])
         button.contentHorizontalAlignment = .left
         button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.masksToBounds = false
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.2
     }
     
     // 검색창을 눌렀을 때의 로직

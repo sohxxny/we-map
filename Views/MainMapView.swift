@@ -12,6 +12,9 @@ import CoreLocation
 class MainMapView: NMFNaverMapView, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
+    var compassButton: NMFCompassView!
+    var locationOverlay: NMFLocationOverlay!
+    var currentLocation: CLLocation?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,16 +49,24 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate {
         }
     }
     
+    // 위치가 업데이트 될 때마다 호출
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            let latLng = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
-            self.mapView.moveCamera(NMFCameraUpdate(scrollTo: latLng))
-            let locationOverlay = self.mapView.locationOverlay
-            locationOverlay.location = latLng
-            locationOverlay.hidden = false
+            // 현재 위치 저장
+            currentLocation = location
         }
     }
-
+    
+    // 카메라 위치 업데이트 (사용 X)
+    func updateCamera() {
+        guard let location = currentLocation else { return }
+        let latLng = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+        self.mapView.moveCamera(NMFCameraUpdate(scrollTo: latLng))
+        locationOverlay = self.mapView.locationOverlay
+        locationOverlay.location = latLng
+    }
+    
+    // 위치 권한 설정
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             locationManager.startUpdatingLocation()
@@ -65,13 +76,12 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate {
     }
     
     func mapSetting() {
-        // 나침반, 줌 버튼, 현위치 버튼 추가
+        // 줌 버튼, 현위치 버튼 추가
         self.showZoomControls = true
         self.showLocationButton = true
+        self.showCompass = false
         
         // 포지션 모드 설정
         self.mapView.positionMode = .direction
-        self.mapView.locationOverlay.hidden = false
     }
-
 }

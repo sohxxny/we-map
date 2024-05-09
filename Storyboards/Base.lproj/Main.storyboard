@@ -808,33 +808,33 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="7dm-06-jss">
                                                     <rect key="frame" x="70" y="16.666666666666668" width="173" height="57.333333333333329"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
                                                             <rect key="frame" x="0.0" y="0.0" width="56" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIQ-ih-oY5">
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="PIQ-ih-oY5">
                                                             <rect key="frame" x="0.0" y="17.999999999999996" width="173" height="5"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="5" id="t2d-uF-nGd"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="서울과학기술대학교" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="서울과학기술대학교" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
                                                             <rect key="frame" x="0.0" y="22.999999999999996" width="101.33333333333333" height="15.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-Bp-m4a">
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-Bp-m4a">
                                                             <rect key="frame" x="0.0" y="38.666666666666671" width="173" height="3"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="3" id="52g-08-CB1"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="남우현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="남우현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
                                                             <rect key="frame" x="0.0" y="41.666666666666671" width="34" height="15.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
@@ -843,9 +843,13 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="SXq-n6-vtw" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="Bgg-WM-D5y"/>
+                                                        <constraint firstItem="FgB-CZ-kLF" firstAttribute="top" secondItem="pKm-Bp-m4a" secondAttribute="bottom" id="N2E-WP-JAE"/>
                                                         <constraint firstItem="PIQ-ih-oY5" firstAttribute="trailing" secondItem="7dm-06-jss" secondAttribute="trailingMargin" id="SFe-Ts-Xj5"/>
                                                         <constraint firstItem="FgB-CZ-kLF" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="TMa-Ad-e08"/>
+                                                        <constraint firstItem="pKm-Bp-m4a" firstAttribute="top" secondItem="SXq-n6-vtw" secondAttribute="bottom" id="iiY-ID-5dj"/>
+                                                        <constraint firstItem="SXq-n6-vtw" firstAttribute="top" secondItem="PIQ-ih-oY5" secondAttribute="bottom" id="reF-lb-BD2"/>
                                                         <constraint firstItem="PIQ-ih-oY5" firstAttribute="trailing" secondItem="pKm-Bp-m4a" secondAttribute="trailing" id="vyz-OK-RnV"/>
+                                                        <constraint firstItem="PIQ-ih-oY5" firstAttribute="top" secondItem="uzV-fr-oMO" secondAttribute="bottom" id="wCd-u9-aPV"/>
                                                         <constraint firstItem="uzV-fr-oMO" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="x8C-Bd-Yhb"/>
                                                     </constraints>
                                                 </stackView>
