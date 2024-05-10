@@ -4,6 +4,10 @@
    <FileRef
       location = "group:WeMap.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:Config"
+      name = "Config">
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
