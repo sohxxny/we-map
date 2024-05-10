@@ -1037,14 +1037,14 @@
         <!--추억 앨범-->
         <scene sceneID="AEH-cy-rW5">
             <objects>
-                <viewController storyboardIdentifier="FirstViewController" id="BKG-yA-RER" userLabel="추억 앨범" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" id="BKG-yA-RER" userLabel="추억 앨범" customClass="MemoryAlbumsViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hcx-eb-ZlC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="JE0-HR-Dox"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="추억 공유방" image="location.fill" catalog="system" id="dcb-Nn-080" userLabel="추억 앨범"/>
+                    <tabBarItem key="tabBarItem" title="추억 앨범" image="location.fill" catalog="system" id="dcb-Nn-080" userLabel="추억 앨범"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8G-zd-ElJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1066,7 +1066,7 @@
             </objects>
             <point key="canvasLocation" x="814" y="1515"/>
         </scene>
-        <!--홈 지도-->
+        <!--홈-->
         <scene sceneID="0Te-yL-AEu">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="9eC-BM-H5z" customClass="HomeViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -1076,7 +1076,7 @@
                         <viewLayoutGuide key="safeArea" id="LC6-Ac-BRP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="홈 지도" image="house.fill" catalog="system" id="YcX-Pv-pGT"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="홈" image="house.fill" catalog="system" id="YcX-Pv-pGT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txF-uX-EjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
