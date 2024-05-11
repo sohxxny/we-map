@@ -62,6 +62,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     // 지도가 탭 될 때마다 호출
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
         getAddressByCoordinates(latitude: latlng.lat, longitude: latlng.lng)
+        
     }
     
     // 위치 권한 설정
@@ -97,7 +98,6 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     func getAddressByCoordinates(latitude: Double, longitude: Double) {
         let urlString = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(longitude),\(latitude)&orders=roadaddr&output=json"
         guard let url = URL(string: urlString) else { return }
-        
         var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("v7mnq95bi3", forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
@@ -121,17 +121,17 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let results = json["results"] as? [[String: Any]], let region = results.first?["region"] as? [String: Any], let land = results.first?["land"] as? [String: Any] {
             print(json)
             
-            let area1 = (region["area1"] as? [String: Any])?["name"] as? String ?? ""
-            let area2 = (region["area2"] as? [String: Any])?["name"] as? String ?? ""
-            let area3 = (region["area3"] as? [String: Any])?["name"] as? String ?? ""
+            let area1 = (region["area1"] as? [String: Any])?["alias"] as? String ?? ""  // 시, 도
+            let area2 = (region["area2"] as? [String: Any])?["name"] as? String ?? ""  // 구
+            // let area3 = (region["area3"] as? [String: Any])?["name"] as? String ?? ""  // 동
             let area4 = (region["area4"] as? [String: Any])?["name"] as? String ?? ""
-            let addition0 = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""
-            let addition1 = (land["addition1"] as? [String: Any])?["value"] as? String ?? ""
-            let addition2 = (land["addition2"] as? [String: Any])?["value"] as? String ?? ""
-            let addition3 = (land["addition3"] as? [String: Any])?["value"] as? String ?? ""
-            let addition4 = (land["addition4"] as? [String: Any])?["value"] as? String ?? ""
+            let roadAddr = (land["name"]) as? String ?? ""  // 도로명
+            let roadAddrDetail1 = (land["number1"]) as? String ?? ""  // 도로명 상세주소 1
+            let roadAddrDetail2 = (land["number2"]) as? String ?? ""  // 도로명 상세주소 2
+            let buildingName = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""  // 건물 이름
             
-            print(area1, area2, area3, area4, addition0, addition1, addition2, addition3, addition4)
+            let address = [area1, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2, buildingName].filter{ !$0.isEmpty }.joined(separator: " ")
+            print(address)
         }
     }
 }
