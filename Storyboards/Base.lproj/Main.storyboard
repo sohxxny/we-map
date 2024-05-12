@@ -118,7 +118,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9nl-Ni-kti"/>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901967050000002" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="oKJ-5t-nbW" firstAttribute="top" secondItem="qoD-aV-Exl" secondAttribute="bottom" constant="5" id="28L-vR-na6"/>
                             <constraint firstItem="5Bw-A5-WDx" firstAttribute="centerX" secondItem="Aci-Ce-vdR" secondAttribute="centerX" id="2BS-75-5AH"/>
@@ -1129,8 +1129,8 @@
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person.crop.circle.badge.plus" catalog="system" width="32" height="32"/>
+        <image name="person.fill" catalog="system" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

@@ -111,7 +111,32 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
             
             // json 데이터를 넘겨서 상세 정보를 받는 함수
             self.parseAddressFromJson(data: data)
-
+        }
+        task.resume()
+    }
+    
+    // 좌표를 통해 장소 이름을 받는 함수
+    func getPlaceNameByCoordinate(query: String) {
+        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://openapi.naver.com/v1/search/local.json?query=\(encodedQuery)&display=1&start=1&"
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("zWfSz9Sum6HFvITHFEd2", forHTTPHeaderField: "X-Naver-Client-Id")
+        request.addValue("TqkxeTVJD9", forHTTPHeaderField: "X-Naver-Client-Secret")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("장소 가져오기 에러 발생 : \(String(describing: error))")
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response: \(responseString)")
+                }
+            } else {
+                print("HTTP 에러 발생")
+            }
         }
         task.resume()
     }
@@ -119,19 +144,21 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     // json 데이터로 상세 정보 찾기
     func parseAddressFromJson(data: Data) {
         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let results = json["results"] as? [[String: Any]], let region = results.first?["region"] as? [String: Any], let land = results.first?["land"] as? [String: Any] {
-            print(json)
             
-            let area1 = (region["area1"] as? [String: Any])?["alias"] as? String ?? ""  // 시, 도
+            // let area1 = (region["area1"] as? [String: Any])?["name"] as? String ?? ""  // 시, 도
+            let area1Abbr = (region["area1"] as? [String: Any])?["alias"] as? String ?? ""  // 시, 도 축약
             let area2 = (region["area2"] as? [String: Any])?["name"] as? String ?? ""  // 구
             // let area3 = (region["area3"] as? [String: Any])?["name"] as? String ?? ""  // 동
             let area4 = (region["area4"] as? [String: Any])?["name"] as? String ?? ""
             let roadAddr = (land["name"]) as? String ?? ""  // 도로명
             let roadAddrDetail1 = (land["number1"]) as? String ?? ""  // 도로명 상세주소 1
             let roadAddrDetail2 = (land["number2"]) as? String ?? ""  // 도로명 상세주소 2
-            let buildingName = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""  // 건물 이름
+            // let buildingName = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""  // 건물 이름
             
-            let address = [area1, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2, buildingName].filter{ !$0.isEmpty }.joined(separator: " ")
+            let address = [area1Abbr, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2].filter{ !$0.isEmpty }.joined(separator: " ")
             print(address)
+            
+            self.getPlaceNameByCoordinate(query: address)
         }
     }
 }
