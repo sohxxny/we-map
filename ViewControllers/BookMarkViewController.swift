@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookMarkViewController: MainViewController {
+class BookMarkViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

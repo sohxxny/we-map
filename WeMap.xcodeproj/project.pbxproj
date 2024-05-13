@@ -9,22 +9,20 @@
 /* Begin PBXBuildFile section */
 		153799391A913ABB3F151A3A /* Pods_WeMap_WeMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */; };
 		20D6EBF5C29EB99E7A02B901 /* Pods_WeMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD0EDFDE869E7AE875B1B91 /* Pods_WeMapTests.framework */; };
-		960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960773732BC5537C00E587D9 /* MainTabBarController.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
 		961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */; };
 		961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */; };
 		961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBE2BD116490060512A /* GlobalUserManager.swift */; };
 		961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBC02BD13C9D0060512A /* BaseViewController.swift */; };
 		9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE082BCBF0C000D0E677 /* HomeViewController.swift */; };
-		9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */; };
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
-		963138152BED1BE200D5B460 /* MemoryAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963138142BED1BE200D5B460 /* MemoryAlbumsViewController.swift */; };
 		9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */; };
 		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
 		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
 		966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966678CF2BE4B8B300966022 /* NotificationModel.swift */; };
+		966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DFF042BF26BDB007ECC98 /* TabBarViewController.swift */; };
 		96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96736B352B8CAEE2008FFB47 /* MainViewController.swift */; };
 		967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */; };
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
@@ -108,22 +106,20 @@
 		4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap_WeMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4EFCA0E86291369C30A83 /* Pods-WeMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.release.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.release.xcconfig"; sourceTree = "<group>"; };
 		6D14279E223235CA3A528B2F /* Pods-WeMap-WeMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.release.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.release.xcconfig"; sourceTree = "<group>"; };
-		960773732BC5537C00E587D9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		961ECBBE2BD116490060512A /* GlobalUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUserManager.swift; sourceTree = "<group>"; };
 		961ECBC02BD13C9D0060512A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		9622EE082BCBF0C000D0E677 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDaysViewController.swift; sourceTree = "<group>"; };
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
-		963138142BED1BE200D5B460 /* MemoryAlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAlbumsViewController.swift; sourceTree = "<group>"; };
 		9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAlbumTableViewCell.swift; sourceTree = "<group>"; };
 		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		966678CF2BE4B8B300966022 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		966DFF042BF26BDB007ECC98 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		96736B352B8CAEE2008FFB47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -303,10 +299,9 @@
 			children = (
 				961ECBC02BD13C9D0060512A /* BaseViewController.swift */,
 				96736B352B8CAEE2008FFB47 /* MainViewController.swift */,
-				960773732BC5537C00E587D9 /* MainTabBarController.swift */,
+				966DFF042BF26BDB007ECC98 /* TabBarViewController.swift */,
 				96F17EBF2B612327003584D3 /* SignUpViewController.swift */,
 				96F17EBD2B6122EC003584D3 /* SignInViewController.swift */,
-				9622EE0A2BCC24BB00D0E677 /* MemoryDaysViewController.swift */,
 				9622EE082BCBF0C000D0E677 /* HomeViewController.swift */,
 				9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */,
 				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
@@ -315,7 +310,6 @@
 				96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */,
 				96BABB392BE8071C0094F7E7 /* SettingViewController.swift */,
 				96BABB352BE806180094F7E7 /* EditProfileViewController.swift */,
-				963138142BED1BE200D5B460 /* MemoryAlbumsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -666,7 +660,6 @@
 				96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */,
 				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
-				963138152BED1BE200D5B460 /* MemoryAlbumsViewController.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
 				96BABB3A2BE8071C0094F7E7 /* SettingViewController.swift in Sources */,
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
@@ -676,13 +669,11 @@
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
 				96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */,
-				960773742BC5537C00E587D9 /* MainTabBarController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
 				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,
 				96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */,
 				967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */,
 				961ECBB92BD0E4370060512A /* Extensions.swift in Sources */,
-				9622EE0B2BCC24BB00D0E677 /* MemoryDaysViewController.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
 				9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */,
@@ -694,6 +685,7 @@
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
+				966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 				96F773C02BE24E4D0061E343 /* NotificationViewController.swift in Sources */,
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
@@ -881,6 +873,7 @@
 				DEVELOPMENT_TEAM = 3NSNDGXLF2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "위맵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -895,7 +888,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -910,6 +903,7 @@
 				DEVELOPMENT_TEAM = 3NSNDGXLF2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "위맵";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -924,7 +918,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
