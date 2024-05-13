@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6OW-Ji-290">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IPC-HD-ugv">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -168,7 +168,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFN-zI-OpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2TS-ji-1xj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1579.9065420560746" y="18.790496760259181"/>
+            <point key="canvasLocation" x="3114" y="66"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -255,13 +255,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814.48598130841117" y="18.790496760259181"/>
+            <point key="canvasLocation" x="2284" y="66"/>
         </scene>
         <!--내 친구-->
         <scene sceneID="ZUa-2W-Lby">
             <objects>
-                <navigationController storyboardIdentifier="modal5ViewController" id="UXr-PY-RJb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="내 친구" image="person.fill" catalog="system" id="hDA-od-6oV"/>
+                <navigationController storyboardIdentifier="FriendsList" id="UXr-PY-RJb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="4" title="내 친구" image="person.fill" catalog="system" id="hDA-od-6oV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="v3C-JZ-Y3D">
                         <rect key="frame" x="0.0" y="47" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -277,7 +277,7 @@
         <!--내 친구-->
         <scene sceneID="HOF-On-kus">
             <objects>
-                <viewController storyboardIdentifier="FriendsViewController" modalPresentationStyle="pageSheet" id="xJE-tj-7kf" customClass="FriendsListViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendsListViewController" modalPresentationStyle="pageSheet" id="xJE-tj-7kf" customClass="FriendsListViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3K3-Sy-l9T">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -289,7 +289,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qdk-uT-Dbj">
-                                <rect key="frame" x="20" y="184" width="388" height="659"/>
+                                <rect key="frame" x="20" y="184" width="388" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -407,7 +407,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PDa-iL-3B3">
-                                <rect key="frame" x="20" y="91" width="388" height="752"/>
+                                <rect key="frame" x="20" y="91" width="388" height="801"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -458,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1P-Ia-fXa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3114" y="3076"/>
+            <point key="canvasLocation" x="3927" y="2282"/>
         </scene>
         <!--프로필 수정-->
         <scene sceneID="LEf-t0-Uew">
@@ -523,7 +523,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiQ-zK-BKj" customClass="CustomFilledButton" customModule="WeMap" customModuleProvider="target">
-                                <rect key="frame" x="40" y="768" width="348" height="45"/>
+                                <rect key="frame" x="40" y="817" width="348" height="45"/>
                                 <color key="backgroundColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="lZM-hf-qLW"/>
@@ -583,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef6-69-90x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3927" y="3076"/>
+            <point key="canvasLocation" x="4737" y="2282"/>
         </scene>
         <!--My Page View Controller-->
         <scene sceneID="y5a-UW-fa7">
@@ -659,7 +659,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zU4-iT-AzE">
-                                <rect key="frame" x="20" y="91" width="388" height="752"/>
+                                <rect key="frame" x="20" y="91" width="388" height="801"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -892,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HsM-WR-UGH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3926.6355140186915" y="2281.4254859611233"/>
+            <point key="canvasLocation" x="3114" y="3038"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="Tq4-dw-adG">
@@ -1034,38 +1034,6 @@
             </objects>
             <point key="canvasLocation" x="3928" y="1515"/>
         </scene>
-        <!--추억 앨범-->
-        <scene sceneID="AEH-cy-rW5">
-            <objects>
-                <viewController storyboardIdentifier="FirstViewController" id="BKG-yA-RER" userLabel="추억 앨범" customClass="MemoryAlbumsViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hcx-eb-ZlC">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="JE0-HR-Dox"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="추억 앨범" image="location.fill" catalog="system" id="dcb-Nn-080" userLabel="추억 앨범"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o8G-zd-ElJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="23.831775700934578" y="1514.9028077753781"/>
-        </scene>
-        <!--추억 하루-->
-        <scene sceneID="RdF-NH-Qnu">
-            <objects>
-                <viewController storyboardIdentifier="SecondViewController" id="bmd-K9-eQa" customClass="MemoryDaysViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fGL-SQ-aLN">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="CJ0-un-zzI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="추억 하루" image="flag.fill" catalog="system" id="2qY-ho-ncH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SdS-Gm-f9N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="814" y="1515"/>
-        </scene>
         <!--홈-->
         <scene sceneID="0Te-yL-AEu">
             <objects>
@@ -1080,58 +1048,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txF-uX-EjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="1515"/>
+            <point key="canvasLocation" x="2284" y="1515"/>
         </scene>
-        <!--북마크-->
-        <scene sceneID="m5I-qd-Xpc">
+        <!--Tab Bar View Controller-->
+        <scene sceneID="iwj-hM-4mq">
             <objects>
-                <viewController storyboardIdentifier="BookmarkViewController" id="hqb-ut-Cgh" customClass="BookMarkViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="k9a-bb-w3d">
+                <viewController storyboardIdentifier="TabBarViewController" id="IPC-HD-ugv" customClass="TabBarViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O4J-Ka-hrQ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="T6Y-3v-uUK"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ECx-Tf-EZb">
+                                <rect key="frame" x="0.0" y="843" width="428" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="추억 앨범" id="Igp-5R-6mn"/>
+                                    <tabBarItem tag="1" title="추억 하루" id="cFK-db-Fzh"/>
+                                    <tabBarItem tag="2" title="홈" id="lB2-Kz-cmQ"/>
+                                    <tabBarItem tag="3" title="북마크" id="xk2-kh-X0O"/>
+                                    <tabBarItem tag="4" title="내 친구" id="YeA-cU-5aq"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="J2r-rX-kRz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="북마크" image="star.fill" catalog="system" id="Rh3-im-ihD"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y1U-ce-mcb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2347" y="1515"/>
-        </scene>
-        <!--Main Tab Bar Controller-->
-        <scene sceneID="uZj-sK-oBp">
-            <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" id="6OW-Ji-290" customClass="MainTabBarController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Lcb-0O-2fq"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i8h-zp-7fn">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.37254901960784315" green="0.52941176470588236" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
                     <connections>
-                        <segue destination="BKG-yA-RER" kind="relationship" relationship="viewControllers" id="YlX-xC-sKz"/>
-                        <segue destination="bmd-K9-eQa" kind="relationship" relationship="viewControllers" id="adP-Lo-oAP"/>
-                        <segue destination="9eC-BM-H5z" kind="relationship" relationship="viewControllers" id="6Dt-6f-asK"/>
-                        <segue destination="hqb-ut-Cgh" kind="relationship" relationship="viewControllers" id="7pg-tQ-UT1"/>
-                        <segue destination="UXr-PY-RJb" kind="relationship" relationship="viewControllers" id="B5T-Ee-edj"/>
+                        <outlet property="tabBar" destination="ECx-Tf-EZb" id="6dc-5l-DkL"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nQ8-zi-jDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aY7-BX-KSY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="760"/>
+            <point key="canvasLocation" x="2284" y="759"/>
         </scene>
     </scenes>
     <resources>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
-        <image name="flag.fill" catalog="system" width="128" height="121"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person.crop.circle.badge.plus" catalog="system" width="32" height="32"/>
-        <image name="person.fill" catalog="system" width="32" height="32"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

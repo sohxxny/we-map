@@ -63,7 +63,7 @@ class SettingViewController: BaseViewController, UITableViewDelegate, UITableVie
             // 미리 홈 화면으로 이동
             if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                let homeViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
                 sceneDelegate.window?.rootViewController = homeViewController
                 
                 // 모든 모달 제거

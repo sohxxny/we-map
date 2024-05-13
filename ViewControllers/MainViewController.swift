@@ -22,19 +22,7 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         mainMapView = GlobalMapsManager.shared.getOrCreateView()
         searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
-    }
-    
-    // 뷰 컨트롤러가 보인 후에 호출
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         setViews(mainMapView: mainMapView!, searchButton: searchButton!)
-    }
-    
-    // 뷰 컨트롤러가 사라지기 전에 호출
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        mainMapView?.removeFromSuperview()
-        searchButton?.removeFromSuperview()
     }
     
     // 뷰를 나타내기
@@ -54,7 +42,7 @@ class MainViewController: BaseViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -49),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
