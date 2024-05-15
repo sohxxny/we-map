@@ -808,33 +808,33 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="7dm-06-jss">
                                                     <rect key="frame" x="70" y="16.666666666666668" width="173" height="57.333333333333329"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
                                                             <rect key="frame" x="0.0" y="0.0" width="56" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="PIQ-ih-oY5">
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIQ-ih-oY5">
                                                             <rect key="frame" x="0.0" y="17.999999999999996" width="173" height="5"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="5" id="t2d-uF-nGd"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="서울과학기술대학교" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="서울과학기술대학교" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
                                                             <rect key="frame" x="0.0" y="22.999999999999996" width="101.33333333333333" height="15.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-Bp-m4a">
+                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-Bp-m4a">
                                                             <rect key="frame" x="0.0" y="38.666666666666671" width="173" height="3"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="3" id="52g-08-CB1"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="남우현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="남우현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
                                                             <rect key="frame" x="0.0" y="41.666666666666671" width="34" height="15.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
@@ -893,6 +893,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HsM-WR-UGH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3114" y="3038"/>
+        </scene>
+        <!--Home Bottom Sheet View Controller-->
+        <scene sceneID="bHQ-KU-AwO">
+            <objects>
+                <viewController storyboardIdentifier="homeBottomSheetViewController" id="G6p-uq-sod" customClass="homeBottomSheetViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s3C-9w-c5y">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ZJ2-MF-ttj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zan-Kp-v8C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="1515"/>
+        </scene>
+        <!--Location Details View Controller-->
+        <scene sceneID="iS3-wl-cIk">
+            <objects>
+                <viewController storyboardIdentifier="LocationDetailsViewController" id="GJE-np-GqT" customClass="LocationDetailsViewController" customModule="WeMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZXf-rF-IzY">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjL-gE-faf">
+                                <rect key="frame" x="30" y="87" width="368" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="luG-AD-1FC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="luG-AD-1FC" firstAttribute="trailing" secondItem="bjL-gE-faf" secondAttribute="trailing" constant="30" id="8e6-wM-nqK"/>
+                            <constraint firstItem="bjL-gE-faf" firstAttribute="top" secondItem="luG-AD-1FC" secondAttribute="top" constant="40" id="pMs-7Z-ct1"/>
+                            <constraint firstItem="bjL-gE-faf" firstAttribute="leading" secondItem="luG-AD-1FC" secondAttribute="leading" constant="30" id="v3F-Pr-2Kr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="bjL-gE-faf" id="XPa-as-2dX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YrU-4N-sL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1464" y="1515"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="Tq4-dw-adG">

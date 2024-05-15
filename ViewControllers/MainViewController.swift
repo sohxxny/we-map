@@ -7,23 +7,45 @@
 
 import UIKit
 import NMapsMap
+import FloatingPanel
 
-class MainViewController: BaseViewController {
+class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelControllerDelegate {
     
+    var fpc: FloatingPanelController!
     var mainMapView: MainMapView?
     var searchButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainMapView = GlobalMapsManager.shared.getOrCreateView()
+        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
+        setViews(mainMapView: mainMapView!, searchButton: searchButton!)
+        mainMapView?.locationDelegate = self
+        
+        fpc = FloatingPanelController(delegate: self)
+        setBottomSheet(fpc: fpc)
+        initialSetting(fpc: fpc, in: self)
+        
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mainMapView = GlobalMapsManager.shared.getOrCreateView()
-        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
-        setViews(mainMapView: mainMapView!, searchButton: searchButton!)
+        
     }
+    
+    // 지도가 터치될 때마다 호출
+    func mapViewDidTap(_ mapView: MainMapView, coordinate: (Double, Double), address: String) {
+        print("coordinate: \(coordinate), Address: \(address)")
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let contentVC = storyboard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
+            setContent(add: contentVC, from: self, by: self.fpc)
+            contentVC.configure(with: address)
+        }
+    }
+    
     
     // 뷰를 나타내기
     func setViews(mainMapView: MainMapView, searchButton: UIButton) {

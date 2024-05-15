@@ -9,12 +9,20 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
+protocol MapViewDelegate: AnyObject {
+    func mapViewDidTap(_ mapView: MainMapView, coordinate: (Double, Double), address: String)
+}
+
 class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDelegate {
+    
+    weak var locationDelegate: MapViewDelegate?
     
     var locationManager: CLLocationManager!
     var compassButton: NMFCompassView!
     var locationOverlay: NMFLocationOverlay!
     var currentLocation: CLLocation?
+    var selectedCoordinate: (Double, Double)?
+    var selectedAddress: String?
     var selectLocationMarker = NMFMarker()
     
     override init(frame: CGRect) {
@@ -37,6 +45,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         configureLocationManager()
         mapSetting()
         setCompassButton()
+        setMarker()
     }
     
     func configureLocationManager() {
@@ -62,8 +71,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     
     // 지도가 탭 될 때마다 호출
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        getAddressByCoordinates(latitude: latlng.lat, longitude: latlng.lng)
-        
+        getLocationInfo(latitude: latlng.lat, longitude: latlng.lng)
     }
     
     // 위치 권한 설정
@@ -95,6 +103,13 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         }
     }
     
+    // 마커 설정
+    func setMarker() {
+        self.selectLocationMarker.iconImage = NMFOverlayImage(name: "marker-red-icon")
+        self.selectLocationMarker.width = 50
+        self.selectLocationMarker.height = 50
+    }
+    
     // 마커 띄우기
     func showMarkerAtLocation(latitude: Double, longitude: Double) {
         DispatchQueue.main.async {
@@ -112,8 +127,18 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         self.mapView.moveCamera(cameraUpdate)
     }
     
+    // 주소 상세 화면 띄우기
+    func showLocationDetails() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let detailViewController = storyboard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as? LocationDetailsViewController {
+            detailViewController.modalPresentationStyle = .fullScreen
+            // detailViewController.latlng = latlng
+            // viewController?.present(detailViewController, animated: true, completion: nil)
+        }
+    }
+    
     // 좌표를 통해 주소에 관한 JSON 정보를 받는 함수
-    func getAddressByCoordinates(latitude: Double, longitude: Double) {
+    func getLocationInfo(latitude: Double, longitude: Double) {
         let urlString = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(longitude),\(latitude)&orders=roadaddr&output=json"
         guard let url = URL(string: urlString) else { return }
         
@@ -155,6 +180,9 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
             if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let addresses = json["addresses"] as? [[String: Any]], let xString = addresses.first?["x"] as? String, let yString = addresses.first?["y"] as? String {
                 if let x = Double(xString), let y = Double(yString) {
                     self.showMarkerAtLocation(latitude: y, longitude: x)
+                    self.selectedCoordinate = (x, y)
+                    
+                    self.locationDelegate?.mapViewDidTap(self, coordinate: self.selectedCoordinate!, address: self.selectedAddress!)
                 }
             }
         }
@@ -177,13 +205,14 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
             
             let address = [area1Abbr, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2, buildingName].filter{ !$0.isEmpty }.joined(separator: " ")
             let queryAddress = [area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2].filter{ !$0.isEmpty }.joined(separator: " ")
-            print(address)
-            
+        
+            self.selectedAddress = address
             self.getCoordicateByAddress(address: queryAddress)
         }
     }
     
     // 쿼리를 통해 장소 배열을 받는 함수
+    /*
     func getPlaceNameByCoordinate(query: String) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "https://openapi.naver.com/v1/search/local.json?query=\(encodedQuery)&display=1&start=1&"
@@ -209,4 +238,5 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         }
         task.resume()
     }
+     */
 }
