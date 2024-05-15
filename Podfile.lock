@@ -1,20 +1,24 @@
 PODS:
+  - FloatingPanel (2.8.2)
   - NMapsGeometry (1.0.2)
   - NMapsMap (3.18.1):
     - NMapsGeometry
 
 DEPENDENCIES:
+  - FloatingPanel
   - NMapsMap
 
 SPEC REPOS:
   trunk:
+    - FloatingPanel
     - NMapsGeometry
     - NMapsMap
 
 SPEC CHECKSUMS:
+  FloatingPanel: 99b72651e5e607a6a4e0c9831e30f02d145beeb6
   NMapsGeometry: 4e02554fa9880ef02ed96b075dc84355d6352479
   NMapsMap: e879088eeee2d1e3b97f0a609076e1824dce2cad
 
-PODFILE CHECKSUM: 701b60e0113e4cd5cbf9d118354ebbde8ecd47ff
+PODFILE CHECKSUM: 55d6856919cf1ba0805a416275ab3dcb061bf866
 
 COCOAPODS: 1.15.2

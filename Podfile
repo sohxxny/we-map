@@ -4,9 +4,12 @@
 target 'WeMap' do
 
   # Adding Naver Map SDK as a dependency
-  pod 'NMapsMap' 
+  pod 'NMapsMap'
 
- # Comment the next line if you don't want to use dynamic frameworks
+  # Adding Floating Panel as a dependency
+  pod 'FloatingPanel'
+
+  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for WeMap
