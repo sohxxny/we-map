@@ -15,6 +15,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     var compassButton: NMFCompassView!
     var locationOverlay: NMFLocationOverlay!
     var currentLocation: CLLocation?
+    var selectLocationMarker = NMFMarker()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,10 +95,28 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         }
     }
     
+    // 마커 띄우기
+    func showMarkerAtLocation(latitude: Double, longitude: Double) {
+        DispatchQueue.main.async {
+            self.selectLocationMarker.position = NMGLatLng(lat: latitude, lng: longitude)
+            self.selectLocationMarker.mapView = self.mapView
+            self.moveCameraByCoordinate(latitude, longitude)
+        }
+    }
+    
+    // 특정 좌표로 카메라 이동
+    func moveCameraByCoordinate(_ latitude: Double, _ longitude: Double) {
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude))
+        cameraUpdate.animation = .fly   // 애니메이션 타입 설정
+        cameraUpdate.animationDuration = 1.0  // 애니메이션 지속 시간 설정
+        self.mapView.moveCamera(cameraUpdate)
+    }
+    
     // 좌표를 통해 주소에 관한 JSON 정보를 받는 함수
     func getAddressByCoordinates(latitude: Double, longitude: Double) {
         let urlString = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(longitude),\(latitude)&orders=roadaddr&output=json"
         guard let url = URL(string: urlString) else { return }
+        
         var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("v7mnq95bi3", forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
@@ -115,11 +134,61 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         task.resume()
     }
     
-    // 좌표를 통해 장소 이름을 받는 함수
+    // 주소로 좌표를 알아내는 함수
+    func getCoordicateByAddress(address: String) {
+        let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlString = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=\(encodedAddress)"
+        guard let url = URL(string: urlString) else { return }
+        
+        var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.addValue("v7mnq95bi3", forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+            request.addValue("lk60WJAxZidNrOZNur1IaX9ORKpyTrlQken7fQRn", forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("좌표 가져오기 에러 발생 : \(String(describing: error))")
+                return
+            }
+            
+            // Json 데이터의 좌표 추출
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let addresses = json["addresses"] as? [[String: Any]], let xString = addresses.first?["x"] as? String, let yString = addresses.first?["y"] as? String {
+                if let x = Double(xString), let y = Double(yString) {
+                    self.showMarkerAtLocation(latitude: y, longitude: x)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    // json 데이터로 상세 정보 찾기
+    func parseAddressFromJson(data: Data) {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let results = json["results"] as? [[String: Any]], let region = results.first?["region"] as? [String: Any], let land = results.first?["land"] as? [String: Any] {
+            
+            // let area1 = (region["area1"] as? [String: Any])?["name"] as? String ?? ""  // 시, 도
+            let area1Abbr = (region["area1"] as? [String: Any])?["alias"] as? String ?? ""  // 시, 도 축약
+            let area2 = (region["area2"] as? [String: Any])?["name"] as? String ?? ""  // 구
+            // let area3 = (region["area3"] as? [String: Any])?["name"] as? String ?? ""  // 동
+            let area4 = (region["area4"] as? [String: Any])?["name"] as? String ?? ""
+            let roadAddr = (land["name"]) as? String ?? ""  // 도로명
+            let roadAddrDetail1 = (land["number1"]) as? String ?? ""  // 도로명 상세주소 1
+            let roadAddrDetail2 = (land["number2"]) as? String ?? ""  // 도로명 상세주소 2
+            let buildingName = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""  // 건물 이름
+            
+            let address = [area1Abbr, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2, buildingName].filter{ !$0.isEmpty }.joined(separator: " ")
+            let queryAddress = [area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2].filter{ !$0.isEmpty }.joined(separator: " ")
+            print(address)
+            
+            self.getCoordicateByAddress(address: queryAddress)
+        }
+    }
+    
+    // 쿼리를 통해 장소 배열을 받는 함수
     func getPlaceNameByCoordinate(query: String) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "https://openapi.naver.com/v1/search/local.json?query=\(encodedQuery)&display=1&start=1&"
         guard let url = URL(string: urlString) else { return }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("zWfSz9Sum6HFvITHFEd2", forHTTPHeaderField: "X-Naver-Client-Id")
@@ -139,26 +208,5 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
             }
         }
         task.resume()
-    }
-
-    // json 데이터로 상세 정보 찾기
-    func parseAddressFromJson(data: Data) {
-        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let results = json["results"] as? [[String: Any]], let region = results.first?["region"] as? [String: Any], let land = results.first?["land"] as? [String: Any] {
-            
-            // let area1 = (region["area1"] as? [String: Any])?["name"] as? String ?? ""  // 시, 도
-            let area1Abbr = (region["area1"] as? [String: Any])?["alias"] as? String ?? ""  // 시, 도 축약
-            let area2 = (region["area2"] as? [String: Any])?["name"] as? String ?? ""  // 구
-            // let area3 = (region["area3"] as? [String: Any])?["name"] as? String ?? ""  // 동
-            let area4 = (region["area4"] as? [String: Any])?["name"] as? String ?? ""
-            let roadAddr = (land["name"]) as? String ?? ""  // 도로명
-            let roadAddrDetail1 = (land["number1"]) as? String ?? ""  // 도로명 상세주소 1
-            let roadAddrDetail2 = (land["number2"]) as? String ?? ""  // 도로명 상세주소 2
-            // let buildingName = (land["addition0"] as? [String: Any])?["value"] as? String ?? ""  // 건물 이름
-            
-            let address = [area1Abbr, area2, area4, roadAddr, roadAddrDetail1, roadAddrDetail2].filter{ !$0.isEmpty }.joined(separator: " ")
-            print(address)
-            
-            self.getPlaceNameByCoordinate(query: address)
-        }
     }
 }
