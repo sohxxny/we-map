@@ -17,6 +17,9 @@
 		9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE082BCBF0C000D0E677 /* HomeViewController.swift */; };
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
+		962F0F932BF5E94D0078A5EA /* marker-red-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 962F0F922BF5E94D0078A5EA /* marker-red-icon.png */; };
+		962F0F952BF5E9580078A5EA /* marker-blue-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 962F0F942BF5E9580078A5EA /* marker-blue-icon.png */; };
+		962F0F972BF5E95D0078A5EA /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 962F0F962BF5E95D0078A5EA /* bookmark-icon.png */; };
 		9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */; };
 		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
 		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
@@ -28,9 +31,6 @@
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
 		967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF1912BC2ABE200D11E5B /* UserModel.swift */; };
 		96A729522BEB53B00006F5C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A729512BEB53B00006F5C0 /* Constants.swift */; };
-		96AC30982BF4B19F001317E9 /* marker-red-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AC30972BF4B19F001317E9 /* marker-red-icon.png */; };
-		96AC309A2BF4B1A4001317E9 /* marker-blue-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AC30992BF4B1A4001317E9 /* marker-blue-icon.png */; };
-		96AC309C2BF4B1AA001317E9 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AC309B2BF4B1AA001317E9 /* bookmark-icon.png */; };
 		96AC30A02BF4BA81001317E9 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC309F2BF4BA81001317E9 /* LocationDetailsViewController.swift */; };
 		96AC30A22BF4D92E001317E9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */; };
 		96AC30A42BF4E586001317E9 /* homeBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */; };
@@ -120,6 +120,9 @@
 		9622EE082BCBF0C000D0E677 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
+		962F0F922BF5E94D0078A5EA /* marker-red-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-red-icon.png"; sourceTree = "<group>"; };
+		962F0F942BF5E9580078A5EA /* marker-blue-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-blue-icon.png"; sourceTree = "<group>"; };
+		962F0F962BF5E95D0078A5EA /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAlbumTableViewCell.swift; sourceTree = "<group>"; };
 		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
@@ -131,9 +134,6 @@
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		967EF1912BC2ABE200D11E5B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		96A729512BEB53B00006F5C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		96AC30972BF4B19F001317E9 /* marker-red-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker-red-icon.png"; path = "../../../마커/marker-red-icon.png"; sourceTree = "<group>"; };
-		96AC30992BF4B1A4001317E9 /* marker-blue-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker-blue-icon.png"; path = "../../../마커/marker-blue-icon.png"; sourceTree = "<group>"; };
-		96AC309B2BF4B1AA001317E9 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bookmark-icon.png"; path = "../../../마커/bookmark-icon.png"; sourceTree = "<group>"; };
 		96AC309F2BF4BA81001317E9 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -255,9 +255,9 @@
 			children = (
 				96F3B42B2BDB761000B858C9 /* user-icon.png */,
 				96DD74442BE114A200A3A261 /* pencil-icon.png */,
-				96AC30972BF4B19F001317E9 /* marker-red-icon.png */,
-				96AC30992BF4B1A4001317E9 /* marker-blue-icon.png */,
-				96AC309B2BF4B1AA001317E9 /* bookmark-icon.png */,
+				962F0F922BF5E94D0078A5EA /* marker-red-icon.png */,
+				962F0F942BF5E9580078A5EA /* marker-blue-icon.png */,
+				962F0F962BF5E95D0078A5EA /* bookmark-icon.png */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -542,12 +542,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F17E5D2B60F94B003584D3 /* LaunchScreen.storyboard in Resources */,
-				96AC30982BF4B19F001317E9 /* marker-red-icon.png in Resources */,
+				962F0F932BF5E94D0078A5EA /* marker-red-icon.png in Resources */,
 				96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
-				96AC309A2BF4B1A4001317E9 /* marker-blue-icon.png in Resources */,
+				962F0F952BF5E9580078A5EA /* marker-blue-icon.png in Resources */,
 				96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */,
-				96AC309C2BF4B1AA001317E9 /* bookmark-icon.png in Resources */,
+				962F0F972BF5E95D0078A5EA /* bookmark-icon.png in Resources */,
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);

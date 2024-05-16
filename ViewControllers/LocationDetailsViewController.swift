@@ -18,5 +18,10 @@ class LocationDetailsViewController: BaseViewController {
     func configure(with addressString: String) {
         addressLabel.text = addressString
     }
+    
+    @IBAction func tapCloseLocationDetails(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
+    }
+    
 
 }
