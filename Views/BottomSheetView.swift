@@ -42,7 +42,7 @@ class CustomFloatingPanelLayout: FloatingPanelLayout{
     var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
             return [
                 .full: FloatingPanelLayoutAnchor(fractionalInset: 0.9, edge: .bottom, referenceGuide: .superview),
-                .half: FloatingPanelLayoutAnchor(fractionalInset: 0.45, edge: .bottom, referenceGuide: .superview),
+                .half: FloatingPanelLayoutAnchor(fractionalInset: 0.48, edge: .bottom, referenceGuide: .superview),
                 .tip: FloatingPanelLayoutAnchor(fractionalInset: 0.15, edge: .bottom, referenceGuide: .superview)
             ]
         }

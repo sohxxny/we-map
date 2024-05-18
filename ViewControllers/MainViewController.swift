@@ -30,6 +30,8 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         
         // 닫기 버튼 옵저버 등록
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseLocationDetails(_:)), name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapGotoCreateAlbum(_:)), name: NSNotification.Name("tapGotoCreateAlbum"), object: nil)
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -53,6 +55,13 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         initialSetting(fpc: fpc, in: self)
         fpc.move(to: .tip, animated: true)
         mainMapView?.selectLocationMarker.mapView = nil
+    }
+    
+    @objc func didTapGotoCreateAlbum(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let contentVC = storyboard.instantiateViewController(withIdentifier: "CreateAlbumViewController") as! CreateAlbumViewController
+        setContent(add: contentVC, from: self, by: self.fpc)
+        fpc.move(to: .full, animated: true)
     }
     
     // 뷰를 나타내기

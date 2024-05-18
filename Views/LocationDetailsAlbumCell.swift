@@ -15,6 +15,6 @@ class LocationDetailsAlbumCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // featuredImage.layer.cornerRadius = 5
+        featuredImage.layer.cornerRadius = 5
     }
 }
