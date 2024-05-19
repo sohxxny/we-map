@@ -14,6 +14,7 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     var fpc: FloatingPanelController!
     var mainMapView: MainMapView?
     var searchButton: UIButton?
+    var locationInfo: LocationInfo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,8 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         
         // 닫기 버튼 옵저버 등록
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseLocationDetails(_:)), name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(didTapGotoCreateAlbum(_:)), name: NSNotification.Name("tapGotoCreateAlbum"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseCreateAlbum(_:)), name: NSNotification.Name("tapCloseCreateAlbum"), object: nil)
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -42,7 +43,7 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     
     // 지도가 터치될 때마다 호출
     func mapViewDidTap(_ mapView: MainMapView, coordinate: (Double, Double), address: String) {
-        print("coordinate: \(coordinate), Address: \(address)")
+        locationInfo = LocationInfo(coordinate: coordinate, address: address)
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let contentVC = storyboard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
@@ -51,17 +52,29 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         }
     }
     
+    // 장소 상세 정보 닫기 버튼 터치 (홈으로)
     @objc func didTapCloseLocationDetails(_ notification: Notification) {
         initialSetting(fpc: fpc, in: self)
         fpc.move(to: .tip, animated: true)
         mainMapView?.selectLocationMarker.mapView = nil
     }
     
+    // 앨범 생성 버튼 터치
     @objc func didTapGotoCreateAlbum(_ notification: Notification) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let contentVC = storyboard.instantiateViewController(withIdentifier: "CreateAlbumViewController") as! CreateAlbumViewController
+        contentVC.locationInfo = self.locationInfo
         setContent(add: contentVC, from: self, by: self.fpc)
         fpc.move(to: .full, animated: true)
+    }
+    
+    // 앨범 생성 화면에서 취소 버튼 터치
+    @objc func didTapCloseCreateAlbum(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let contentVC = storyboard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
+        setContent(add: contentVC, from: self, by: self.fpc)
+        contentVC.configure(with: locationInfo.address)
+        fpc.move(to: .half, animated: true)
     }
     
     // 뷰를 나타내기

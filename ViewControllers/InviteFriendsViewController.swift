@@ -1,47 +1,44 @@
 //
-//  FriendsListViewController.swift
+//  InviteFriendsViewController.swift
 //  WeMap
 //
-//  Created by Lee Soheun on 4/7/24.
+//  Created by Lee Soheun on 5/19/24.
 //
 
 import UIKit
 
-class FriendsListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var friendsListTableView: UITableView!
-    @IBOutlet weak var searchFriends: CustomSearchBar!
+class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var inviteFriendsTableView: UITableView!
+    @IBOutlet weak var searchFriends: CustomSearchBar!
+
     var loadingIndicator: LoadingIndicator!
-    var filteredFriendsList: [UserViewModel] = []
-    var sectionTitles = ["내 정보", "즐겨찾기", "친구 목록"]
+    var currentFriendsList: [UserViewModel] = []
+    var filteredFriendsList: [InviteFriendsModel] = []
+    var sectionTitles = ["즐겨찾기", "친구 목록"]
+    var selectedCells = Set<IndexPath>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // tableView delegate, dataSource 설정
-        friendsListTableView.delegate = self
-        friendsListTableView.dataSource = self
+
+        inviteFriendsTableView.delegate = self
+        inviteFriendsTableView.dataSource = self
         
         // 로딩 인디케이터 설정
         loadingIndicator = LoadingIndicator(in: self.view)
         loadingIndicator.setupLoadingIndicator()
         
-        // 백 버튼 설정 함수
-        setBackButton(vc: self)
-        
-        // 검색 창 입력 감지
         searchFriends.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 테이블뷰 보이지 않기 (데이터 로딩이 완료되면 보이도록)
-        friendsListTableView.isHidden = true
+        inviteFriendsTableView.isHidden = true
     }
     
+    // 텍스트 입력할 때마다 호출
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = searchFriends.text else { return }
         let friendsList = GlobalFriendsManager.shared.globalFriendsList
@@ -50,44 +47,45 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         } else {
             filteredFriendsList = friendsList.filter { $0.userName.localizedCaseInsensitiveContains(text) }
         }
-        friendsListTableView.reloadData()
+        inviteFriendsTableView.reloadData()
     }
     
     // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myInfo = [[GlobalFriendsManager.shared.globalMyViewModel]]
         let friendsList = [filteredFriendsList]
-        let infoList = myInfo + [[]] + friendsList
+        let infoList = [[]] + friendsList
         let sectionItems = infoList[indexPath.section]
-        let friendsCell = friendsListTableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
+        let friendsCell = inviteFriendsTableView.dequeueReusableCell(withIdentifier: "InviteFriendsCell", for: indexPath) as! InviteFriendsCell
         
-        // 프로필 사진 없으면 기본 사진 넣기
-        if let profilePhoto = sectionItems[indexPath.row]?.profilePhoto {
-            setCustomImage(imageView: friendsCell.profileImageView, image: profilePhoto)
-        } else {
-            setIconImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
+        // 셀 버튼 선택 시 로직
+        friendsCell.buttonSelected = { [weak self, indexPath] in
+            if let strongSelf = self {
+                if friendsCell.isButtonSelected {
+                    strongSelf.selectedCells.remove(indexPath)
+                    friendsCell.setButtonIcon(button: friendsCell.selectButton, select: false)
+                    friendsCell.isButtonSelected = false
+                } else {
+                    strongSelf.selectedCells.insert(indexPath)
+                    friendsCell.setButtonIcon(button: friendsCell.selectButton, select: true)
+                    friendsCell.isButtonSelected = true
+                }
+                print("현재 눌린 셀 수: \(strongSelf.selectedCells.count)")
+            }
         }
         
-        // 이름, 프로필 메시지 넣기
-        friendsCell.profileNameLabel.text = sectionItems[indexPath.row]?.userName
-        friendsCell.profileMessageLabel.text = sectionItems[indexPath.row]?.profileMessage
+        // 프로필 사진 설정
+        if let profilePhoto = sectionItems[indexPath.row].profilePhoto {
+            setCustomImage(imageView: friendsCell.profileImage, image: profilePhoto)
+        } else {
+            setIconImage(imageView: friendsCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+        }
+        friendsCell.profileName.text = sectionItems[indexPath.row].userName
         return friendsCell
     }
     
-    // 셀 클릭 시 동작하는 함수
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        friendsListTableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.section == 0 {
-            self.performSegue(withIdentifier: "showMyPage", sender: self)
-        }
-    }
-    
-    // 테이블의 데이터 개수 (내 정보 포함)
+    // 테이블 데이터 수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
-        } else if section == 1 {
             return 0
         } else {
             return filteredFriendsList.count
@@ -137,23 +135,33 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     override func updateUI() {
         super.updateUI()
         
+        // 만약 데이터가 달라졌다면 데이터 새로 넣고 inviteModel 만들기
+        currentFriendsList = GlobalFriendsManager.shared.globalFriendsList
+        
         // 데이터가 다 불러와지면 friendsList에 데이터 넣기
         if searchFriends.text == "" {
-            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
+            filteredFriendsList = currentFriendsList
         }
         
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
-        friendsListTableView.reloadData()
-        friendsListTableView.isHidden = false
+        inviteFriendsTableView.reloadData()
+        inviteFriendsTableView.isHidden = false
+        
     }
     
-    // 친구 추가 화면으로 이동하기
-    @IBAction func tapGotoAddFriends(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController {
-            addFriendsViewController.modalPresentationStyle = .overCurrentContext
-            addFriendsViewController.modalTransitionStyle = .crossDissolve
-            self.present(addFriendsViewController, animated: true, completion: nil)
-        }
+    @IBAction func tapCancelInviteFriends(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
+    // 확인 버튼 터치 시
+    @IBAction func tapConfirmButton(_ sender: UIButton) {
+        let friendsList = GlobalFriendsManager.shared.globalFriendsList
+        var selectedFriendsList: [UserViewModel] = []
+        for indexPath in selectedCells {
+            selectedFriendsList.append(friendsList[indexPath.row])
+        }
+        sendSelectedFriendsList?(selectedFriendsList, selectedCells)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
