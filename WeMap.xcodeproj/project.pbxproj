@@ -50,6 +50,8 @@
 		96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */; };
 		96E86B142BF9DFEE009F9858 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */; };
 		96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */; };
+		96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96E86B192BFA7A93009F9858 /* Config.plist */; };
+		96E86B1C2BFA7B41009F9858 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B1B2BFA7B41009F9858 /* ConfigManager.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -159,6 +161,8 @@
 		96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsCell.swift; sourceTree = "<group>"; };
+		96E86B192BFA7A93009F9858 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		96E86B1B2BFA7B41009F9858 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				96A729512BEB53B00006F5C0 /* Constants.swift */,
+				96E86B1B2BFA7B41009F9858 /* ConfigManager.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -310,13 +315,6 @@
 		96DDD29A2BCE9F830034142E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
-				96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */,
-				9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */,
-				96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */,
-				96B1FBCD2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift */,
-				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
-				96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
@@ -356,12 +354,27 @@
 				9671BD392BDA902F00AFD305 /* Icon */,
 				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
 				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
+				96F17E592B60F94B003584D3 /* Assets.xcassets */,
 				96F17E5E2B60F94B003584D3 /* Info.plist */,
 				96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */,
-				96F17E592B60F94B003584D3 /* Assets.xcassets */,
+				96E86B192BFA7A93009F9858 /* Config.plist */,
 				96DDD2A02BCEA5C60034142E /* Colors.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		96E86B1D2BFA7C29009F9858 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */,
+				96F773C32BE263200061E343 /* FriendsRequestTableViewCell.swift */,
+				9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */,
+				96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */,
+				96B1FBCD2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift */,
+				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
+				96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		96F17E442B60F94A003584D3 = {
@@ -370,6 +383,7 @@
 				96F17E4F2B60F94A003584D3 /* Storyboards */,
 				96DDD29B2BCE9FD40034142E /* ViewControllers */,
 				96DDD29A2BCE9F830034142E /* Views */,
+				96E86B1D2BFA7C29009F9858 /* Cells */,
 				96DDD2992BCE9F510034142E /* Models */,
 				96C04C932B67E8F1002D3E84 /* Utilities */,
 				96DDD29C2BCEA01A0034142E /* Resources */,
@@ -567,6 +581,7 @@
 				96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */,
 				96B1FBD42BF8CE4200BED8A9 /* bookmark-icon.png in Resources */,
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
+				96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,6 +733,7 @@
 				961ECBB92BD0E4370060512A /* Extensions.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
+				96E86B1C2BFA7B41009F9858 /* ConfigManager.swift in Sources */,
 				9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */,
 				965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */,
 				96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */,

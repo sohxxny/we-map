@@ -165,10 +165,13 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         let urlString = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=\(encodedAddress)"
         guard let url = URL(string: urlString) else { return }
         
+        guard let clientId = ConfigManager.shared.getValue(forKey: "NAVER_MAP_CLIENT_ID"),
+              let clientSecret = ConfigManager.shared.getValue(forKey: "NAVER_MAP_CLIENT_SECRET") else { return }
+        
         var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.addValue("v7mnq95bi3", forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-            request.addValue("lk60WJAxZidNrOZNur1IaX9ORKpyTrlQken7fQRn", forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+            request.addValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+            request.addValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
@@ -220,8 +223,8 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.addValue("zWfSz9Sum6HFvITHFEd2", forHTTPHeaderField: "X-Naver-Client-Id")
-        request.addValue("TqkxeTVJD9", forHTTPHeaderField: "X-Naver-Client-Secret")
+        request.addValue("", forHTTPHeaderField: "X-Naver-Client-Id")
+        request.addValue("", forHTTPHeaderField: "X-Naver-Client-Secret")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {

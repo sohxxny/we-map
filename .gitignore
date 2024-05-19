@@ -115,6 +115,8 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+*.plist
+
 ### MacOS ###
 .DS_Store
 ._.DS_Store
