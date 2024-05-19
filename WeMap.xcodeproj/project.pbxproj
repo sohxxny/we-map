@@ -22,7 +22,6 @@
 		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
 		965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */; };
 		965ED4962BF8EB1E00ACB173 /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */; };
-		965ED4982BF8EEB600ACB173 /* inviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4972BF8EEB600ACB173 /* inviteFriendsViewController.swift */; };
 		965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
 		966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966678CF2BE4B8B300966022 /* NotificationModel.swift */; };
@@ -49,6 +48,8 @@
 		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
 		96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2A02BCEA5C60034142E /* Colors.swift */; };
 		96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */; };
+		96E86B142BF9DFEE009F9858 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */; };
+		96E86B162BFA22DF009F9858 /* InviteFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -130,7 +131,6 @@
 		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 		965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPreviewModel.swift; sourceTree = "<group>"; };
 		965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
-		965ED4972BF8EEB600ACB173 /* inviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inviteFriendsViewController.swift; sourceTree = "<group>"; };
 		965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		966678CF2BE4B8B300966022 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -157,6 +157,8 @@
 		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		96DDD2A02BCEA5C60034142E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsModel.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				96C3F0962BD696C2005306C5 /* UserViewModel.swift */,
 				966678CF2BE4B8B300966022 /* NotificationModel.swift */,
 				965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */,
+				96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,12 +316,12 @@
 				9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */,
 				96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */,
 				96B1FBCD2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift */,
+				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
 				96646ED02BA34F130091C18A /* MainMapView.swift */,
 				96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */,
-				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,7 +345,7 @@
 				96AC309F2BF4BA81001317E9 /* LocationDetailsViewController.swift */,
 				96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */,
 				965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */,
-				965ED4972BF8EEB600ACB173 /* inviteFriendsViewController.swift */,
+				96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */,
+				96E86B142BF9DFEE009F9858 /* InviteFriendsViewController.swift in Sources */,
 				96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */,
 				96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */,
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
@@ -701,7 +705,6 @@
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
-				965ED4982BF8EEB600ACB173 /* inviteFriendsViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
@@ -726,6 +729,7 @@
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
+				96E86B162BFA22DF009F9858 /* InviteFriendsModel.swift in Sources */,
 				965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */,

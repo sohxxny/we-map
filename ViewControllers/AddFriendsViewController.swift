@@ -22,9 +22,6 @@ class AddFriendsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 임시
-        getGesture()
-        
         // 뷰 모서리 둥글게
         popUpBackgroundView.layer.cornerRadius = 15
         profilePhotoView.layer.cornerRadius = profilePhotoView.frame.width / 2
