@@ -41,6 +41,14 @@ struct UserViewModel {
     }
 }
 
+// 같은 유저인지 반환하는 함수
+func isEqualUserViewModel(user1: UserViewModel, user2: UserViewModel) -> Bool {
+    if user1.email == user2.email {
+        return true
+    }
+    return false
+}
+
 // 이메일로 유저 UID를 찾는 함수
 func searchUserByEmail(email: String) async -> String? {
     let db = Firestore.firestore()

@@ -13,10 +13,10 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var searchFriends: CustomSearchBar!
 
     var loadingIndicator: LoadingIndicator!
-    var currentFriendsList: [UserViewModel] = []
-    var filteredFriendsList: [InviteFriendsModel] = []
+    var filteredFriendsList: [UserViewModel] = []
     var sectionTitles = ["즐겨찾기", "친구 목록"]
-    var selectedCells = Set<IndexPath>()
+    var selectedFriends = Set<String>()
+    var sendSelectedFriendsList: ((Set<String>, [UserViewModel]) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,20 +57,11 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
         let sectionItems = infoList[indexPath.section]
         let friendsCell = inviteFriendsTableView.dequeueReusableCell(withIdentifier: "InviteFriendsCell", for: indexPath) as! InviteFriendsCell
         
-        // 셀 버튼 선택 시 로직
-        friendsCell.buttonSelected = { [weak self, indexPath] in
-            if let strongSelf = self {
-                if friendsCell.isButtonSelected {
-                    strongSelf.selectedCells.remove(indexPath)
-                    friendsCell.setButtonIcon(button: friendsCell.selectButton, select: false)
-                    friendsCell.isButtonSelected = false
-                } else {
-                    strongSelf.selectedCells.insert(indexPath)
-                    friendsCell.setButtonIcon(button: friendsCell.selectButton, select: true)
-                    friendsCell.isButtonSelected = true
-                }
-                print("현재 눌린 셀 수: \(strongSelf.selectedCells.count)")
-            }
+        // 버튼 상태
+        if selectedFriends.contains(sectionItems[indexPath.row].email) {
+            friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: true)
+        } else {
+            friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: false)
         }
         
         // 프로필 사진 설정
@@ -90,6 +81,23 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
         } else {
             return filteredFriendsList.count
         }
+    }
+    
+    // 셀 선택 시 실행
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let friendsList = [filteredFriendsList]
+        let infoList = [[]] + friendsList
+        let sectionItems = infoList[indexPath.section]
+        let friendsCell = inviteFriendsTableView.dequeueReusableCell(withIdentifier: "InviteFriendsCell", for: indexPath) as! InviteFriendsCell
+        
+        if selectedFriends.contains(sectionItems[indexPath.row].email) {
+            selectedFriends.remove(sectionItems[indexPath.row].email)
+            friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: false)
+        } else {
+            selectedFriends.insert(sectionItems[indexPath.row].email)
+            friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: true)
+        }
+        inviteFriendsTableView.reloadData()
     }
     
     // 섹션 개수
@@ -135,12 +143,9 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     override func updateUI() {
         super.updateUI()
         
-        // 만약 데이터가 달라졌다면 데이터 새로 넣고 inviteModel 만들기
-        currentFriendsList = GlobalFriendsManager.shared.globalFriendsList
-        
         // 데이터가 다 불러와지면 friendsList에 데이터 넣기
         if searchFriends.text == "" {
-            filteredFriendsList = currentFriendsList
+            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
         }
         
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
@@ -155,12 +160,9 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     
     // 확인 버튼 터치 시
     @IBAction func tapConfirmButton(_ sender: UIButton) {
-        let friendsList = GlobalFriendsManager.shared.globalFriendsList
-        var selectedFriendsList: [UserViewModel] = []
-        for indexPath in selectedCells {
-            selectedFriendsList.append(friendsList[indexPath.row])
-        }
-        sendSelectedFriendsList?(selectedFriendsList, selectedCells)
+        var friendsList = GlobalFriendsManager.shared.globalFriendsList
+        friendsList = friendsList.filter { selectedFriends.contains($0.email) }
+        sendSelectedFriendsList?(selectedFriends, friendsList)
         self.dismiss(animated: true, completion: nil)
     }
     

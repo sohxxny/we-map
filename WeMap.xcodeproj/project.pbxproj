@@ -49,7 +49,7 @@
 		96DDD2A12BCEA5C60034142E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2A02BCEA5C60034142E /* Colors.swift */; };
 		96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */; };
 		96E86B142BF9DFEE009F9858 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */; };
-		96E86B162BFA22DF009F9858 /* InviteFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */; };
+		96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -158,7 +158,7 @@
 		96DDD2A02BCEA5C60034142E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		96DDD2A22BCEA92B0034142E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
-		96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsModel.swift; sourceTree = "<group>"; };
+		96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsCell.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -303,7 +303,6 @@
 				96C3F0962BD696C2005306C5 /* UserViewModel.swift */,
 				966678CF2BE4B8B300966022 /* NotificationModel.swift */,
 				965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */,
-				96E86B152BFA22DF009F9858 /* InviteFriendsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +316,7 @@
 				96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */,
 				96B1FBCD2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift */,
 				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
+				96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
@@ -707,6 +707,7 @@
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
+				96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
 				96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */,
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
@@ -729,7 +730,6 @@
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
-				96E86B162BFA22DF009F9858 /* InviteFriendsModel.swift in Sources */,
 				965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */,
