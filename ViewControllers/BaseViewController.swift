@@ -31,7 +31,11 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
             if let userInfo = GlobalUserManager.shared.globalUser {
                 await GlobalFriendsManager.shared.createMyViewModel(userInfo: userInfo)
                 await GlobalFriendsManager.shared.createFriendsList(userInfo: userInfo)
-                
+                if let albumCoordinate = await getAlbumCoordinate(uid: userInfo.uid) {
+                    GlobalUserManager.shared.globalUser?.albumCoordinateList = albumCoordinate
+                } else {
+                    print("앨범 리스트 가져오기 실패")
+                }
                 // 데이터 로드 완료되면 UI 띄우기
                 updateUI()
             }

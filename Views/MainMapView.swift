@@ -24,6 +24,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     var selectedCoordinate: (Double, Double)?
     var selectedAddress: String?
     var selectLocationMarker = NMFMarker()
+    var albumMarkers = [NMFMarker]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -110,12 +111,34 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         self.selectLocationMarker.height = 50
     }
     
+    // 앨범 마커 생성
+    func createAlbumMarker(latitude: Double, longitude: Double) -> NMFMarker {
+        let albumMarker = NMFMarker()
+        albumMarker.iconImage = NMFOverlayImage(name: "marker-blue-icon")
+        albumMarker.width = 40
+        albumMarker.height = 40
+        albumMarker.position = NMGLatLng(lat: latitude, lng: longitude)
+        albumMarker.mapView = self.mapView
+        return albumMarker
+    }
+    
     // 마커 띄우기
     func showMarkerAtLocation(latitude: Double, longitude: Double) {
         DispatchQueue.main.async {
             self.selectLocationMarker.position = NMGLatLng(lat: latitude, lng: longitude)
             self.selectLocationMarker.mapView = self.mapView
             self.moveCameraByCoordinate(latitude, longitude)
+        }
+    }
+    
+    // 지도에 앨범 (저장했던 장소) 마커 띄우기
+    func showAlbumMarker(coordinateList: [(Double, Double)]) {
+        // 기존 마커 제거
+        albumMarkers.forEach { $0.mapView = nil }
+        albumMarkers.removeAll()
+        
+        for coordinate in coordinateList {
+            albumMarkers.append(createAlbumMarker(latitude: coordinate.0, longitude: coordinate.1))
         }
     }
     
@@ -132,8 +155,6 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let detailViewController = storyboard.instantiateViewController(withIdentifier: "LocationDetailsViewController") as? LocationDetailsViewController {
             detailViewController.modalPresentationStyle = .fullScreen
-            // detailViewController.latlng = latlng
-            // viewController?.present(detailViewController, animated: true, completion: nil)
         }
     }
     
@@ -142,10 +163,13 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         let urlString = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=\(longitude),\(latitude)&orders=roadaddr&output=json"
         guard let url = URL(string: urlString) else { return }
         
+        guard let clientId = ConfigManager.shared.getValue(forKey: "NAVER_MAP_CLIENT_ID"),
+              let clientSecret = ConfigManager.shared.getValue(forKey: "NAVER_MAP_CLIENT_SECRET") else { return }
+        
         var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            request.addValue("v7mnq95bi3", forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
-            request.addValue("lk60WJAxZidNrOZNur1IaX9ORKpyTrlQken7fQRn", forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
+            request.addValue(clientId, forHTTPHeaderField: "X-NCP-APIGW-API-KEY-ID")
+            request.addValue(clientSecret, forHTTPHeaderField: "X-NCP-APIGW-API-KEY")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {

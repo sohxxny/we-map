@@ -13,6 +13,7 @@ struct UserModel {
     var uid: String
     var email: String
     var userName: String
+    var albumCoordinateList: [(Double, Double)] = []
     
     // 구조체 초기화
     init(uid: String, email: String, userName: String) {
@@ -44,4 +45,37 @@ func getUserInfo(uid: String) async -> (String, String) {
             }
         }
     }
+}
+
+// 앨범 문서의 참조를 내 정보에 저장하는 함수
+func addAlbumRef(_ albumRef: DocumentReference, in user: UserModel) {
+    let db = Firestore.firestore()
+    let userRef = db.collection("userInfo").document(user.uid).collection("joinedAlbum").document()
+    userRef.setData(["albumRef": albumRef])
+}
+
+// 앨범들의 좌표를 가져오는 함수
+func getAlbumCoordinate(uid: String) async -> [(Double, Double)]? {
+    let db = Firestore.firestore()
+    var albumCoordinateList = [(Double, Double)]()
+    do {
+        let joinedAlbum = try await db.collection("userInfo").document(uid).collection("joinedAlbum").getDocuments()
+        for document in joinedAlbum.documents {
+            if let albumRef = document.get("albumRef") as? DocumentReference {
+                let doc = try await albumRef.getDocument()
+                if doc.exists {
+                    if let geoPoint = doc.data()?["coordinate"] as? GeoPoint {
+                        let coordinate = (geoPoint.latitude, geoPoint.longitude)
+                        if !albumCoordinateList.contains(where: { $0 == coordinate }) {
+                            albumCoordinateList.append(coordinate)
+                        }
+                    }
+                }
+            }
+        }
+    } catch {
+        print("앨범 좌표 리스트 가져오기 실패")
+        return nil
+    }
+    return albumCoordinateList
 }

@@ -43,6 +43,7 @@
 		96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F0962BD696C2005306C5 /* UserViewModel.swift */; };
+		96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C549662BFB6D4D00CCA2DB /* albumData.swift */; };
 		96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD74442BE114A200A3A261 /* pencil-icon.png */; };
 		96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2942BCE7C570034142E /* CustomTextField.swift */; };
 		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
@@ -154,6 +155,7 @@
 		96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96C3F0962BD696C2005306C5 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		96C549662BFB6D4D00CCA2DB /* albumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = albumData.swift; sourceTree = "<group>"; };
 		96DD74442BE114A200A3A261 /* pencil-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencil-icon.png"; sourceTree = "<group>"; };
 		96DDD2942BCE7C570034142E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				96C3F0962BD696C2005306C5 /* UserViewModel.swift */,
 				966678CF2BE4B8B300966022 /* NotificationModel.swift */,
 				965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */,
+				96C549662BFB6D4D00CCA2DB /* albumData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,10 +318,10 @@
 		96DDD29A2BCE9F830034142E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96646ED02BA34F130091C18A /* MainMapView.swift */,
 				96DDD2962BCE807F0034142E /* CustomButton.swift */,
 				96DDD2942BCE7C570034142E /* CustomTextField.swift */,
 				961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */,
-				96646ED02BA34F130091C18A /* MainMapView.swift */,
 				96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */,
 			);
 			path = Views;
@@ -743,6 +746,7 @@
 				96AC30A02BF4BA81001317E9 /* LocationDetailsViewController.swift in Sources */,
 				96B1FBCE2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift in Sources */,
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
+				96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */,
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,

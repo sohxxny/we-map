@@ -33,6 +33,8 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseLocationDetails(_:)), name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didTapGotoCreateAlbum(_:)), name: NSNotification.Name("tapGotoCreateAlbum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseCreateAlbum(_:)), name: NSNotification.Name("tapCloseCreateAlbum"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didCreateAlbum(_:)), name: NSNotification.Name("createAlbum"), object: nil)
+        
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -77,6 +79,12 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         fpc.move(to: .half, animated: true)
     }
     
+    // 앨범 생성 완료 시 마커 생성
+    @objc func didCreateAlbum(_ notification: Notification) {
+        guard let map = mainMapView else { return }
+        map.albumMarkers.append(map.createAlbumMarker(latitude: locationInfo.coordinate.1, longitude: locationInfo.coordinate.0))
+    }
+    
     // 뷰를 나타내기
     func setViews(mainMapView: MainMapView, searchButton: UIButton) {
         if mainMapView.superview == nil {
@@ -116,6 +124,12 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.2
+    }
+    
+    override func updateUI() {
+        super.updateUI()
+        
+        self.mainMapView!.showAlbumMarker(coordinateList: GlobalUserManager.shared.globalUser!.albumCoordinateList)
     }
     
     // 검색창을 눌렀을 때의 로직

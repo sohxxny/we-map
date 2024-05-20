@@ -525,7 +525,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiQ-zK-BKj" customClass="CustomFilledButton" customModule="WeMap" customModuleProvider="target">
-                                <rect key="frame" x="40" y="817" width="348" height="45"/>
+                                <rect key="frame" x="40" y="797" width="348" height="45"/>
                                 <color key="backgroundColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="lZM-hf-qLW"/>
@@ -562,7 +562,7 @@
                             <constraint firstItem="zHA-dF-D41" firstAttribute="leading" secondItem="k9E-Zk-kGh" secondAttribute="leading" constant="40" id="Ryi-IP-THO"/>
                             <constraint firstItem="PyK-DH-q9L" firstAttribute="centerX" secondItem="z5d-nv-eHT" secondAttribute="centerX" id="SGS-7E-iQH"/>
                             <constraint firstItem="qgo-4H-Gms" firstAttribute="top" secondItem="EMv-c0-SKP" secondAttribute="bottom" constant="30" id="Swv-qd-QGe"/>
-                            <constraint firstItem="k9E-Zk-kGh" firstAttribute="bottom" secondItem="MiQ-zK-BKj" secondAttribute="bottom" constant="30" id="e6T-Zf-ova"/>
+                            <constraint firstItem="k9E-Zk-kGh" firstAttribute="bottom" secondItem="MiQ-zK-BKj" secondAttribute="bottom" constant="50" id="e6T-Zf-ova"/>
                             <constraint firstItem="Hfc-yM-6hr" firstAttribute="top" secondItem="syH-Mw-eij" secondAttribute="bottom" constant="5" id="gGC-qK-Saa"/>
                             <constraint firstItem="syH-Mw-eij" firstAttribute="leading" secondItem="k9E-Zk-kGh" secondAttribute="leading" constant="40" id="ieo-3t-Ekc"/>
                             <constraint firstItem="PyK-DH-q9L" firstAttribute="top" secondItem="k9E-Zk-kGh" secondAttribute="top" constant="20" id="lEg-kJ-UOb"/>
@@ -840,22 +840,15 @@
                                                         <action selector="tapFriendsRequestReject:" destination="JkM-Fj-TI5" eventType="touchUpInside" id="CI5-9Y-Ys3"/>
                                                     </connections>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="McK-ff-cQb">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="McK-ff-cQb">
                                                     <rect key="frame" x="70" y="3.6666666666666643" width="173" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="친구 요청" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIb-PA-Za3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="56" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moN-4B-acp">
-                                                            <rect key="frame" x="0.0" y="18" width="173" height="5"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="5" id="dOW-Rq-1eg"/>
-                                                            </constraints>
-                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-s7-ieU">
                                                             <rect key="frame" x="0.0" y="23" width="87.666666666666671" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -867,9 +860,6 @@
                                                         <constraint firstItem="wSd-s7-ieU" firstAttribute="top" secondItem="NIb-PA-Za3" secondAttribute="bottom" constant="5" id="Ere-Nh-Yfv"/>
                                                         <constraint firstItem="wSd-s7-ieU" firstAttribute="leading" secondItem="McK-ff-cQb" secondAttribute="leading" id="Kcs-sW-Lu3"/>
                                                         <constraint firstItem="NIb-PA-Za3" firstAttribute="leading" secondItem="McK-ff-cQb" secondAttribute="leading" id="Q7M-xN-EbJ"/>
-                                                        <constraint firstItem="moN-4B-acp" firstAttribute="top" secondItem="NIb-PA-Za3" secondAttribute="bottom" id="d9F-nV-cEy"/>
-                                                        <constraint firstItem="moN-4B-acp" firstAttribute="leading" secondItem="McK-ff-cQb" secondAttribute="leading" id="rUH-dB-bIL"/>
-                                                        <constraint firstItem="wSd-s7-ieU" firstAttribute="top" secondItem="moN-4B-acp" secondAttribute="bottom" id="wBX-pa-dmG"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -893,7 +883,7 @@
                                             <outlet property="friendsRequestUserName" destination="wSd-s7-ieU" id="iKy-Tg-3Hk"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteAlbumCell" id="37p-Mx-RfF" customClass="InviteAlbumTableViewCell" customModule="WeMap" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InviteAlbumTableViewCell" id="37p-Mx-RfF" customClass="InviteAlbumTableViewCell" customModule="WeMap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="135.66666793823242" width="388" height="90.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="37p-Mx-RfF" id="ZYl-SQ-2nr">
@@ -920,6 +910,9 @@
                                                     <state key="normal" title="수락">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapInviteAlbumAccept:" destination="JkM-Fj-TI5" eventType="touchUpInside" id="qnT-Ff-jbs"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RiR-Xt-whr" customClass="CustomPlainButton" customModule="WeMap" customModuleProvider="target">
                                                     <rect key="frame" x="323" y="27.666666666666671" width="55" height="35"/>
@@ -933,52 +926,36 @@
                                                     <state key="normal" title="거절">
                                                         <color key="titleColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tapInviteAlbumReject:" destination="JkM-Fj-TI5" eventType="touchUpInside" id="uDR-01-MzF"/>
+                                                    </connections>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="7dm-06-jss">
-                                                    <rect key="frame" x="70" y="16.666666666666668" width="173" height="57.333333333333329"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7dm-06-jss">
+                                                    <rect key="frame" x="70" y="15.333333333333336" width="173" height="60.000000000000007"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="56" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="앨범 초대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-fr-oMO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="55.666666666666664" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIQ-ih-oY5">
-                                                            <rect key="frame" x="0.0" y="17.999999999999996" width="173" height="5"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="5" id="t2d-uF-nGd"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="서울과학기술대학교" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
-                                                            <rect key="frame" x="0.0" y="22.999999999999996" width="101.33333333333333" height="15.666666666666668"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-n6-vtw">
+                                                            <rect key="frame" x="0.0" y="23" width="50" height="32"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-Bp-m4a">
-                                                            <rect key="frame" x="0.0" y="38.666666666666671" width="173" height="3"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="3" id="52g-08-CB1"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="남우현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
-                                                            <rect key="frame" x="0.0" y="41.666666666666671" width="34" height="15.666666666666664"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgB-CZ-kLF">
+                                                            <rect key="frame" x="0.0" y="59.999999999999993" width="50" height="0.0"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="SXq-n6-vtw" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="Bgg-WM-D5y"/>
-                                                        <constraint firstItem="FgB-CZ-kLF" firstAttribute="top" secondItem="pKm-Bp-m4a" secondAttribute="bottom" id="N2E-WP-JAE"/>
-                                                        <constraint firstItem="PIQ-ih-oY5" firstAttribute="trailing" secondItem="7dm-06-jss" secondAttribute="trailingMargin" id="SFe-Ts-Xj5"/>
                                                         <constraint firstItem="FgB-CZ-kLF" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="TMa-Ad-e08"/>
-                                                        <constraint firstItem="pKm-Bp-m4a" firstAttribute="top" secondItem="SXq-n6-vtw" secondAttribute="bottom" id="iiY-ID-5dj"/>
-                                                        <constraint firstItem="SXq-n6-vtw" firstAttribute="top" secondItem="PIQ-ih-oY5" secondAttribute="bottom" id="reF-lb-BD2"/>
-                                                        <constraint firstItem="PIQ-ih-oY5" firstAttribute="trailing" secondItem="pKm-Bp-m4a" secondAttribute="trailing" id="vyz-OK-RnV"/>
-                                                        <constraint firstItem="PIQ-ih-oY5" firstAttribute="top" secondItem="uzV-fr-oMO" secondAttribute="bottom" id="wCd-u9-aPV"/>
+                                                        <constraint firstAttribute="height" constant="60" id="jGC-ah-LW0"/>
                                                         <constraint firstItem="uzV-fr-oMO" firstAttribute="leading" secondItem="7dm-06-jss" secondAttribute="leading" id="x8C-Bd-Yhb"/>
                                                     </constraints>
                                                 </stackView>
@@ -997,18 +974,29 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="inviteAlbumAcceptButton" destination="VIF-lr-QnG" id="4Ek-nM-sfU"/>
                                             <outlet property="inviteAlbumLocation" destination="SXq-n6-vtw" id="9kC-9k-O1e"/>
+                                            <outlet property="inviteAlbumRejectButton" destination="RiR-Xt-whr" id="XmM-Ho-mIs"/>
                                             <outlet property="inviteAlbumUserImage" destination="U2n-KV-qtX" id="Ym3-tI-Vk4"/>
                                             <outlet property="inviteAlbumUserName" destination="FgB-CZ-kLF" id="m7F-qd-U9y"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICN-Pn-Nnn">
+                                <rect key="frame" x="161.33333333333334" y="453.33333333333331" width="105.66666666666666" height="19.333333333333314"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0lS-mb-8dJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0lS-mb-8dJ" firstAttribute="trailing" secondItem="zU4-iT-AzE" secondAttribute="trailing" constant="20" id="0LO-ua-qxB"/>
+                            <constraint firstItem="ICN-Pn-Nnn" firstAttribute="centerX" secondItem="tOD-93-Hch" secondAttribute="centerX" id="8fn-qh-WnF"/>
+                            <constraint firstItem="ICN-Pn-Nnn" firstAttribute="centerY" secondItem="tOD-93-Hch" secondAttribute="centerY" id="H4Y-io-tk5"/>
                             <constraint firstItem="zU4-iT-AzE" firstAttribute="bottom" secondItem="0lS-mb-8dJ" secondAttribute="bottom" id="KaG-51-Hbm"/>
                             <constraint firstItem="zU4-iT-AzE" firstAttribute="top" secondItem="0lS-mb-8dJ" secondAttribute="top" id="U9A-ZU-gud"/>
                             <constraint firstItem="zU4-iT-AzE" firstAttribute="leading" secondItem="0lS-mb-8dJ" secondAttribute="leading" constant="20" id="g5E-B0-2rL"/>
@@ -1016,6 +1004,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="알림" id="Shk-Hv-LFs"/>
                     <connections>
+                        <outlet property="emptyNotificationLabel" destination="ICN-Pn-Nnn" id="aHf-qj-56a"/>
                         <outlet property="notificationTableView" destination="zU4-iT-AzE" id="dCS-vw-H4b"/>
                     </connections>
                 </viewController>
@@ -1240,7 +1229,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3ig-h2-o5w">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3ig-h2-o5w">
                                 <rect key="frame" x="25" y="342" width="115" height="50"/>
                                 <color key="tintColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1266,6 +1255,9 @@
                                 <state key="normal" title="추억 앨범 만들기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="tapCreateAlbum:" destination="Nco-Ef-ETB" eventType="touchUpInside" id="oHf-XF-LIM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-ux-o74" customClass="CustomPlainButton" customModule="WeMap" customModuleProvider="target">
                                 <rect key="frame" x="224" y="772" width="174" height="40"/>
@@ -1351,9 +1343,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOT-OW-PpG">
-                                                    <rect key="frame" x="5" y="60.000000000000007" width="50" height="14.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="60.000000000000007" width="60" height="14.333333333333336"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="XMx-0b-khA"/>
+                                                        <constraint firstAttribute="width" constant="60" id="XMx-0b-khA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -1416,6 +1408,8 @@
                     </view>
                     <connections>
                         <outlet property="address" destination="zsv-Mm-DyS" id="cHq-8I-GIB"/>
+                        <outlet property="albumName" destination="no0-d7-4fp" id="bRv-a8-lqv"/>
+                        <outlet property="albumNameLength" destination="Xg1-GE-qEO" id="uEc-C0-wHg"/>
                         <outlet property="datePicker" destination="3ig-h2-o5w" id="w4K-Dp-orL"/>
                         <outlet property="inviteFriendsButton" destination="CzO-Am-nfE" id="pkF-IV-uRP"/>
                         <outlet property="selectedFriendsCollectionView" destination="A19-VQ-Ghg" id="ZMt-Fd-5G8"/>

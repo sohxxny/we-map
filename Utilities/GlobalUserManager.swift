@@ -91,7 +91,9 @@ class GlobalUserManager {
                     type = .inviteAlbum
                 }
                 let userEmail = data["userEmail"] as! String
-                let location = data["location"] as? String
+                let location = data["albumName"] as? String
+                let notificationRef = data["notificationRef"] as! DocumentReference
+                let albumRef = data["albumRef"] as? DocumentReference
                 var userImage: UIImage?
                 // 이메일로 친구 이름 찾기
                 if let userUid = await searchUserByEmail(email: userEmail) {
@@ -103,7 +105,7 @@ class GlobalUserManager {
                             let profileImage = document.data()?["profilePhoto"] as? String
                             let profileImagePath: String = userEmail.replacingOccurrences(of: "[@.]", with: "_", options: .regularExpression)
                             userImage = profileImage == "" ? nil : await getImage(path: "profileImage/\(profileImagePath).jpg")
-                            notificationModelList.append(NotificationModel(type: type, userName: userName, userEmail: userEmail, userImage: userImage, location: location))
+                            notificationModelList.append(NotificationModel(type: type, userName: userName, userEmail: userEmail, userImage: userImage, location: location, notificationRef: notificationRef, albumRef: albumRef))
                         }
                     }
                 }

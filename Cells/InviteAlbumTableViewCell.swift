@@ -12,6 +12,8 @@ class InviteAlbumTableViewCell: UITableViewCell {
     @IBOutlet weak var inviteAlbumUserImage: UIImageView!
     @IBOutlet weak var inviteAlbumLocation: UILabel!
     @IBOutlet weak var inviteAlbumUserName: UILabel!
+    @IBOutlet weak var inviteAlbumAcceptButton: CustomFilledButton!
+    @IBOutlet weak var inviteAlbumRejectButton: CustomPlainButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

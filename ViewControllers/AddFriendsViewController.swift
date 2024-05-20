@@ -130,9 +130,11 @@ class AddFriendsViewController: BaseViewController {
                         if isRequested {
                             AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "상대방이 이미 친구 요청 응답을 기다리는 중입니다.")
                         } else {
-                            try await db.collection("userInfo").document(userUid).collection("notification").addDocument(data: [
+                            let ref = db.collection("userInfo").document(userUid).collection("notification").document()
+                            try await ref.setData([
                                 "type": "friendsRequest",
-                                "userEmail": userInfo.email
+                                "userEmail": userInfo.email,
+                                "notificationRef": ref
                             ])
                             AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 요청이 완료되었습니다.")
                             addFriendButton.setTitle("친구 요청 취소", for: .normal)
