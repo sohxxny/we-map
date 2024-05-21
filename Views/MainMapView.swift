@@ -19,6 +19,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     
     var locationManager: CLLocationManager!
     var compassButton: NMFCompassView!
+    var locationButton: NMFLocationButton!
     var locationOverlay: NMFLocationOverlay!
     var currentLocation: CLLocation?
     var selectedCoordinate: (Double, Double)?
@@ -46,6 +47,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
         configureLocationManager()
         mapSetting()
         setCompassButton()
+        setLocationButton()
         setMarker()
     }
     
@@ -87,7 +89,7 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     // 컨트롤 추가
     func mapSetting() {
         self.showZoomControls = true
-        self.showLocationButton = true
+        self.showLocationButton = false
         self.showCompass = false
         self.mapView.positionMode = .direction
     }
@@ -95,13 +97,26 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     // 나침반 버튼 설정
     func setCompassButton() {
         compassButton = NMFCompassView()
-        if let compass = compassButton {
-            compass.mapView = self.mapView
-            let compassSize: CGFloat = 40
-            compass.frame = CGRect(x: 20, y: 140, width: compassSize, height: compassSize)
-            
-            self.addSubview(compass)
-        }
+        let compassSize: CGFloat = 40
+        compassButton.mapView = self.mapView
+        compassButton.frame = CGRect(x: 20, y: 140, width: compassSize, height: compassSize)
+        self.addSubview(compassButton)
+    }
+    
+    // 위치 버튼 설정
+    func setLocationButton() {
+        locationButton = NMFLocationButton()
+        let locationButtonSize: CGFloat = 45
+        locationButton.mapView = self.mapView
+        self.addSubview(locationButton)
+        
+        locationButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            locationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 130),
+            locationButton.widthAnchor.constraint(equalToConstant: locationButtonSize),
+            locationButton.heightAnchor.constraint(equalToConstant: locationButtonSize)
+        ])
     }
     
     // 마커 설정

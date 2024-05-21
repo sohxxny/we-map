@@ -24,6 +24,10 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         setViews(mainMapView: mainMapView!, searchButton: searchButton!)
         mainMapView?.locationDelegate = self
         
+        // 로고 위치 변경
+        mainMapView?.mapView.logoAlign = .rightBottom
+        mainMapView?.mapView.logoMargin = UIEdgeInsets(top: 0, left: 0, bottom: 330, right: 0)
+        
         // 바텀 시트
         fpc = FloatingPanelController(delegate: self)
         setBottomSheet(fpc: fpc)
@@ -127,7 +131,7 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     func setLayoutForSearchButton(_ button: UIButton) {
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             button.heightAnchor.constraint(equalToConstant: 45)

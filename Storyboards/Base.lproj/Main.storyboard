@@ -525,7 +525,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiQ-zK-BKj" customClass="CustomFilledButton" customModule="WeMap" customModuleProvider="target">
-                                <rect key="frame" x="40" y="797" width="348" height="45"/>
+                                <rect key="frame" x="40" y="777" width="348" height="45"/>
                                 <color key="backgroundColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="lZM-hf-qLW"/>
@@ -562,7 +562,7 @@
                             <constraint firstItem="zHA-dF-D41" firstAttribute="leading" secondItem="k9E-Zk-kGh" secondAttribute="leading" constant="40" id="Ryi-IP-THO"/>
                             <constraint firstItem="PyK-DH-q9L" firstAttribute="centerX" secondItem="z5d-nv-eHT" secondAttribute="centerX" id="SGS-7E-iQH"/>
                             <constraint firstItem="qgo-4H-Gms" firstAttribute="top" secondItem="EMv-c0-SKP" secondAttribute="bottom" constant="30" id="Swv-qd-QGe"/>
-                            <constraint firstItem="k9E-Zk-kGh" firstAttribute="bottom" secondItem="MiQ-zK-BKj" secondAttribute="bottom" constant="50" id="e6T-Zf-ova"/>
+                            <constraint firstItem="k9E-Zk-kGh" firstAttribute="bottom" secondItem="MiQ-zK-BKj" secondAttribute="bottom" constant="70" id="e6T-Zf-ova"/>
                             <constraint firstItem="Hfc-yM-6hr" firstAttribute="top" secondItem="syH-Mw-eij" secondAttribute="bottom" constant="5" id="gGC-qK-Saa"/>
                             <constraint firstItem="syH-Mw-eij" firstAttribute="leading" secondItem="k9E-Zk-kGh" secondAttribute="leading" constant="40" id="ieo-3t-Ekc"/>
                             <constraint firstItem="PyK-DH-q9L" firstAttribute="top" secondItem="k9E-Zk-kGh" secondAttribute="top" constant="20" id="lEg-kJ-UOb"/>
@@ -1598,16 +1598,28 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <tabBarItem title="추억 앨범" id="Igp-5R-6mn"/>
-                                    <tabBarItem tag="1" title="추억 하루" id="cFK-db-Fzh"/>
-                                    <tabBarItem tag="2" title="홈" id="lB2-Kz-cmQ"/>
-                                    <tabBarItem tag="3" title="북마크" id="xk2-kh-X0O"/>
-                                    <tabBarItem tag="4" title="내 친구" id="YeA-cU-5aq"/>
+                                    <tabBarItem title="추억 앨범" id="Igp-5R-6mn">
+                                        <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
+                                    </tabBarItem>
+                                    <tabBarItem tag="1" title="추억 하루" id="cFK-db-Fzh">
+                                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="medium"/>
+                                    </tabBarItem>
+                                    <tabBarItem tag="2" title="홈" id="lB2-Kz-cmQ">
+                                        <imageReference key="image" image="house.fill" catalog="system" symbolScale="medium"/>
+                                    </tabBarItem>
+                                    <tabBarItem tag="3" title="북마크" id="xk2-kh-X0O">
+                                        <imageReference key="image" image="bookmark.fill" catalog="system" symbolScale="medium"/>
+                                    </tabBarItem>
+                                    <tabBarItem tag="4" title="내 친구" id="YeA-cU-5aq">
+                                        <imageReference key="image" image="person.fill" catalog="system" symbolScale="medium"/>
+                                    </tabBarItem>
                                 </items>
+                                <color key="tintColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="J2r-rX-kRz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" red="0.37254901959999998" green="0.52941176469999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="tabBar" destination="ECx-Tf-EZb" id="6dc-5l-DkL"/>
@@ -1620,9 +1632,12 @@
     </scenes>
     <resources>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
+        <image name="bookmark.fill" catalog="system" width="110" height="128"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
@@ -1633,28 +1648,28 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

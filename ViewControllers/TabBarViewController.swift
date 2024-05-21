@@ -21,7 +21,7 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
         currentViewController = homeViewController
-        
+
         tabBar.selectedItem = tabBar.items?.first(where: { $0.tag == 2 })
         switchToViewController(homeViewController)
     }
