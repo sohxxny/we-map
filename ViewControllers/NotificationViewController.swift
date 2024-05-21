@@ -182,6 +182,9 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         // 파이어베이스 notification 삭제
         notification.notificationRef.delete()
         
+        // 해당 앨범의 member에 내 정보 삭제
+        notification.albumRef?.collection("member").document(GlobalUserManager.shared.globalUser!.email).delete()
+        
         // notificationModel 삭제 및 테이블 뷰 업데이트
         notificationModelList.remove(at: row)
         notificationTableView.reloadData()

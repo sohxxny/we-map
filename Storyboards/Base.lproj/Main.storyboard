@@ -1122,14 +1122,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-9S-uA0">
-                                                    <rect key="frame" x="12.666666666666664" y="10" width="90" height="90"/>
+                                                    <rect key="frame" x="7.6666666666666643" y="5" width="100" height="100"/>
+                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="O90-FV-cN8"/>
-                                                        <constraint firstAttribute="height" constant="90" id="WwO-l8-h2e"/>
+                                                        <constraint firstAttribute="width" constant="100" id="O90-FV-cN8"/>
+                                                        <constraint firstAttribute="height" constant="100" id="WwO-l8-h2e"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="추억 앨범 이름" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC5-eP-dDz">
-                                                    <rect key="frame" x="7.6666666666666643" y="105" width="100" height="15.666666666666671"/>
+                                                    <rect key="frame" x="7.6666666666666643" y="110" width="100" height="15.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="6SO-n2-Y8c"/>
                                                     </constraints>
@@ -1137,18 +1138,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대표 이미지 없음" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33t-q2-Lzu">
+                                                    <rect key="frame" x="24.666666666666671" y="49" width="66" height="12"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="bmq-9S-uA0" firstAttribute="centerX" secondItem="Zif-BX-UC3" secondAttribute="centerX" id="6UY-r7-d2X"/>
-                                                <constraint firstItem="bmq-9S-uA0" firstAttribute="top" secondItem="Zif-BX-UC3" secondAttribute="top" constant="10" id="DEG-WD-CTf"/>
+                                                <constraint firstItem="bmq-9S-uA0" firstAttribute="top" secondItem="Zif-BX-UC3" secondAttribute="top" constant="5" id="DEG-WD-CTf"/>
                                                 <constraint firstItem="uC5-eP-dDz" firstAttribute="top" secondItem="bmq-9S-uA0" secondAttribute="bottom" constant="5" id="E38-KR-WbW"/>
+                                                <constraint firstItem="33t-q2-Lzu" firstAttribute="centerX" secondItem="Zif-BX-UC3" secondAttribute="centerX" id="OQf-pE-iZF"/>
                                                 <constraint firstItem="uC5-eP-dDz" firstAttribute="centerX" secondItem="Zif-BX-UC3" secondAttribute="centerX" id="VIo-d8-n86"/>
+                                                <constraint firstItem="33t-q2-Lzu" firstAttribute="centerY" secondItem="bmq-9S-uA0" secondAttribute="centerY" id="k1N-lb-FyV"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="115" height="140"/>
                                         <connections>
                                             <outlet property="albumName" destination="uC5-eP-dDz" id="dJU-DD-BY9"/>
                                             <outlet property="featuredImage" destination="bmq-9S-uA0" id="vgT-Qk-rRP"/>
+                                            <outlet property="noImageLabel" destination="33t-q2-Lzu" id="jnz-Dl-6M2"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1623,28 +1633,28 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

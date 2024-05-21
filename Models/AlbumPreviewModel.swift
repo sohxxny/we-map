@@ -7,15 +7,18 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
 
 struct AlbumPreviewModel {
-    var albumID: String
+    var albumRef: DocumentReference
     var albumName: String
-    var featuredImage: UIImage
+    var timeStamp: Timestamp
+    var featuredImage: UIImage?
     
-    init(albumID: String, albumName: String, featuredImage: UIImage) {
-        self.albumID = albumID
+    init(albumRef: DocumentReference, albumName: String, timeStamp: Timestamp, featuredImage: UIImage?) {
+        self.albumRef = albumRef
         self.albumName = albumName
+        self.timeStamp = timeStamp
         self.featuredImage = featuredImage
     }
 }

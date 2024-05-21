@@ -11,6 +11,7 @@ class LocationDetailsAlbumCell: UICollectionViewCell {
     
     @IBOutlet weak var featuredImage: UIImageView!
     @IBOutlet weak var albumName: UILabel!
+    @IBOutlet weak var noImageLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

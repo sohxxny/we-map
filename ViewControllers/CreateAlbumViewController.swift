@@ -114,7 +114,8 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
             "date": dateString,
             "albumName": albumName,
             "address": location.address,
-            "coordinate": GeoPoint(latitude: (location.coordinate.1), longitude: (location.coordinate.0))
+            "coordinate": GeoPoint(latitude: (location.coordinate.1), longitude: (location.coordinate.0)),
+            "timeStamp" : FieldValue.serverTimestamp()
         ])
         
         // 멤버 생성 (나, 초대 친구들)

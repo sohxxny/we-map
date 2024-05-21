@@ -13,7 +13,9 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     @IBOutlet weak var locationDetailsCollectionView: UICollectionView!
     @IBOutlet weak var noAlbumLabel: UILabel!
     
-    var albumPreviewList: [AlbumPreviewModel]!
+    var albumPreviewList: [AlbumPreviewModel] = []
+    var locationInfo: LocationInfo!
+    var loadingIndicator: LoadingIndicator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +23,23 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
         locationDetailsCollectionView.delegate = self
         locationDetailsCollectionView.dataSource = self
         
+        loadingIndicator = LoadingIndicator(in: self.view)
+        loadingIndicator.setupLoadingIndicator()
+        
         noAlbumLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        albumPreviewList = []
-        
-        if albumPreviewList.isEmpty {
-            noAlbumLabel.isHidden = false
-        } else {
-            noAlbumLabel.isHidden = true
+        loadingIndicator.OnOffLoadingIndicator(isOn: true) // 되는지 모르겠음
+        Task {
+            // 최근 추억 앨범 넣기
+            if let userInfo = GlobalUserManager.shared.globalUser {
+                albumPreviewList = await createAlbumPreviewModel(coordinate: locationInfo.coordinate, userInfo: userInfo)
+            }
+            albumPreviewList.sort { $0.timeStamp.seconds > $1.timeStamp.seconds }
+            updatePreview()
         }
     }
     
@@ -44,13 +51,31 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
         let albumCell = locationDetailsCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationDetailsAlbumCell", for: indexPath) as! LocationDetailsAlbumCell
         
         albumCell.albumName.text = albumPreviewList[indexPath.row].albumName
-        albumCell.featuredImage.image = albumPreviewList[indexPath.row].featuredImage
+        if let featuredImage = albumPreviewList[indexPath.row].featuredImage {
+            albumCell.featuredImage.image = featuredImage
+            albumCell.noImageLabel.isHidden = true
+        } else {
+            albumCell.noImageLabel.isHidden = false
+        }
+        
         return albumCell
     }
     
+    func configure(with location: LocationInfo) {
+        self.locationInfo = location
+        addressLabel.text = locationInfo.address
+    }
     
-    func configure(with addressString: String) {
-        addressLabel.text = addressString
+    func updatePreview() {
+        loadingIndicator.OnOffLoadingIndicator(isOn: false)
+        locationDetailsCollectionView.reloadData()
+        locationDetailsCollectionView.isHidden = false
+        
+        if albumPreviewList.isEmpty {
+            noAlbumLabel.isHidden = false
+        } else {
+            noAlbumLabel.isHidden = true
+        }
     }
     
     @IBAction func tapCloseLocationDetails(_ sender: UIButton) {
@@ -60,7 +85,5 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     @IBAction func tapGotoCreateAlbum(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name("tapGotoCreateAlbum"), object: nil)
     }
-    
-    
 
 }
