@@ -8,6 +8,7 @@
 import UIKit
 import NMapsMap
 import FloatingPanel
+import FirebaseFirestore
 
 class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelControllerDelegate {
     
@@ -15,6 +16,7 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     var mainMapView: MainMapView?
     var searchButton: UIButton?
     var locationInfo: LocationInfo!
+    var selectedAlbumRef: DocumentReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +35,12 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         setBottomSheet(fpc: fpc)
         initialSetting(fpc: fpc, in: self)
         
-        // 닫기 버튼 옵저버 등록
+        // 버튼 옵저버 등록
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseLocationDetails(_:)), name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didTapGotoCreateAlbum(_:)), name: NSNotification.Name("tapGotoCreateAlbum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseCreateAlbum(_:)), name: NSNotification.Name("tapCloseCreateAlbum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didCreateAlbum(_:)), name: NSNotification.Name("createAlbum"), object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapAlbumPreview(_:)), name: NSNotification.Name("tapAlbumPreview"), object: nil)
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -48,10 +50,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // 보완 : bottom sheet 상태 저장
-        
-        self.mainMapView?.selectLocationMarker.mapView = nil
     }
     
     // 지도가 터치될 때마다 호출
@@ -74,7 +72,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
                 albumMarker.mapView = mainMapView?.mapView
             }
         }
-        
         initialSetting(fpc: fpc, in: self)
         fpc.move(to: .tip, animated: true)
         mainMapView?.selectLocationMarker.mapView = nil
@@ -96,6 +93,19 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         setContent(add: contentVC, from: self, by: self.fpc)
         contentVC.configure(with: locationInfo)
         fpc.move(to: .half, animated: true)
+        // 마커 다시 생성
+        
+    }
+    
+    // 앨범 프리뷰 눌렀을 때 이동
+    @objc func didTapAlbumPreview(_ notification: Notification) {
+        if let ref = notification.object as? DocumentReference {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let contentVC = storyboard.instantiateViewController(withIdentifier: "MemoryAlbumViewController") as! MemoryAlbumViewController
+            contentVC.albumRef = ref
+            setContent(add: contentVC, from: self, by: self.fpc)
+            fpc.move(to: .full, animated: true)
+        }
     }
     
     // 앨범 생성 완료 시 마커 생성

@@ -49,7 +49,6 @@ func getAlbumCoordinate(ref: DocumentSnapshot, uid: String) async -> (Double, Do
         }
     } catch {
         print("앨범 좌표 가져오기 실패")
-        return nil
     }
     return nil
 }
@@ -89,4 +88,45 @@ func createAlbumPreviewModel(coordinate: (Double, Double), userInfo: UserModel) 
         print("앨범 프리뷰 모델 리스트 생성 에러")
     }
     return previewList
+}
+
+// 앨범 주소 및 이름 가져오기
+func getAlbumNameAndAddress(albumRef: DocumentReference) async -> (String, String)? {
+    let db = Firestore.firestore()
+    do {
+        let doc = try await albumRef.getDocument()
+        if doc.exists {
+            if let address = doc.data()?["address"] as? String, let albumName = doc.data()?["albumName"] as? String {
+                return (albumName, address)
+            }
+        }
+    } catch {
+        print("앨범 이름 주소 가져오기 실패")
+    }
+    return nil
+}
+
+// 멤버 정보 가져오기
+func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [UserViewModel]? {
+    var memberInfoList: [UserViewModel] = []
+    var myInfo: UserViewModel!
+    let db = Firestore.firestore()
+    do {
+        let memberRef = try await albumRef.collection("member").getDocuments()
+        for document in memberRef.documents {
+            let userEmail = document.documentID
+            if userEmail == userInfo.email {
+                myInfo = await UserViewModel.createUserViewModel(email: userEmail)!
+            } else {
+                await memberInfoList.append(UserViewModel.createUserViewModel(email: userEmail)!)
+            }
+        }
+        // 가나다순 정렬, 내 정보를 가장 앞으로
+        memberInfoList.sort(by: { $0.userName < $1.userName })
+        memberInfoList.insert(myInfo, at: 0)
+        return memberInfoList
+    } catch {
+        print("멤버 정보 가져오기 실패")
+    }
+    return nil
 }

@@ -92,6 +92,10 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     @IBAction func tapCreateAlbum(_ sender: CustomFilledButton) {
         guard let albumName = albumName.text, let locationInfo = locationInfo else { return }
+        if albumName.isEmpty {
+            AlertHelper.alertWithConfirmButton(on: self, with: nil, message: "앨범 이름을 입력해주세요.")
+            return
+        }
         
         createMemoryAlbum(albumName: albumName, location: locationInfo)
     }

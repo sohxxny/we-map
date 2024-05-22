@@ -44,7 +44,7 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albumPreviewList.count
+        return albumPreviewList.count > 3 ? 3 : albumPreviewList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,11 +61,17 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
         return albumCell
     }
     
+    // 앨범 프리뷰 셀 터치시 해당 앨범 프리뷰로 이동
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name:NSNotification.Name("tapAlbumPreview"), object: albumPreviewList[indexPath.row].albumRef)
+    }
+    
     func configure(with location: LocationInfo) {
         self.locationInfo = location
         addressLabel.text = locationInfo.address
     }
     
+    // 컬렉션 뷰 업데이트
     func updatePreview() {
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
         locationDetailsCollectionView.reloadData()
