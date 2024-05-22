@@ -34,11 +34,6 @@
 		967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */; };
 		967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967EF1912BC2ABE200D11E5B /* UserModel.swift */; };
 		96A729522BEB53B00006F5C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A729512BEB53B00006F5C0 /* Constants.swift */; };
-		96A7BC7B2BFCEA200012A8D4 /* memory-album-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7BC7A2BFCEA200012A8D4 /* memory-album-icon.png */; };
-		96A7BC7D2BFCEA2E0012A8D4 /* memory-days-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7BC7C2BFCEA2E0012A8D4 /* memory-days-icon.png */; };
-		96A7BC7F2BFCEA430012A8D4 /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7BC7E2BFCEA430012A8D4 /* home-icon.png */; };
-		96A7BC812BFCEA490012A8D4 /* bookmark-tab-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7BC802BFCEA490012A8D4 /* bookmark-tab-icon.png */; };
-		96A7BC832BFCEA4E0012A8D4 /* friends-list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96A7BC822BFCEA4E0012A8D4 /* friends-list-icon.png */; };
 		96AC30A02BF4BA81001317E9 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC309F2BF4BA81001317E9 /* LocationDetailsViewController.swift */; };
 		96AC30A22BF4D92E001317E9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */; };
 		96AC30A42BF4E586001317E9 /* homeBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */; };
@@ -58,6 +53,10 @@
 		96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */; };
 		96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96E86B192BFA7A93009F9858 /* Config.plist */; };
 		96E86B1C2BFA7B41009F9858 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E86B1B2BFA7B41009F9858 /* ConfigManager.swift */; };
+		96EAA0802BFDFF4800E6EC9D /* MemoryAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */; };
+		96EAA0822BFE362E00E6EC9D /* AlbumMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA0812BFE362E00E6EC9D /* AlbumMemberCell.swift */; };
+		96EAA0842BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA0832BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift */; };
+		96EAA0862BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */; };
 		96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E502B60F94A003584D3 /* AppDelegate.swift */; };
 		96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F17E522B60F94A003584D3 /* SceneDelegate.swift */; };
 		96F17E582B60F94A003584D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F17E562B60F94A003584D3 /* Main.storyboard */; };
@@ -151,11 +150,6 @@
 		967EF18F2BC27A3600D11E5B /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		967EF1912BC2ABE200D11E5B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		96A729512BEB53B00006F5C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		96A7BC7A2BFCEA200012A8D4 /* memory-album-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memory-album-icon.png"; sourceTree = "<group>"; };
-		96A7BC7C2BFCEA2E0012A8D4 /* memory-days-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memory-days-icon.png"; sourceTree = "<group>"; };
-		96A7BC7E2BFCEA430012A8D4 /* home-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon.png"; sourceTree = "<group>"; };
-		96A7BC802BFCEA490012A8D4 /* bookmark-tab-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-tab-icon.png"; sourceTree = "<group>"; };
-		96A7BC822BFCEA4E0012A8D4 /* friends-list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends-list-icon.png"; sourceTree = "<group>"; };
 		96AC309F2BF4BA81001317E9 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		96AC30A12BF4D92E001317E9 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeBottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +169,10 @@
 		96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFriendsCell.swift; sourceTree = "<group>"; };
 		96E86B192BFA7A93009F9858 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		96E86B1B2BFA7B41009F9858 /* ConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
+		96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAlbumViewController.swift; sourceTree = "<group>"; };
+		96EAA0812BFE362E00E6EC9D /* AlbumMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumMemberCell.swift; sourceTree = "<group>"; };
+		96EAA0832BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPhotoPreviewCell.swift; sourceTree = "<group>"; };
+		96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumVideoPreviewCell.swift; sourceTree = "<group>"; };
 		96F17E4D2B60F94A003584D3 /* WeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F17E502B60F94A003584D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F17E522B60F94A003584D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -286,11 +284,6 @@
 				9644E4F42BFC7DF4002E49C6 /* marker-red-icon.png */,
 				9644E4F62BFC7DF9002E49C6 /* bookmark-icon.png */,
 				9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */,
-				96A7BC7A2BFCEA200012A8D4 /* memory-album-icon.png */,
-				96A7BC7C2BFCEA2E0012A8D4 /* memory-days-icon.png */,
-				96A7BC7E2BFCEA430012A8D4 /* home-icon.png */,
-				96A7BC802BFCEA490012A8D4 /* bookmark-tab-icon.png */,
-				96A7BC822BFCEA4E0012A8D4 /* friends-list-icon.png */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -362,6 +355,7 @@
 				96AC30A32BF4E586001317E9 /* homeBottomSheetViewController.swift */,
 				965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */,
 				96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */,
+				96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -391,6 +385,9 @@
 				96B1FBCD2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift */,
 				965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */,
 				96E86B172BFA4D69009F9858 /* SelectedFriendsCell.swift */,
+				96EAA0812BFE362E00E6EC9D /* AlbumMemberCell.swift */,
+				96EAA0832BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift */,
+				96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -599,13 +596,8 @@
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */,
 				9644E4F72BFC7DF9002E49C6 /* bookmark-icon.png in Resources */,
-				96A7BC812BFCEA490012A8D4 /* bookmark-tab-icon.png in Resources */,
-				96A7BC7D2BFCEA2E0012A8D4 /* memory-days-icon.png in Resources */,
-				96A7BC7F2BFCEA430012A8D4 /* home-icon.png in Resources */,
 				9644E4F52BFC7DF4002E49C6 /* marker-red-icon.png in Resources */,
-				96A7BC832BFCEA4E0012A8D4 /* friends-list-icon.png in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
-				96A7BC7B2BFCEA200012A8D4 /* memory-album-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +747,7 @@
 				967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */,
 				961ECBB92BD0E4370060512A /* Extensions.swift in Sources */,
 				96F17E532B60F94A003584D3 /* SceneDelegate.swift in Sources */,
+				96EAA0802BFDFF4800E6EC9D /* MemoryAlbumViewController.swift in Sources */,
 				96F17EC02B612327003584D3 /* SignUpViewController.swift in Sources */,
 				96E86B1C2BFA7B41009F9858 /* ConfigManager.swift in Sources */,
 				9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */,
@@ -764,15 +757,18 @@
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,
 				965ED4962BF8EB1E00ACB173 /* CreateAlbumViewController.swift in Sources */,
 				96AC30A02BF4BA81001317E9 /* LocationDetailsViewController.swift in Sources */,
+				96EAA0862BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift in Sources */,
 				96B1FBCE2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift in Sources */,
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
 				96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */,
+				96EAA0842BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift in Sources */,
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */,
+				96EAA0822BFE362E00E6EC9D /* AlbumMemberCell.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 				96F773C02BE24E4D0061E343 /* NotificationViewController.swift in Sources */,
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
