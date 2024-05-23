@@ -76,3 +76,16 @@ func setCustomImageButton(button: UIButton, image: UIImage) {
     button.clipsToBounds = true
 }
 
+// UICollectionView 레이아웃을 설정하는 함수
+func setupCollectionViewLayout(for collectionView: UICollectionView, itemsPerRow: CGFloat, spacing: CGFloat, sectionInset: CGFloat, isSquare: Bool = true) {
+    let layout = UICollectionViewFlowLayout()
+    let totalSpacing = (itemsPerRow - 1) * spacing
+    let itemWidth = (collectionView.bounds.width - totalSpacing - sectionInset * 2) / itemsPerRow
+    let itemHeight: CGFloat = isSquare ? itemWidth : itemWidth + 30
+    layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+    layout.minimumInteritemSpacing = spacing
+    layout.minimumLineSpacing = spacing
+    layout.sectionInset = UIEdgeInsets(top: sectionInset, left: sectionInset, bottom: sectionInset, right: sectionInset)
+
+    collectionView.setCollectionViewLayout(layout, animated: true)
+}

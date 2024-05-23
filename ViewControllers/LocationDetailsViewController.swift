@@ -20,10 +20,14 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionViewLayout(for: locationDetailsCollectionView, itemsPerRow: 3, spacing: 5, sectionInset: 0, isSquare: false)
+        
         locationDetailsCollectionView.delegate = self
         locationDetailsCollectionView.dataSource = self
         
         loadingIndicator = LoadingIndicator(in: self.view)
+        loadingIndicator.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2 - 210)
+
         loadingIndicator.setupLoadingIndicator()
         
         noAlbumLabel.isHidden = true
@@ -32,7 +36,7 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadingIndicator.OnOffLoadingIndicator(isOn: true) // 되는지 모르겠음
+        loadingIndicator.OnOffLoadingIndicator(isOn: true)
         Task {
             // 최근 추억 앨범 넣기
             if let userInfo = GlobalUserManager.shared.globalUser {

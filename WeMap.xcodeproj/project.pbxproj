@@ -44,6 +44,9 @@
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F0962BD696C2005306C5 /* UserViewModel.swift */; };
 		96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C549662BFB6D4D00CCA2DB /* albumData.swift */; };
+		96CA533C2BFF25D2008F2287 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */; };
+		96CA533E2BFF2797008F2287 /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */; };
+		96CA53422BFF31BA008F2287 /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 96CA53412BFF31BA008F2287 /* test.jpeg */; };
 		96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DD74442BE114A200A3A261 /* pencil-icon.png */; };
 		96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2942BCE7C570034142E /* CustomTextField.swift */; };
 		96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DDD2962BCE807F0034142E /* CustomButton.swift */; };
@@ -160,6 +163,9 @@
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96C3F0962BD696C2005306C5 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		96C549662BFB6D4D00CCA2DB /* albumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = albumData.swift; sourceTree = "<group>"; };
+		96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
+		96CA53412BFF31BA008F2287 /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
 		96DD74442BE114A200A3A261 /* pencil-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencil-icon.png"; sourceTree = "<group>"; };
 		96DDD2942BCE7C570034142E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		96DDD2962BCE807F0034142E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -311,6 +317,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		96CA53382BFF24ED008F2287 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				96CA53412BFF31BA008F2287 /* test.jpeg */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		96DDD2992BCE9F510034142E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +370,7 @@
 				965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */,
 				96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */,
 				96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */,
+				96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -364,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				9671BD392BDA902F00AFD305 /* Icon */,
+				96CA53382BFF24ED008F2287 /* image */,
 				96F17E502B60F94A003584D3 /* AppDelegate.swift */,
 				96F17E522B60F94A003584D3 /* SceneDelegate.swift */,
 				96F17E592B60F94B003584D3 /* Assets.xcassets */,
@@ -388,6 +404,7 @@
 				96EAA0812BFE362E00E6EC9D /* AlbumMemberCell.swift */,
 				96EAA0832BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift */,
 				96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */,
+				96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -592,6 +609,7 @@
 				96DDD2A32BCEA92B0034142E /* GoogleService-Info.plist in Resources */,
 				96F17E5A2B60F94B003584D3 /* Assets.xcassets in Resources */,
 				96DD74452BE114A200A3A261 /* pencil-icon.png in Resources */,
+				96CA53422BFF31BA008F2287 /* test.jpeg in Resources */,
 				9644E4F92BFC7DFE002E49C6 /* marker-blue-icon.png in Resources */,
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */,
@@ -732,6 +750,7 @@
 				96F216A52BDE2AD6005D58BC /* GlobalFriendsManager.swift in Sources */,
 				961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */,
 				96BABB3A2BE8071C0094F7E7 /* SettingViewController.swift in Sources */,
+				96CA533C2BFF25D2008F2287 /* PhotoGalleryViewController.swift in Sources */,
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
@@ -743,6 +762,7 @@
 				96646ED12BA34F130091C18A /* MainMapView.swift in Sources */,
 				96DDD2952BCE7C570034142E /* CustomTextField.swift in Sources */,
 				96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */,
+				96CA533E2BFF2797008F2287 /* PhotoGalleryCell.swift in Sources */,
 				96AC30A22BF4D92E001317E9 /* BottomSheetView.swift in Sources */,
 				967EF1902BC27A3600D11E5B /* ProfileTableViewCell.swift in Sources */,
 				961ECBB92BD0E4370060512A /* Extensions.swift in Sources */,

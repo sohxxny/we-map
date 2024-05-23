@@ -139,6 +139,10 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         hideAllViews(false)
     }
     
+    @IBAction func tapMorePhotoButton(_ sender: UIButton) {
+        NotificationCenter.default.post(name:NSNotification.Name("tapMorePhoto"), object: albumRef)
+    }
+    
     @IBAction func tapBackButton(_ sender: UIButton) {
     }
     
