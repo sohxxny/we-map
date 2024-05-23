@@ -23,6 +23,9 @@
 		9644E4F92BFC7DFE002E49C6 /* marker-blue-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */; };
 		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
 		9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */; };
+		965C39592BFF995900DE3153 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C39582BFF995800DE3153 /* CommentModel.swift */; };
+		965C395B2BFF999700DE3153 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C395A2BFF999700DE3153 /* PhotoViewModel.swift */; };
+		965C395F2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */; };
 		965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */; };
 		965ED4962BF8EB1E00ACB173 /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */; };
 		965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */; };
@@ -43,7 +46,7 @@
 		96BABB3C2BE808170094F7E7 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */; };
 		96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C04C912B67E880002D3E84 /* AlertHelper.swift */; };
 		96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3F0962BD696C2005306C5 /* UserViewModel.swift */; };
-		96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C549662BFB6D4D00CCA2DB /* albumData.swift */; };
+		96C549672BFB6D4D00CCA2DB /* AlbumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C549662BFB6D4D00CCA2DB /* AlbumData.swift */; };
 		96CA533C2BFF25D2008F2287 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */; };
 		96CA533E2BFF2797008F2287 /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */; };
 		96CA53422BFF31BA008F2287 /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 96CA53412BFF31BA008F2287 /* test.jpeg */; };
@@ -142,6 +145,9 @@
 		9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-blue-icon.png"; sourceTree = "<group>"; };
 		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		9650985D2BE0FE8C009DFCC0 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
+		965C39582BFF995800DE3153 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		965C395A2BFF999700DE3153 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageAlbumPreviewCell.swift; sourceTree = "<group>"; };
 		965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPreviewModel.swift; sourceTree = "<group>"; };
 		965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
 		965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
@@ -162,7 +168,7 @@
 		96BABB3B2BE808170094F7E7 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		96C04C912B67E880002D3E84 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		96C3F0962BD696C2005306C5 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		96C549662BFB6D4D00CCA2DB /* albumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = albumData.swift; sourceTree = "<group>"; };
+		96C549662BFB6D4D00CCA2DB /* AlbumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumData.swift; sourceTree = "<group>"; };
 		96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 		96CA53412BFF31BA008F2287 /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
@@ -332,7 +338,9 @@
 				96C3F0962BD696C2005306C5 /* UserViewModel.swift */,
 				966678CF2BE4B8B300966022 /* NotificationModel.swift */,
 				965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */,
-				96C549662BFB6D4D00CCA2DB /* albumData.swift */,
+				965C39582BFF995800DE3153 /* CommentModel.swift */,
+				965C395A2BFF999700DE3153 /* PhotoViewModel.swift */,
+				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,6 +413,7 @@
 				96EAA0832BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift */,
 				96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */,
 				96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */,
+				965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -754,8 +763,10 @@
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
+				965C395F2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
+				965C395B2BFF999700DE3153 /* PhotoViewModel.swift in Sources */,
 				96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
 				96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */,
@@ -780,10 +791,11 @@
 				96EAA0862BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift in Sources */,
 				96B1FBCE2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift in Sources */,
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
-				96C549672BFB6D4D00CCA2DB /* albumData.swift in Sources */,
+				96C549672BFB6D4D00CCA2DB /* AlbumData.swift in Sources */,
 				96EAA0842BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift in Sources */,
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
+				965C39592BFF995900DE3153 /* CommentModel.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */,
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,

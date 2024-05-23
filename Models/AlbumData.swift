@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 // 앨범 문서의 참조를 내 정보에 저장하는 함수
 func addAlbumRef(_ albumRef: DocumentReference, in user: UserModel) {
@@ -90,6 +91,31 @@ func createAlbumPreviewModel(coordinate: (Double, Double), userInfo: UserModel) 
     return previewList
 }
 
+func createAllAlbumPreviewModel(userInfo: UserModel) async -> [AlbumPreviewModel] {
+    var previewList: [AlbumPreviewModel] = []
+    let db = Firestore.firestore()
+    do {
+        let joinedAlbumRef = try await db.collection("userInfo").document(userInfo.uid).collection("joinedAlbum").getDocuments()
+        for document in joinedAlbumRef.documents {
+            if let albumRef = document.data()["albumRef"] as? DocumentReference {
+                let doc = try await albumRef.getDocument()
+                if doc.exists {
+                    let albumName = doc.data()?["albumName"] as? String
+                    let timeStamp = doc.data()?["timeStamp"] as? Timestamp
+                    // let featuredImage = doc.data()?["featuredImage"] as? String
+                    
+                    // featuredImage가 nil이 아닐 경우 이미지 구하기
+                    
+                    previewList.append(AlbumPreviewModel(albumRef: albumRef, albumName: albumName!, timeStamp: timeStamp!, featuredImage: nil))
+                }
+            }
+        }
+    } catch {
+        print("앨범 프리뷰 모델 리스트 생성 에러")
+    }
+    return previewList
+}
+
 // 앨범 주소 및 이름 가져오기
 func getAlbumNameAndAddress(albumRef: DocumentReference) async -> (String, String)? {
     let db = Firestore.firestore()
@@ -129,4 +155,43 @@ func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [U
         print("멤버 정보 가져오기 실패")
     }
     return nil
+}
+
+// 이미지 리스트를 앨범에 저장
+func saveImage(_ image: UIImage, in albumRef: DocumentReference) {
+    let photoRef = albumRef.collection("photo").document()
+    photoRef.setData(["timeStamp": FieldValue.serverTimestamp()])
+    
+    // 이미지 저장
+    let imageName: String = photoRef.documentID
+    let albumDocId: String = albumRef.documentID
+    if let imageData = image.jpegData(compressionQuality: 0.75) {
+        let storageRef = Storage.storage().reference()
+        let imageRef = storageRef.child("memoryAlbum/\(albumDocId)/photo/\(imageName).jpg")
+        imageRef.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("에러 발생 : \(error)")
+            } else {
+                print("image info : \(image)")
+            }
+        }
+    }
+}
+
+// 앨범으로부터 이미지 리스트를 불러오기
+func getAlbumImageList(in albumRef: DocumentReference) async -> [PhotoViewModel] {
+    var photoList: [PhotoViewModel] = []
+    let albumDocId: String = albumRef.documentID
+    do {
+        let photos = try await albumRef.collection("photo").getDocuments()
+        for document in photos.documents {
+            let photoRef = albumRef.collection("photo").document(document.documentID)
+            if let timeStamp = document.data()["timeStamp"] as? Timestamp, let image = await getImage(path: "memoryAlbum/\(albumDocId)/photo/\(document.documentID).jpg") {
+                photoList.append(PhotoViewModel(image: image, photoRef: photoRef, timeStamp: timeStamp))
+            }
+        }
+    } catch {
+        print("앨범 이미지 불러오기 실패")
+    }
+    return photoList
 }

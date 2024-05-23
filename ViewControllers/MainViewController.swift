@@ -41,7 +41,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         NotificationCenter.default.addObserver(self, selector: #selector(didTapCloseCreateAlbum(_:)), name: NSNotification.Name("tapCloseCreateAlbum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didCreateAlbum(_:)), name: NSNotification.Name("createAlbum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didTapAlbumPreview(_:)), name: NSNotification.Name("tapAlbumPreview"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didTapMorePhoto(_:)), name: NSNotification.Name("tapMorePhoto"), object: nil)
     }
 
     // 뷰 컨트롤러가 보이기 전에 호출
@@ -103,17 +102,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         if let ref = notification.object as? DocumentReference {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let contentVC = storyboard.instantiateViewController(withIdentifier: "MemoryAlbumViewController") as! MemoryAlbumViewController
-            contentVC.albumRef = ref
-            setContent(add: contentVC, from: self, by: self.fpc)
-            fpc.move(to: .full, animated: true)
-        }
-    }
-    
-    // 사진 더보기
-    @objc func didTapMorePhoto(_ notification: Notification) {
-        if let ref = notification.object as? DocumentReference {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let contentVC = storyboard.instantiateViewController(withIdentifier: "PhotoGalleryViewController") as! PhotoGalleryViewController
             contentVC.albumRef = ref
             setContent(add: contentVC, from: self, by: self.fpc)
             fpc.move(to: .full, animated: true)

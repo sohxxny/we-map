@@ -35,13 +35,13 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     @IBOutlet weak var moreChatButton: UIButton!
     
     @IBOutlet weak var memberListCollectionView: UICollectionView!
-    
+    @IBOutlet weak var photoPreviewCollectionView: UICollectionView!
     
     var albumRef: DocumentReference!
     var address: String!
     var albumName: String!
     var memberInfoList: [UserViewModel] = []
-    var imagePreviewList: [UIImage] = []  // 새로 모델 만들어야 함
+    var imagePreviewList: [PhotoViewModel] = []  // 새로 모델 만들어야 함
     var videoPreviewList: [UIImage] = []  // 비디오
     var lastChat: String? = nil  // 채팅
     var loadingIndicator: LoadingIndicator!
@@ -56,6 +56,9 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         
         memberListCollectionView.delegate = self
         memberListCollectionView.dataSource = self
+        photoPreviewCollectionView.delegate = self
+        photoPreviewCollectionView.dataSource = self
+        setupCollectionViewLayout(for: photoPreviewCollectionView, itemsPerRow: 4, spacing: 3, sectionInset: 0)
         
         loadingIndicator = LoadingIndicator(in: self.view)
         loadingIndicator.setupLoadingIndicator()
@@ -66,6 +69,9 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         
         // 처음에 모든 뷰 숨기기
         hideAllViews(true)
+        emptyVideoLabel.isHidden = true
+        emptyPhotoLabel.isHidden = true
+        loadingIndicator.OnOffLoadingIndicator(isOn: true)
         
         Task {
             (albumName, address) = await getAlbumNameAndAddress(albumRef: albumRef)!
@@ -81,6 +87,8 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
             numberOfMember.text = "\(memberInfoList.count)"
             
             // 사진 불러오기
+            imagePreviewList = await getAlbumImageList(in: albumRef)
+            numberOfPhoto.text = "\(imagePreviewList.count)"
             emptyPhotoLabel.isHidden = imagePreviewList.isEmpty ? false : true
             
             // 비디오 불러오기
@@ -91,25 +99,42 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
                 lastChatLabel.text = "아직 채팅이 없습니다. 채팅을 시작해보세요!"
             }
             
-            loadAlbum()
+            reloadAlbum()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let memberListCell = memberListCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumMemberCell", for: indexPath) as! AlbumMemberCell
-        
-        if let profilePhoto = memberInfoList[indexPath.row].profilePhoto {
-            setCustomImage(imageView: memberListCell.profileImage, image: profilePhoto)
-        } else {
-            setIconImage(imageView: memberListCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+        switch collectionView {
+        case memberListCollectionView:
+            let memberListCell = memberListCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumMemberCell", for: indexPath) as! AlbumMemberCell
+            if let profilePhoto = memberInfoList[indexPath.row].profilePhoto {
+                setCustomImage(imageView: memberListCell.profileImage, image: profilePhoto)
+            } else {
+                setIconImage(imageView: memberListCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+            }
+            memberListCell.profileName.text = memberInfoList[indexPath.row].userName
+            return memberListCell
+            
+        case photoPreviewCollectionView:
+            let albumPhotoPreviewCell = photoPreviewCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumPhotoPreviewCell", for: indexPath) as! AlbumPhotoPreviewCell
+            let previewPhoto = imagePreviewList[indexPath.row].image
+            albumPhotoPreviewCell.previewImage.image = previewPhoto
+            return albumPhotoPreviewCell
+        default:
+            let memberListCell = memberListCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumMemberCell", for: indexPath) as! AlbumMemberCell
+            return memberListCell
         }
-        memberListCell.profileName.text = memberInfoList[indexPath.row].userName
-        
-        return memberListCell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memberInfoList.count
+        switch collectionView {
+        case memberListCollectionView:
+            return memberInfoList.count
+        case photoPreviewCollectionView:
+            return imagePreviewList.count > 4 ? 4 : imagePreviewList.count
+        default:
+            return 0
+        }
     }
     
     // 모든 뷰 숨기기
@@ -130,20 +155,30 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         lastChatView.isHidden = on
         lastChatLabel.isHidden = on
         memberListCollectionView.isHidden = on
+        photoPreviewCollectionView.isHidden = on
     }
     
     // 컬렉션 뷰 재로드
-    func loadAlbum() {
+    func reloadAlbum() {
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
         memberListCollectionView.reloadData()
+        photoPreviewCollectionView.reloadData()
         hideAllViews(false)
     }
     
+    // 사진 전체보기 버튼
     @IBAction func tapMorePhotoButton(_ sender: UIButton) {
-        NotificationCenter.default.post(name:NSNotification.Name("tapMorePhoto"), object: albumRef)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let photoGalleryViewController = storyboard.instantiateViewController(withIdentifier: "PhotoGalleryViewController") as? PhotoGalleryViewController {
+            photoGalleryViewController.albumRef = self.albumRef
+            photoGalleryViewController.modalPresentationStyle = .fullScreen
+            present(photoGalleryViewController, animated: true)
+        }
     }
     
+    // 뒤로가기
     @IBAction func tapBackButton(_ sender: UIButton) {
+        NotificationCenter.default.post(name:NSNotification.Name("tapCloseCreateAlbum"), object: albumRef)
     }
     
 }

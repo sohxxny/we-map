@@ -27,7 +27,6 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
         
         loadingIndicator = LoadingIndicator(in: self.view)
         loadingIndicator.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height / 2 - 210)
-
         loadingIndicator.setupLoadingIndicator()
         
         noAlbumLabel.isHidden = true
@@ -42,8 +41,8 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
             if let userInfo = GlobalUserManager.shared.globalUser {
                 albumPreviewList = await createAlbumPreviewModel(coordinate: locationInfo.coordinate, userInfo: userInfo)
             }
-            albumPreviewList.sort { $0.timeStamp.seconds > $1.timeStamp.seconds }
-            updatePreview()
+            albumPreviewList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
+            reloadPreview()
         }
     }
     
@@ -76,7 +75,7 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
     }
     
     // 컬렉션 뷰 업데이트
-    func updatePreview() {
+    func reloadPreview() {
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
         locationDetailsCollectionView.reloadData()
         locationDetailsCollectionView.isHidden = false

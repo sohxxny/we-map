@@ -9,4 +9,9 @@ import UIKit
 
 class AlbumPhotoPreviewCell: UICollectionViewCell {
     
+    @IBOutlet weak var previewImage: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 }
