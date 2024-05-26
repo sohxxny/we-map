@@ -41,7 +41,6 @@ class LocationDetailsViewController: BaseViewController, UICollectionViewDelegat
             if let userInfo = GlobalUserManager.shared.globalUser {
                 albumPreviewList = await createAlbumPreviewModel(coordinate: locationInfo.coordinate, userInfo: userInfo)
             }
-            albumPreviewList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
             reloadPreview()
         }
     }

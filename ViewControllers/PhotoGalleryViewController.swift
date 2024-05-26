@@ -15,7 +15,7 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     @IBOutlet weak var emptyPhotosLabel: UILabel!
     
     var albumRef: DocumentReference!
-    var photoList: [PhotoViewModel] = []
+    var photoList: [PhotoViewModel]!
     var loadingIndicator: LoadingIndicator!
 
     override func viewDidLoad() {
@@ -30,17 +30,12 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
         loadingIndicator.setupLoadingIndicator()
         
         emptyPhotosLabel.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        Task {
-            photoList = await getAlbumImageList(in: albumRef)
-            photoList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
-            reloadPhotos()
-        }
+        loadingIndicator.OnOffLoadingIndicator(isOn: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,7 +96,6 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
         dispatchGroup.notify(queue: .main) { [self] in
             Task {
                 photoList = await getAlbumImageList(in: self.albumRef)
-                photoList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
                 reloadPhotos()
                 if !results.isEmpty {
                     AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "사진 추가가 완료되었습니다.")

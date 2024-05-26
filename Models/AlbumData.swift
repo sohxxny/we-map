@@ -113,12 +113,13 @@ func createAllAlbumPreviewModel(userInfo: UserModel) async -> [AlbumPreviewModel
     } catch {
         print("앨범 프리뷰 모델 리스트 생성 에러")
     }
+    previewList.sort(by: { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds })
+    previewList.sort(by: { $0.timeStamp.seconds > $1.timeStamp.seconds })
     return previewList
 }
 
 // 앨범 주소 및 이름 가져오기
 func getAlbumNameAndAddress(albumRef: DocumentReference) async -> (String, String)? {
-    let db = Firestore.firestore()
     do {
         let doc = try await albumRef.getDocument()
         if doc.exists {
@@ -133,22 +134,25 @@ func getAlbumNameAndAddress(albumRef: DocumentReference) async -> (String, Strin
 }
 
 // 멤버 정보 가져오기
-func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [UserViewModel]? {
-    var memberInfoList: [UserViewModel] = []
-    var myInfo: UserViewModel!
-    let db = Firestore.firestore()
+func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [AlbumMemberModel]? {
+    var memberInfoList: [AlbumMemberModel] = []
+    var myInfo: AlbumMemberModel!
     do {
         let memberRef = try await albumRef.collection("member").getDocuments()
         for document in memberRef.documents {
             let userEmail = document.documentID
+            let isJoined: Bool = document.data()["isJoined"] as! Bool
+            // 내 정보는 따로 저장
             if userEmail == userInfo.email {
-                myInfo = await UserViewModel.createUserViewModel(email: userEmail)!
+                let myViewModel = await UserViewModel.createUserViewModel(email: userEmail)!
+                myInfo = AlbumMemberModel(user: myViewModel, isJoined: isJoined)
             } else {
-                await memberInfoList.append(UserViewModel.createUserViewModel(email: userEmail)!)
+                let userViewModel = await UserViewModel.createUserViewModel(email: userEmail)
+                memberInfoList.append(AlbumMemberModel(user: userViewModel!, isJoined: isJoined))
             }
         }
         // 가나다순 정렬, 내 정보를 가장 앞으로
-        memberInfoList.sort(by: { $0.userName < $1.userName })
+        memberInfoList.sort(by: { $0.user.userName < $1.user.userName })
         memberInfoList.insert(myInfo, at: 0)
         return memberInfoList
     } catch {
@@ -195,5 +199,7 @@ func getAlbumImageList(in albumRef: DocumentReference) async -> [PhotoViewModel]
     } catch {
         print("앨범 이미지 불러오기 실패")
     }
+    photoList.sort(by: { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds })
+    photoList.sort(by: { $0.timeStamp.seconds > $1.timeStamp.seconds })
     return photoList
 }

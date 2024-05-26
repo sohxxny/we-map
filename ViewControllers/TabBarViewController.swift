@@ -12,6 +12,8 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
     @IBOutlet weak var tabBar: UITabBar!
     
     var currentViewController: UIViewController!
+    var homeViewController: HomeViewController!
+    var friendsListViewController: UINavigationController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,8 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
         tabBar.delegate = self
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
+        friendsListViewController = storyboard.instantiateViewController(withIdentifier: "FriendsList") as? UINavigationController
         currentViewController = homeViewController
 
         tabBar.selectedItem = tabBar.items?.first(where: { $0.tag == 2 })
@@ -27,15 +30,11 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController, let friendsListViewController = storyboard.instantiateViewController(withIdentifier: "FriendsList") as? UINavigationController {
-            
-            if item.tag == 4 {
-                switchToViewController(friendsListViewController)
-            } else {
-                if !(currentViewController is HomeViewController) {
-                    switchToViewController(homeViewController)
-                }
+        if item.tag == 4 {
+            switchToViewController(friendsListViewController)
+        } else {
+            if !(currentViewController is HomeViewController) {
+                switchToViewController(homeViewController)
             }
         }
     }

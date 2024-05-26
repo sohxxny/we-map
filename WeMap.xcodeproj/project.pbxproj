@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		153799391A913ABB3F151A3A /* Pods_WeMap_WeMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */; };
 		20D6EBF5C29EB99E7A02B901 /* Pods_WeMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD0EDFDE869E7AE875B1B91 /* Pods_WeMapTests.framework */; };
+		960E558C2C0344620031D9D1 /* AlbumSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */; };
+		960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */; };
+		960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
 		961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */; };
 		961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */; };
@@ -131,6 +134,9 @@
 		4500451EFC7E281935C4A69F /* Pods_WeMap_WeMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMap_WeMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C4EFCA0E86291369C30A83 /* Pods-WeMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap.release.xcconfig"; path = "Target Support Files/Pods-WeMap/Pods-WeMap.release.xcconfig"; sourceTree = "<group>"; };
 		6D14279E223235CA3A528B2F /* Pods-WeMap-WeMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMap-WeMapUITests.release.xcconfig"; path = "Target Support Files/Pods-WeMap-WeMapUITests/Pods-WeMap-WeMapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingViewController.swift; sourceTree = "<group>"; };
+		960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingTableViewCell.swift; sourceTree = "<group>"; };
+		960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumMemberModel.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 				965C39582BFF995800DE3153 /* CommentModel.swift */,
 				965C395A2BFF999700DE3153 /* PhotoViewModel.swift */,
 				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
+				960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -379,6 +386,7 @@
 				96E86B132BF9DFEE009F9858 /* InviteFriendsViewController.swift */,
 				96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */,
 				96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */,
+				960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -414,6 +422,7 @@
 				96EAA0852BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift */,
 				96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */,
 				965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */,
+				960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -793,7 +802,9 @@
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
 				96C549672BFB6D4D00CCA2DB /* AlbumData.swift in Sources */,
 				96EAA0842BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift in Sources */,
+				960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */,
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
+				960E558C2C0344620031D9D1 /* AlbumSettingViewController.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
 				965C39592BFF995900DE3153 /* CommentModel.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
@@ -806,6 +817,7 @@
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
 				9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */,
 				96AC30A42BF4E586001317E9 /* homeBottomSheetViewController.swift in Sources */,
+				960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */,
 				96A729522BEB53B00006F5C0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

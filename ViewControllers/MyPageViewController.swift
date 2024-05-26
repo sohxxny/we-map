@@ -61,7 +61,6 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
             if let userInfo = GlobalUserManager.shared.globalUser {
                 albumPreviewList = await createAllAlbumPreviewModel(userInfo: userInfo)
             }
-            albumPreviewList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
             numberOfAlbum.text = "\(albumPreviewList.count)"
             print(albumPreviewList)
             reloadPreview()

@@ -11,6 +11,7 @@ class AlbumMemberCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
