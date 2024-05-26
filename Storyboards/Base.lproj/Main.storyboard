@@ -230,6 +230,14 @@
                                 <color key="textColor" red="0.3803921569" green="0.3799999952" blue="0.3799999952" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vD8-fi-7Yu">
+                                <rect key="frame" x="114" y="197" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2Ye-R8-slv"/>
+                                    <constraint firstAttribute="height" constant="200" id="dIP-0w-epe"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
@@ -239,9 +247,11 @@
                             <constraint firstItem="u4X-hj-Usj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="7of-Yj-exd"/>
                             <constraint firstItem="kHI-Ms-bkf" firstAttribute="top" secondItem="4yW-dP-6ug" secondAttribute="bottom" constant="5" id="9DI-DQ-BAZ"/>
                             <constraint firstItem="4yW-dP-6ug" firstAttribute="top" secondItem="xpq-3Z-sKc" secondAttribute="bottom" constant="60" id="IX4-RZ-FBU"/>
+                            <constraint firstItem="u4X-hj-Usj" firstAttribute="top" secondItem="vD8-fi-7Yu" secondAttribute="bottom" id="NYV-be-nqf"/>
                             <constraint firstItem="kHI-Ms-bkf" firstAttribute="centerX" secondItem="4yW-dP-6ug" secondAttribute="centerX" id="Nnb-PP-iox"/>
                             <constraint firstItem="xpq-3Z-sKc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Zzd-Tc-UXW"/>
                             <constraint firstItem="xpq-3Z-sKc" firstAttribute="top" secondItem="8hR-3j-MFn" secondAttribute="bottom" constant="20" id="aCX-G7-6Gm"/>
+                            <constraint firstItem="vD8-fi-7Yu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f2h-cU-ehy"/>
                             <constraint firstItem="8hR-3j-MFn" firstAttribute="top" secondItem="u4X-hj-Usj" secondAttribute="bottom" constant="20" id="gPl-l7-ETg"/>
                             <constraint firstItem="u4X-hj-Usj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="350" id="q6R-ia-x6s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u4X-hj-Usj" secondAttribute="trailing" constant="40" id="qQG-TU-Gn7"/>
@@ -251,6 +261,7 @@
                     </view>
                     <connections>
                         <outlet property="emailLoginTextField" destination="u4X-hj-Usj" id="4Uu-AF-HQ6"/>
+                        <outlet property="logoImage" destination="vD8-fi-7Yu" id="j7t-aL-ZCR"/>
                         <outlet property="passwdLoginTextField" destination="8hR-3j-MFn" id="B7E-Zo-Qk5"/>
                         <outlet property="signInButton" destination="xpq-3Z-sKc" id="Vcc-8s-9N2"/>
                     </connections>
@@ -1130,7 +1141,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Bottom Sheet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlU-5t-Lez">
-                                <rect key="frame" x="125" y="67" width="178" height="24"/>
+                                <rect key="frame" x="125" y="451" width="178" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1139,8 +1150,8 @@
                         <viewLayoutGuide key="safeArea" id="ZJ2-MF-ttj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AlU-5t-Lez" firstAttribute="top" secondItem="ZJ2-MF-ttj" secondAttribute="top" constant="20" id="K70-Yh-GUN"/>
                             <constraint firstItem="AlU-5t-Lez" firstAttribute="centerX" secondItem="s3C-9w-c5y" secondAttribute="centerX" id="T72-5K-ToO"/>
+                            <constraint firstItem="AlU-5t-Lez" firstAttribute="centerY" secondItem="s3C-9w-c5y" secondAttribute="centerY" id="TZR-cI-ZiU"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -1478,7 +1489,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="EXb-Vv-cIp"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KKv-mh-4At">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="5" id="KKv-mh-4At">
                                     <size key="itemSize" width="60" height="80"/>
                                     <size key="estimatedItemSize" width="60" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

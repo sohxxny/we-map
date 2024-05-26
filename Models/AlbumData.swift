@@ -158,7 +158,7 @@ func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [U
 }
 
 // 이미지 리스트를 앨범에 저장
-func saveImage(_ image: UIImage, in albumRef: DocumentReference) {
+func saveImage(_ image: UIImage, in albumRef: DocumentReference, completion: @escaping () -> Void) {
     let photoRef = albumRef.collection("photo").document()
     photoRef.setData(["timeStamp": FieldValue.serverTimestamp()])
     
@@ -171,8 +171,10 @@ func saveImage(_ image: UIImage, in albumRef: DocumentReference) {
         imageRef.putData(imageData, metadata: nil) { metadata, error in
             if let error = error {
                 print("에러 발생 : \(error)")
+                completion()
             } else {
                 print("image info : \(image)")
+                completion()
             }
         }
     }

@@ -45,7 +45,6 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let photoGalleryCell = photoGalleryCollectionView.dequeueReusableCell(withReuseIdentifier: "PhotoGalleryCell", for: indexPath) as! PhotoGalleryCell
-        
         photoGalleryCell.imageView.image = photoList[indexPath.row].image
         
         return photoGalleryCell
@@ -65,9 +64,6 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     }
     
     @IBAction func tapAddPhotoButton(_ sender: UIButton) {
-        Task {
-            
-        }
         showImagePicker()
     }
 
@@ -85,10 +81,30 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     // 이미지 선택
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
+        if !results.isEmpty {
+            loadingIndicator.OnOffLoadingIndicator(isOn: true)
+        }
+        let dispatchGroup = DispatchGroup()
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                if let image = image as? UIImage {
-                    saveImage(image, in: self.albumRef)
+            dispatchGroup.enter()
+            result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+                if let image = object as? UIImage {
+                    saveImage(image, in: self.albumRef) {
+                        dispatchGroup.leave()
+                    }
+                } else {
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        // 이미지 업로드 완료 후 실행
+        dispatchGroup.notify(queue: .main) { [self] in
+            Task {
+                photoList = await getAlbumImageList(in: self.albumRef)
+                photoList.sort { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds }
+                reloadPhotos()
+                if !results.isEmpty {
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "사진 추가가 완료되었습니다.")
                 }
             }
         }
@@ -97,5 +113,4 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     @IBAction func tapBackButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
-    
 }

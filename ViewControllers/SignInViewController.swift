@@ -15,9 +15,12 @@ class SignInViewController: BaseViewController {
     @IBOutlet weak var emailLoginTextField: CustomTextField!
     @IBOutlet weak var passwdLoginTextField: CustomTextField!
     @IBOutlet weak var signInButton: CustomFilledButton!
+    @IBOutlet weak var logoImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logoImage.image = UIImage(named: "wemap-logo")
     }
     
     @IBAction func tapSignInButton(_ sender: CustomFilledButton) {
