@@ -37,6 +37,7 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
         super.viewWillAppear(animated)
         
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
+        emptyPhotosLabel.isHidden = photoList.isEmpty ? false : true
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

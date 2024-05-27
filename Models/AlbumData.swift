@@ -59,6 +59,23 @@ func joinAlbum(albumRef: DocumentReference, userInfo: UserModel) {
     memberRef.updateData(["isJoined": true])
 }
 
+// 나를 앨범에서 삭제
+func deleteMember(albumRef: DocumentReference, userInfo: UserModel) async {
+    let db = Firestore.firestore()
+    do {
+        try await albumRef.collection("member").document(userInfo.email).delete()
+        let userRef = try await db.collection("userInfo").document(userInfo.uid).collection("joinedAlbum").getDocuments()
+        for albumDoc in userRef.documents {
+            let ref = albumDoc.data()["albumRef"] as? DocumentReference
+            if ref == albumRef {
+                try await db.collection("userInfo").document(userInfo.uid).collection("joinedAlbum").document(albumDoc.documentID).delete()
+            }
+        }
+    } catch {
+        print("앨범에서 유저 삭제 에러")
+    }
+}
+
 // 해당 좌표의 앨범 데이터 가져와서 albumPreviewModel 모델로 만들기
 func createAlbumPreviewModel(coordinate: (Double, Double), userInfo: UserModel) async -> [AlbumPreviewModel] {
     var previewList: [AlbumPreviewModel] = []
@@ -160,6 +177,18 @@ func getMemberInfo(albumRef: DocumentReference, userInfo: UserModel) async -> [A
     return nil
 }
 
+// 멤버 수 가져오기
+func getMemberNum(albumRef: DocumentReference) async -> Int {
+    var memberNum: Int = 1
+    do {
+        let memberRef = try await albumRef.collection("member").getDocuments()
+        memberNum = memberRef.documents.count
+    } catch {
+        print("멤버 수 세기 실패")
+    }
+    return memberNum
+}
+
 // 이미지 리스트를 앨범에 저장
 func saveImage(_ image: UIImage, in albumRef: DocumentReference, completion: @escaping () -> Void) {
     let photoRef = albumRef.collection("photo").document()
@@ -254,7 +283,7 @@ func deleteAlbumMember(albumRef: DocumentReference) async {
                     let userRef = try await db.collection("userInfo").document(memberUid).collection("notification").getDocuments()
                     for albumDoc in userRef.documents {
                         if let notificationType = albumDoc.data()["type"] as? String, let ref = albumDoc.data()["albumRef"] as? DocumentReference {
-                            if ref == albumRef {
+                            if ref == albumRef && notificationType == "inviteAlbum" {
                                 try await db.collection("userInfo").document(memberUid).collection("notification").document(albumDoc.documentID).delete()
                             }
                         }

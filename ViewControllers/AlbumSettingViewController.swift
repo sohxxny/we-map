@@ -44,9 +44,23 @@ class AlbumSettingViewController: BaseViewController, UITableViewDelegate, UITab
             // 친구 초대 화면 이동 로직
         } else if indexPath.row == 1 {
             // 앨범 나가기 로직
-            // 나 혼자 뿐이면 삭제랑 같은 함수
+            AlertHelper.alertWithTwoButton(on: self, with: "앨범 나가기", message: "앨범에서 탈퇴하시겠습니까?") {
+                Task {
+                    let memberNum = await getMemberNum(albumRef: self.albumRef)
+                    if memberNum == 1 {
+                        await deleteAlbum(albumRef: self.albumRef)
+                    } else {
+                        if let userInfo = GlobalUserManager.shared.globalUser {
+                            await deleteMember(albumRef: self.albumRef, userInfo: userInfo)
+                        }
+                    }
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "앨범 탈퇴가 완료되었습니다.")
+                    NotificationCenter.default.post(name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
+            }
         } else {
-            // 앨범 삭제 로직
+            // 앨범 삭제
             AlertHelper.alertWithTwoButton(on: self, with: "앨범 삭제", message: "앨범을 삭제하시겠습니까?") {
                 Task {
                     await deleteAlbum(albumRef: self.albumRef)
