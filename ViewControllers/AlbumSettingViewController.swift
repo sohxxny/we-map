@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class AlbumSettingViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var albumSettingTableView: UITableView!
     
+    var albumRef: DocumentReference!
     let settingTitle = ["친구 초대", "앨범 나가기", "앨범 삭제"]
     
     override func viewDidLoad() {
@@ -45,13 +47,16 @@ class AlbumSettingViewController: BaseViewController, UITableViewDelegate, UITab
             // 나 혼자 뿐이면 삭제랑 같은 함수
         } else {
             // 앨범 삭제 로직
+            AlertHelper.alertWithTwoButton(on: self, with: "앨범 삭제", message: "앨범을 삭제하시겠습니까?") {
+                Task {
+                    await deleteAlbum(albumRef: self.albumRef)
+                    AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "앨범 삭제가 완료되었습니다.")
+                    // 모든걸 dismiss
+                    NotificationCenter.default.post(name: NSNotification.Name("tapCloseLocationDetails"), object: nil)
+                    self.view.window?.rootViewController?.dismiss(animated: true)
+                }
+            }
         }
-    }
-    
-    func deleteAlbum() {
-        // 앨범 데이터 삭제
-        // 앨범 구성원 데이터 삭제
-        // 앨범 삭제
     }
 
     @IBAction func tapBackButton(_ sender: UIButton) {

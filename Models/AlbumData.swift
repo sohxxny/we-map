@@ -38,7 +38,6 @@ func getAlbumCoordinateList(uid: String) async -> [(Double, Double)]? {
 
 // 앨범 하나의 좌표를 가져오는 함수
 func getAlbumCoordinate(ref: DocumentSnapshot, uid: String) async -> (Double, Double)? {
-    let db = Firestore.firestore()
     do {
         if let albumRef = ref.get("albumRef") as? DocumentReference {
             let doc = try await albumRef.getDocument()
@@ -202,4 +201,81 @@ func getAlbumImageList(in albumRef: DocumentReference) async -> [PhotoViewModel]
     photoList.sort(by: { $0.timeStamp.nanoseconds > $1.timeStamp.nanoseconds })
     photoList.sort(by: { $0.timeStamp.seconds > $1.timeStamp.seconds })
     return photoList
+}
+
+// 특정 경로의 데이터 모두 삭제하기
+func deleteStorageData(path: String) {
+    let storageRef = Storage.storage().reference().child(path)
+    storageRef.listAll { (result, error) in
+        if let error = error {
+            print("Error listing files: \(error)")
+            return
+        }
+        for item in result!.items {
+            item.delete { error in
+                if let error = error {
+                    print("Error deleting item: \(error)")
+                } else {
+                    print("Item deleted successfully: \(item.fullPath)")
+                }
+            }
+        }
+        for prefix in result!.prefixes {
+            deleteStorageData(path: prefix.fullPath)
+        }
+    }
+}
+
+// 앨범의 미디어 데이터 지우기
+func deleteAlbumMedia(albumRef: DocumentReference) {
+    let albumID = albumRef.documentID
+    deleteStorageData(path: "memoryAlbum/\(albumID)/photo")
+    deleteStorageData(path: "memoryAlbum/\(albumID)/video")
+}
+
+// 앨범 구성원 정보 지우기
+func deleteAlbumMember(albumRef: DocumentReference) async {
+    let db = Firestore.firestore()
+    do {
+        let memberRef = try await albumRef.collection("member").getDocuments()
+        for document in memberRef.documents {
+            if let memberUid = document.data()["uid"] as? String, let isJoined = document.data()["isJoined"] as? Bool {
+                // 들어와있다면 해당 멤버 정보의 joinedAlbum에서 albumRef와 같은 문서 지우기
+                if isJoined {
+                    let userRef = try await db.collection("userInfo").document(memberUid).collection("joinedAlbum").getDocuments()
+                    for albumDoc in userRef.documents {
+                        let ref = albumDoc.data()["albumRef"] as? DocumentReference
+                        if ref == albumRef {
+                            try await db.collection("userInfo").document(memberUid).collection("joinedAlbum").document(albumDoc.documentID).delete()
+                        }
+                    }
+                } else {
+                    // 들어와있지 않다면 해당 멤버 정보의 notification에서 앨범 지우기
+                    let userRef = try await db.collection("userInfo").document(memberUid).collection("notification").getDocuments()
+                    for albumDoc in userRef.documents {
+                        if let notificationType = albumDoc.data()["type"] as? String, let ref = albumDoc.data()["albumRef"] as? DocumentReference {
+                            if ref == albumRef {
+                                try await db.collection("userInfo").document(memberUid).collection("notification").document(albumDoc.documentID).delete()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } catch {
+        print("앨범 구성원 정보 지우기 에러")
+    }
+}
+
+// 앨범 삭제
+func deleteAlbum(albumRef: DocumentReference) async {
+    do {
+        deleteAlbumMedia(albumRef: albumRef)
+        await deleteAlbumMember(albumRef: albumRef)
+        let db = Firestore.firestore()
+        let albumID = albumRef.documentID
+        try await db.collection("memoryAlbum").document(albumID).delete()
+    } catch {
+        print("앨범 삭제 에러")
+    }
 }

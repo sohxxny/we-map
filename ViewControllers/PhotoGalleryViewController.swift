@@ -17,6 +17,7 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     var albumRef: DocumentReference!
     var photoList: [PhotoViewModel]!
     var loadingIndicator: LoadingIndicator!
+    var updatedData: (([PhotoViewModel]) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +100,7 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
                 reloadPhotos()
                 if !results.isEmpty {
                     AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "사진 추가가 완료되었습니다.")
+                    updatedData?(photoList)
                 }
             }
         }

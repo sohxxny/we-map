@@ -222,6 +222,9 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         if let photoGalleryViewController = storyboard.instantiateViewController(withIdentifier: "PhotoGalleryViewController") as? PhotoGalleryViewController {
             photoGalleryViewController.albumRef = self.albumRef
             photoGalleryViewController.photoList = self.imagePreviewList
+            photoGalleryViewController.updatedData = { data in
+                self.imagePreviewList = data
+            }
             photoGalleryViewController.modalPresentationStyle = .fullScreen
             present(photoGalleryViewController, animated: true)
         }
@@ -244,6 +247,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func tapSettingButton(_ sender: UIButton) {
+        albumSettingViewController.albumRef = self.albumRef
         albumSettingViewController.modalPresentationStyle = .fullScreen
         present(albumSettingViewController, animated: true)
     }

@@ -346,8 +346,8 @@
 				965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */,
 				965C39582BFF995800DE3153 /* CommentModel.swift */,
 				965C395A2BFF999700DE3153 /* PhotoViewModel.swift */,
-				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
 				960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */,
+				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
