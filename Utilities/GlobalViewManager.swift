@@ -12,7 +12,7 @@ import UIKit
 class GlobalMapsManager {
     
     static let shared = GlobalMapsManager() // 싱글톤 인스턴스
-    private(set) var globalMaps: MainMapView?    // 전역으로 사용될 지도
+    var globalMaps: MainMapView?    // 전역으로 사용될 지도
 
     // 초기화 방지
     private init() {}

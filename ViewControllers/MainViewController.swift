@@ -21,14 +21,7 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainMapView = GlobalMapsManager.shared.getOrCreateView()
-        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
-        setViews(mainMapView: mainMapView!, searchButton: searchButton!)
-        mainMapView?.locationDelegate = self
-        
-        // 로고 위치 변경
-        mainMapView?.mapView.logoAlign = .rightBottom
-        mainMapView?.mapView.logoMargin = UIEdgeInsets(top: 0, left: 0, bottom: 330, right: 0)
+        setMapAndSearchButton()
         
         // 바텀 시트
         fpc = FloatingPanelController(delegate: self)
@@ -46,10 +39,30 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     // 뷰 컨트롤러가 보이기 전에 호출
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !self.view.subviews.contains(mainMapView!) || !self.view.subviews.contains(searchButton!) {
+            GlobalMapsManager.shared.globalMaps = nil
+            setMapAndSearchButton()
+            fpc = FloatingPanelController(delegate: self)
+            setBottomSheet(fpc: fpc)
+            initialSetting(fpc: fpc, in: self)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    // 지도와 검색 버튼 세팅
+    func setMapAndSearchButton() {
+        mainMapView = GlobalMapsManager.shared.getOrCreateView()
+        searchButton = GlobalSearchButtonManager.shared.getOrCreateButton(target: self, action: #selector(tapSearchButton))
+        setViews(mainMapView: mainMapView!, searchButton: searchButton!)
+        mainMapView?.locationDelegate = self
+        
+        // 로고 위치 변경
+        mainMapView?.mapView.logoAlign = .rightBottom
+        mainMapView?.mapView.logoMargin = UIEdgeInsets(top: 0, left: 0, bottom: 330, right: 0)
     }
     
     // 지도가 터치될 때마다 호출
@@ -65,13 +78,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     
     // 장소 상세 정보 닫기 버튼 터치 (홈으로)
     @objc func didTapCloseLocationDetails(_ notification: Notification) {
-        
-        // 기존에 앨범 마커가 있다면 다시 띄우기
-        for albumMarker in mainMapView!.albumMarkers {
-            if (albumMarker.position.lng, albumMarker.position.lat) == locationInfo.coordinate {
-                albumMarker.mapView = mainMapView?.mapView
-            }
-        }
         initialSetting(fpc: fpc, in: self)
         fpc.move(to: .tip, animated: true)
         mainMapView?.selectLocationMarker.mapView = nil
@@ -93,7 +99,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         setContent(add: contentVC, from: self, by: self.fpc)
         contentVC.configure(with: locationInfo)
         fpc.move(to: .half, animated: true)
-        // 마커 다시 생성
         
     }
     
@@ -157,8 +162,11 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
     
     override func updateUI() {
         super.updateUI()
-        
         self.mainMapView!.showAlbumMarker(coordinateList: GlobalUserManager.shared.globalUser!.albumCoordinateList)
+        if mainMapView?.selectLocationMarker.mapView != nil {
+            mainMapView?.selectLocationMarker.mapView = nil
+            mainMapView?.selectLocationMarker.mapView = mainMapView?.mapView
+        }
     }
     
     // 검색창을 눌렀을 때의 로직

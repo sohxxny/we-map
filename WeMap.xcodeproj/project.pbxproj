@@ -21,7 +21,7 @@
 		9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */; };
 		9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */; };
 		9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */; };
-		9644E4F52BFC7DF4002E49C6 /* marker-red-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644E4F42BFC7DF4002E49C6 /* marker-red-icon.png */; };
+		963D51DB2C05CC9200E70EE8 /* marker-red-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 963D51DA2C05CC9200E70EE8 /* marker-red-icon.png */; };
 		9644E4F72BFC7DF9002E49C6 /* bookmark-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644E4F62BFC7DF9002E49C6 /* bookmark-icon.png */; };
 		9644E4F92BFC7DFE002E49C6 /* marker-blue-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */; };
 		9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */; };
@@ -146,7 +146,7 @@
 		9622EE0C2BCC25A500D0E677 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewManager.swift; sourceTree = "<group>"; };
 		9639FE832BE3950F000D3066 /* InviteAlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteAlbumTableViewCell.swift; sourceTree = "<group>"; };
-		9644E4F42BFC7DF4002E49C6 /* marker-red-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-red-icon.png"; sourceTree = "<group>"; };
+		963D51DA2C05CC9200E70EE8 /* marker-red-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-red-icon.png"; sourceTree = "<group>"; };
 		9644E4F62BFC7DF9002E49C6 /* bookmark-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark-icon.png"; sourceTree = "<group>"; };
 		9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-blue-icon.png"; sourceTree = "<group>"; };
 		9650985B2BE0FDBA009DFCC0 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 			children = (
 				96F3B42B2BDB761000B858C9 /* user-icon.png */,
 				96DD74442BE114A200A3A261 /* pencil-icon.png */,
-				9644E4F42BFC7DF4002E49C6 /* marker-red-icon.png */,
 				9644E4F62BFC7DF9002E49C6 /* bookmark-icon.png */,
+				963D51DA2C05CC9200E70EE8 /* marker-red-icon.png */,
 				9644E4F82BFC7DFE002E49C6 /* marker-blue-icon.png */,
 			);
 			path = Icon;
@@ -631,8 +631,8 @@
 				9644E4F92BFC7DFE002E49C6 /* marker-blue-icon.png in Resources */,
 				96F3B42C2BDB761000B858C9 /* user-icon.png in Resources */,
 				96E86B1A2BFA7A93009F9858 /* Config.plist in Resources */,
+				963D51DB2C05CC9200E70EE8 /* marker-red-icon.png in Resources */,
 				9644E4F72BFC7DF9002E49C6 /* bookmark-icon.png in Resources */,
-				9644E4F52BFC7DF4002E49C6 /* marker-red-icon.png in Resources */,
 				96F17E582B60F94A003584D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

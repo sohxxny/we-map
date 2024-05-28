@@ -29,6 +29,10 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
         switchToViewController(homeViewController)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 4 {
             switchToViewController(friendsListViewController)
@@ -50,9 +54,8 @@ class TabBarViewController: BaseViewController, UITabBarDelegate {
         // 새 뷰 컨트롤러를 추가
         addChild(viewController)
         currentViewController = viewController
-        viewController.view.frame = view.bounds // 화면 크기에 맞게 조정
+        viewController.view.frame = view.bounds
         view.insertSubview(viewController.view, at: 0) // 탭바 아래에 뷰를 놓음
         viewController.didMove(toParent: self)
     }
-
 }

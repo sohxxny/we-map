@@ -140,13 +140,6 @@ class MainMapView: NMFNaverMapView, CLLocationManagerDelegate, NMFMapViewTouchDe
     // 마커 띄우기
     func showMarkerAtLocation(latitude: Double, longitude: Double) {
         DispatchQueue.main.async {
-            // 기존에 앨범 마커가 있다면 잠깐 숨기기
-            for albumMarker in self.albumMarkers {
-                if (albumMarker.position.lat, albumMarker.position.lng) == (latitude, longitude) {
-                    albumMarker.mapView = nil
-                }
-            }
-            
             // 선택 마커 띄우기
             self.selectLocationMarker.position = NMGLatLng(lat: latitude, lng: longitude)
             self.selectLocationMarker.mapView = self.mapView
