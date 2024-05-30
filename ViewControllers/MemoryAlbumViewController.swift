@@ -230,6 +230,16 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         }
     }
     
+    // 채팅 전체보기 버튼
+    @IBAction func tapMoreChatButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+            chatViewController.modalPresentationStyle = .fullScreen
+            present(chatViewController, animated: true)
+        }
+    }
+    
+    
     // 로딩 인디케이터 켜거나 끄기
     func OnOffLoadingIndicator(_ view: UIActivityIndicatorView, isOn: Bool) {
         if isOn {

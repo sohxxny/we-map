@@ -30,6 +30,9 @@
 		965C395B2BFF999700DE3153 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C395A2BFF999700DE3153 /* PhotoViewModel.swift */; };
 		965C395F2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */; };
 		965C39632BFFC7CC00DE3153 /* wemap-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 965C39622BFFC7CC00DE3153 /* wemap-logo.png */; };
+		965CA38F2C08A41000C38FFA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CA38E2C08A41000C38FFA /* ChatViewController.swift */; };
+		965CA3912C08A93600C38FFA /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CA3902C08A93600C38FFA /* ChatTableViewCell.swift */; };
+		965CA3932C08B27C00C38FFA /* MyChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965CA3922C08B27C00C38FFA /* MyChatTableViewCell.swift */; };
 		965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */; };
 		965ED4962BF8EB1E00ACB173 /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */; };
 		965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */; };
@@ -155,6 +158,9 @@
 		965C395A2BFF999700DE3153 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageAlbumPreviewCell.swift; sourceTree = "<group>"; };
 		965C39622BFFC7CC00DE3153 /* wemap-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wemap-logo.png"; sourceTree = "<group>"; };
+		965CA38E2C08A41000C38FFA /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		965CA3902C08A93600C38FFA /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		965CA3922C08B27C00C38FFA /* MyChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatTableViewCell.swift; sourceTree = "<group>"; };
 		965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPreviewModel.swift; sourceTree = "<group>"; };
 		965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
 		965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 				96EAA07F2BFDFF4800E6EC9D /* MemoryAlbumViewController.swift */,
 				96CA533B2BFF25D2008F2287 /* PhotoGalleryViewController.swift */,
 				960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */,
+				965CA38E2C08A41000C38FFA /* ChatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -423,6 +430,8 @@
 				96CA533D2BFF2797008F2287 /* PhotoGalleryCell.swift */,
 				965C395E2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift */,
 				960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */,
+				965CA3902C08A93600C38FFA /* ChatTableViewCell.swift */,
+				965CA3922C08B27C00C38FFA /* MyChatTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -776,6 +785,7 @@
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
 				965C395B2BFF999700DE3153 /* PhotoViewModel.swift in Sources */,
+				965CA38F2C08A41000C38FFA /* ChatViewController.swift in Sources */,
 				96E86B182BFA4D69009F9858 /* SelectedFriendsCell.swift in Sources */,
 				966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */,
 				96BABB362BE806180094F7E7 /* EditProfileViewController.swift in Sources */,
@@ -806,6 +816,7 @@
 				96F773C42BE263200061E343 /* FriendsRequestTableViewCell.swift in Sources */,
 				960E558C2C0344620031D9D1 /* AlbumSettingViewController.swift in Sources */,
 				961ECBBF2BD116490060512A /* GlobalUserManager.swift in Sources */,
+				965CA3932C08B27C00C38FFA /* MyChatTableViewCell.swift in Sources */,
 				965C39592BFF995900DE3153 /* CommentModel.swift in Sources */,
 				967EF1922BC2ABE200D11E5B /* UserModel.swift in Sources */,
 				965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */,
@@ -817,6 +828,7 @@
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,
 				9622EE092BCBF0C000D0E677 /* HomeViewController.swift in Sources */,
 				96AC30A42BF4E586001317E9 /* homeBottomSheetViewController.swift in Sources */,
+				965CA3912C08A93600C38FFA /* ChatTableViewCell.swift in Sources */,
 				960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */,
 				96A729522BEB53B00006F5C0 /* Constants.swift in Sources */,
 			);

@@ -15,6 +15,7 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var numberOfAlbum: UILabel!
     @IBOutlet weak var albumPreviewCollectionView: UICollectionView!
+    @IBOutlet weak var noAlbumLabel: UILabel!
     
     var albumPreviewList: [AlbumPreviewModel] = []
     var loadingIndicator: LoadingIndicator!
@@ -62,7 +63,7 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
                 albumPreviewList = await createAllAlbumPreviewModel(userInfo: userInfo)
             }
             numberOfAlbum.text = "\(albumPreviewList.count)"
-            print(albumPreviewList)
+            noAlbumLabel.isHidden = albumPreviewList.isEmpty ? false : true
             reloadPreview()
         }
         
