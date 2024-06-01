@@ -93,7 +93,7 @@ class BaseViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // 제스처 이벤트 받는 함수
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
     }
 }

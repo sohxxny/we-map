@@ -15,7 +15,6 @@ class CustomTextField: UITextField, UITextFieldDelegate {
     }
     
     private func commonInit() {
-        
         self.delegate = self
         
         // 왼쪽 여백 관련 설정
@@ -33,4 +32,21 @@ class CustomTextField: UITextField, UITextFieldDelegate {
         return true
     }
 
+}
+
+class ChatTextView: UITextView {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
+    
+    private func commonInit() {
+        
+        // 왼쪽 여백 관련 설정
+        self.textContainerInset = UIEdgeInsets(top: 15, left: 10, bottom: 10, right: 15)
+        
+        // 기타 UI 설정
+        self.layer.cornerRadius = 10
+    }
 }
