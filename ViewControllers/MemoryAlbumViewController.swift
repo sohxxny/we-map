@@ -235,6 +235,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
             chatViewController.modalPresentationStyle = .fullScreen
+            chatViewController.albumRef = self.albumRef
             present(chatViewController, animated: true)
         }
     }

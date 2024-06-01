@@ -12,6 +12,8 @@
 		960E558C2C0344620031D9D1 /* AlbumSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */; };
 		960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */; };
 		960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */; };
+		9619B3362C0B279100939435 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3352C0B279100939435 /* ChatModel.swift */; };
+		9619B3382C0B2ACB00939435 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3372C0B2ACB00939435 /* ChatData.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
 		961ECBBB2BD0E78B0060512A /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */; };
 		961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */; };
@@ -140,6 +142,8 @@
 		960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingViewController.swift; sourceTree = "<group>"; };
 		960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingTableViewCell.swift; sourceTree = "<group>"; };
 		960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumMemberModel.swift; sourceTree = "<group>"; };
+		9619B3352C0B279100939435 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		9619B3372C0B2ACB00939435 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		961ECBBA2BD0E78B0060512A /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
@@ -353,7 +357,9 @@
 				965C39582BFF995800DE3153 /* CommentModel.swift */,
 				965C395A2BFF999700DE3153 /* PhotoViewModel.swift */,
 				960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */,
+				9619B3352C0B279100939435 /* ChatModel.swift */,
 				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
+				9619B3372C0B2ACB00939435 /* ChatData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -770,6 +776,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9619B3382C0B2ACB00939435 /* ChatData.swift in Sources */,
 				967EF18C2BC266F400D11E5B /* FriendsListViewController.swift in Sources */,
 				96E86B142BF9DFEE009F9858 /* InviteFriendsViewController.swift in Sources */,
 				96C3F0972BD696C2005306C5 /* UserViewModel.swift in Sources */,
@@ -823,6 +830,7 @@
 				961ECBBD2BD0FE190060512A /* AddFriendsViewController.swift in Sources */,
 				966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */,
 				96EAA0822BFE362E00E6EC9D /* AlbumMemberCell.swift in Sources */,
+				9619B3362C0B279100939435 /* ChatModel.swift in Sources */,
 				96F17EBE2B6122EC003584D3 /* SignInViewController.swift in Sources */,
 				96F773C02BE24E4D0061E343 /* NotificationViewController.swift in Sources */,
 				9650985C2BE0FDBA009DFCC0 /* NavigationHelper.swift in Sources */,

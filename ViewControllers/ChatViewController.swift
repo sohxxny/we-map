@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
@@ -14,7 +15,9 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var sendChatButton: CustomFilledButton!
     @IBOutlet weak var chatTextView: ChatTextView!
     
-    let dataList: [[String]] = [["김성규", "안녕ㅋㅋ"], ["김태연", "아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주아주긴메시지ㅋㅋ"], ["김태연", "헤헤"], ["이소흔", "해햇"], ["이소흔", "매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우매우긴채팅ㅋㅋ"]]
+    let dataList: [[String]] = []  // 임시 데이터 리스트
+    var chatModelList: [ChatModel] = []
+    var albumRef: DocumentReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,11 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             setButtonOn(button: sendChatButton, isOn: true)
         }
+        
+        Task {
+            chatModelList = await createChatModelList(documentId: albumRef.documentID)
+            chatTableView.reloadData()
+        }
     }
     
     deinit {
@@ -53,24 +61,28 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+        return chatModelList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2 {
-            let continuousChatCell = chatTableView.dequeueReusableCell(withIdentifier: "ContinuousChatTableViewCell", for: indexPath) as! ContinuousChatTableViewCell
-            continuousChatCell.chatContent.text = dataList[indexPath.row][1]
-            return continuousChatCell
-        } else if indexPath.row > 2 {
-            let myChatTableViewCell = chatTableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell", for: indexPath) as! MyChatTableViewCell
-            myChatTableViewCell.chatContent.text = dataList[indexPath.row][1]
+        let continuousChatCell = chatTableView.dequeueReusableCell(withIdentifier: "ContinuousChatTableViewCell", for: indexPath) as! ContinuousChatTableViewCell
+        let myChatTableViewCell = chatTableView.dequeueReusableCell(withIdentifier: "MyChatTableViewCell", for: indexPath) as! MyChatTableViewCell
+        let chatCell = chatTableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
+        let myInfo = GlobalUserManager.shared.globalUser!
+        
+        if chatModelList[indexPath.row].user.email == myInfo.email {
+            myChatTableViewCell.chatContent.text = chatModelList[indexPath.row].content
             return myChatTableViewCell
         } else {
-            let chatCell = chatTableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
-            chatCell.profileName.text = dataList[indexPath.row][0]
-            chatCell.chatContent.text = dataList[indexPath.row][1]
-            setIconImage(imageView: chatCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
-            return chatCell
+            if indexPath.row > 0 && chatModelList[indexPath.row].user.email == chatModelList[indexPath.row - 1].user.email {
+                continuousChatCell.chatContent.text = chatModelList[indexPath.row].content
+                return continuousChatCell
+            } else {
+                chatCell.profileName.text = chatModelList[indexPath.row].user.userName
+                chatCell.chatContent.text = chatModelList[indexPath.row].content
+                setIconImage(imageView: chatCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+                return chatCell
+            }
         }
     }
     
@@ -85,6 +97,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // 키보드 보이기 감지
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             stackViewBottomConstraint.constant = keyboardFrame.height - 20
@@ -94,6 +107,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
 
+    // 키보드 숨기기 감지
     @objc func keyboardWillHide(notification: NSNotification) {
         stackViewBottomConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
@@ -101,6 +115,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // 전송 버튼 누를 시 키보드 내려가지 않도록 하기
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let view = touch.view, view.isDescendant(of: sendChatButton) {
             return false
@@ -108,10 +123,16 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return super.gestureRecognizer(gestureRecognizer, shouldReceive: touch)
     }
     
+    // 채팅 보내기
     @IBAction func tapSendChat(_ sender: CustomFilledButton) {
+        
+        // 텍스트 저장
+        let albumDocId = albumRef.documentID
+        let email = GlobalUserManager.shared.globalUser?.email
+        saveChatMessage(documentId: albumDocId, messageText: chatTextView.text, by: email!)
+        
         chatTextView.text = ""
         setButtonOn(button: sendChatButton, isOn: false)
-        // 텍스트 저장
     }
     
     @IBAction func tapBackButton(_ sender: UIButton) {
