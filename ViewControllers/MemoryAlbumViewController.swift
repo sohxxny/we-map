@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseDatabase
+import FloatingPanel
 
 class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -39,6 +40,8 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     @IBOutlet weak var videoLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var chatLoadingIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
     var albumRef: DocumentReference!
     var address: String!
     var albumName: String!
@@ -47,6 +50,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     var videoPreviewList: [UIImage] = []  // 비디오
     var lastChat: String?  // 채팅
     var albumSettingViewController: AlbumSettingViewController!
+    var chatViewController: ChatViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +73,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         albumSettingViewController = storyboard.instantiateViewController(withIdentifier: "AlbumSettingViewController") as? AlbumSettingViewController
+        chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,51 +107,52 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
             }
             numberOfMember.text = "\(memberInfoList.count)"
             memberListCollectionView.reloadData()
-        }
-        
-        // 사진 정보
-        Task {
-            if imagePreviewList.isEmpty {
-                OnOffLoadingIndicator(photoLoadingIndicator, isOn: true)
-                imagePreviewList = await getAlbumImageList(in: albumRef)
-                OnOffLoadingIndicator(photoLoadingIndicator, isOn: false)
-                hideAllPhotoViews(false)
-            } else {
-                OnOffLoadingIndicator(photoLoadingIndicator, isOn: false)
-                imagePreviewList = await getAlbumImageList(in: albumRef)
+            
+            
+            // 사진 정보
+            Task {
+                if imagePreviewList.isEmpty {
+                    OnOffLoadingIndicator(photoLoadingIndicator, isOn: true)
+                    imagePreviewList = await getAlbumImageList(in: albumRef)
+                    OnOffLoadingIndicator(photoLoadingIndicator, isOn: false)
+                    hideAllPhotoViews(false)
+                } else {
+                    OnOffLoadingIndicator(photoLoadingIndicator, isOn: false)
+                    imagePreviewList = await getAlbumImageList(in: albumRef)
+                }
+                numberOfPhoto.text = "\(imagePreviewList.count)"
+                photoPreviewCollectionView.reloadData()
+                emptyPhotoLabel.isHidden = imagePreviewList.isEmpty ? false : true
             }
-            numberOfPhoto.text = "\(imagePreviewList.count)"
-            photoPreviewCollectionView.reloadData()
-            emptyPhotoLabel.isHidden = imagePreviewList.isEmpty ? false : true
-        }
-        
-        // 비디오 정보
-        Task {
-            // 비디오 불러오기
-            if videoPreviewList.isEmpty {
-                OnOffLoadingIndicator(videoLoadingIndicator, isOn: true)
-                // 비디오 불러오기 코드
-                OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
-                hideAllVideoViews(false)
-            } else {
-                OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
-                // 비디오 불러오기 코드
+            
+            // 비디오 정보
+            Task {
+                // 비디오 불러오기
+                if videoPreviewList.isEmpty {
+                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: true)
+                    // 비디오 불러오기 코드
+                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
+                    hideAllVideoViews(false)
+                } else {
+                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
+                    // 비디오 불러오기 코드
+                }
+                emptyVideoLabel.isHidden = videoPreviewList.isEmpty ? false : true
             }
-            emptyVideoLabel.isHidden = videoPreviewList.isEmpty ? false : true
-        }
-        
-        // 채팅 정보
-        Task {
-            if lastChat == nil {
-                OnOffLoadingIndicator(chatLoadingIndicator, isOn: true)
-                lastChat = await getLastChat(documentId: albumRef.documentID)
-                OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
-                hideAllChatViews(false)
-            } else {
-                OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
-                lastChat = await getLastChat(documentId: albumRef.documentID)
+            
+            // 채팅 정보
+            Task {
+                if lastChat == nil {
+                    OnOffLoadingIndicator(chatLoadingIndicator, isOn: true)
+                    lastChat = await getLastChat(documentId: albumRef.documentID)
+                    OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
+                    hideAllChatViews(false)
+                } else {
+                    OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
+                    lastChat = await getLastChat(documentId: albumRef.documentID)
+                }
+                lastChatLabel.text = lastChat == nil ? "아직 채팅이 없습니다. 채팅을 시작해보세요!" : lastChat
             }
-            lastChatLabel.text = lastChat == nil ? "아직 채팅이 없습니다. 채팅을 시작해보세요!" : lastChat
         }
     }
     
@@ -233,15 +239,11 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     // 채팅 전체보기 버튼
     @IBAction func tapMoreChatButton(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-            chatViewController.modalPresentationStyle = .fullScreen
-            chatViewController.albumRef = self.albumRef
-            chatViewController.memberInfoList = self.memberInfoList
-            present(chatViewController, animated: true)
-        }
+        chatViewController.modalPresentationStyle = .fullScreen
+        chatViewController.albumRef = self.albumRef
+        chatViewController.memberInfoList = self.memberInfoList
+        present(chatViewController, animated: true)
     }
-    
     
     // 로딩 인디케이터 켜거나 끄기
     func OnOffLoadingIndicator(_ view: UIActivityIndicatorView, isOn: Bool) {
@@ -256,7 +258,11 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     // 뒤로가기
     @IBAction func tapBackButton(_ sender: UIButton) {
-        NotificationCenter.default.post(name:NSNotification.Name("tapCloseCreateAlbum"), object: albumRef)
+        if let parentViewController = self.parent, parentViewController is FloatingPanelController  {
+            NotificationCenter.default.post(name:NSNotification.Name("tapCloseCreateAlbum"), object: albumRef)
+        } else {
+            self.dismiss(animated: true)
+        }
     }
     
     @IBAction func tapSettingButton(_ sender: UIButton) {

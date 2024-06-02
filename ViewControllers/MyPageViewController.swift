@@ -83,7 +83,7 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albumPreviewList.count > 4 ? 4 : albumPreviewList.count
+        return albumPreviewList.count > 3 ? 3 : albumPreviewList.count
     }
     
     // 앨범 프리뷰 셀 터치시 해당 앨범 프리뷰로 이동
@@ -91,6 +91,10 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let memoryAlbumViewController = storyboard.instantiateViewController(withIdentifier: "MemoryAlbumViewController") as! MemoryAlbumViewController
         memoryAlbumViewController.albumRef = albumPreviewList[indexPath.row].albumRef
+        _ = memoryAlbumViewController.view
+        memoryAlbumViewController.topConstraint.constant = 15
+        memoryAlbumViewController.modalPresentationStyle = .fullScreen
+        present(memoryAlbumViewController, animated: true)
     }
     
     func reloadPreview() {

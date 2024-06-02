@@ -36,6 +36,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
         
         observeMessages(documentId: albumRef.documentID)
+        scrollToBottom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +47,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             setButtonOn(button: sendChatButton, isOn: true)
         }
-        
+        scrollToBottom()
     }
     
     deinit {
@@ -105,10 +106,31 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 self.chatModelList.append(ChatModel(user: userViewModel, content: text, timeStatmp: timeStamp))
                 DispatchQueue.main.async {
                     self.chatTableView.reloadData()
+                    self.chatTableView.layoutIfNeeded()
+                    self.scrollToBottom()
                 }
             }
         })
     }
+    
+    // 아래로 스크롤을 내리는 함수
+    func scrollToBottom() {
+        if chatTableView.numberOfSections > 0 {
+            let lastSection = chatTableView.numberOfSections - 1
+            if chatTableView.numberOfRows(inSection: lastSection) > 0 {
+                let lastRowIndexPath = IndexPath(row: chatTableView.numberOfRows(inSection: lastSection) - 1, section: lastSection)
+                chatTableView.scrollToRow(at: lastRowIndexPath, at: .bottom, animated: false)
+            }
+        }
+    }
+    
+    // 특정 길이만큼 스크롤을 내리는 함수
+    func scrollTableView(by points: CGFloat) {
+        let currentOffset = chatTableView.contentOffset
+        let newOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + points)
+        chatTableView.setContentOffset(newOffset, animated: false)
+    }
+
     
     // 버튼 enabled 설정을 바꾸는 함수
     func setButtonOn(button: UIButton, isOn: Bool) {
@@ -124,8 +146,9 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     // 키보드 보이기 감지
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            stackViewBottomConstraint.constant = keyboardFrame.height - 20
             UIView.animate(withDuration: 0.3) {
+                self.stackViewBottomConstraint.constant = keyboardFrame.height - 20
+                self.scrollTableView(by: keyboardFrame.height - 20)
                 self.view.layoutIfNeeded()
             }
         }
@@ -134,9 +157,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     // 키보드 숨기기 감지
     @objc func keyboardWillHide(notification: NSNotification) {
         stackViewBottomConstraint.constant = 0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
+        self.view.layoutIfNeeded()
     }
     
     // 전송 버튼 누를 시 키보드 내려가지 않도록 하기

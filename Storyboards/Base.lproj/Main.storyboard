@@ -2174,6 +2174,7 @@
                         <outlet property="photoPreviewCollectionView" destination="Aga-zb-ChG" id="zPP-cV-DMg"/>
                         <outlet property="secondLine" destination="7SP-Lh-cem" id="GlW-98-ly5"/>
                         <outlet property="thirdLine" destination="0wg-NQ-3zw" id="CIT-YB-ia7"/>
+                        <outlet property="topConstraint" destination="VR7-LV-joS" id="Exq-8O-Ht8"/>
                         <outlet property="videoLoadingIndicator" destination="1Lp-be-d2F" id="ss6-KC-i5o"/>
                     </connections>
                 </viewController>

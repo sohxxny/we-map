@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseDatabase
 
 // 앨범 문서의 참조를 내 정보에 저장하는 함수
 func addAlbumRef(_ albumRef: DocumentReference, in user: UserModel) {
@@ -297,10 +298,21 @@ func deleteAlbumMember(albumRef: DocumentReference) async {
     }
 }
 
+// 앨범 채팅 지우기
+func deleteAlbumChat(documentId: String) {
+    let ref = Database.database().reference(withPath: documentId)
+    ref.removeValue { error, _ in
+        if let error = error {
+            print("채팅 삭제 에러: \(error)")
+        }
+    }
+}
+
 // 앨범 삭제
 func deleteAlbum(albumRef: DocumentReference) async {
     do {
         deleteAlbumMedia(albumRef: albumRef)
+        deleteAlbumChat(documentId: albumRef.documentID)
         await deleteAlbumMember(albumRef: albumRef)
         let db = Firestore.firestore()
         let albumID = albumRef.documentID
