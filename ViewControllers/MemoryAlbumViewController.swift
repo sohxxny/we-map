@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseDatabase
 
 class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -44,7 +45,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     var memberInfoList: [AlbumMemberModel] = []
     var imagePreviewList: [PhotoViewModel] = []
     var videoPreviewList: [UIImage] = []  // 비디오
-    var lastChat: String? = nil  // 채팅
+    var lastChat: String?  // 채팅
     var albumSettingViewController: AlbumSettingViewController!
     
     override func viewDidLoad() {
@@ -138,12 +139,12 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         Task {
             if lastChat == nil {
                 OnOffLoadingIndicator(chatLoadingIndicator, isOn: true)
-                // 채팅 불러오기 코드
+                lastChat = await getLastChat(documentId: albumRef.documentID)
                 OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
                 hideAllChatViews(false)
             } else {
                 OnOffLoadingIndicator(chatLoadingIndicator, isOn: false)
-                // 채팅 불러오기 코드
+                lastChat = await getLastChat(documentId: albumRef.documentID)
             }
             lastChatLabel.text = lastChat == nil ? "아직 채팅이 없습니다. 채팅을 시작해보세요!" : lastChat
         }
@@ -236,6 +237,7 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
             chatViewController.modalPresentationStyle = .fullScreen
             chatViewController.albumRef = self.albumRef
+            chatViewController.memberInfoList = self.memberInfoList
             present(chatViewController, animated: true)
         }
     }

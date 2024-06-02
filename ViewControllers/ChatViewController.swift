@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseDatabase
 
 class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
@@ -15,7 +16,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var sendChatButton: CustomFilledButton!
     @IBOutlet weak var chatTextView: ChatTextView!
     
-    let dataList: [[String]] = []  // 임시 데이터 리스트
+    var memberInfoList: [AlbumMemberModel] = []
     var chatModelList: [ChatModel] = []
     var albumRef: DocumentReference!
 
@@ -24,11 +25,17 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         chatTableView.delegate = self
         chatTableView.dataSource = self
+        chatTextView.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        chatTextView.delegate = self
+        Task {
+            chatModelList = await createChatModelList(documentId: albumRef.documentID, userList: memberInfoList)
+            chatTableView.reloadData()
+        }
+        
+        observeMessages(documentId: albumRef.documentID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,10 +47,6 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             setButtonOn(button: sendChatButton, isOn: true)
         }
         
-        Task {
-            chatModelList = await createChatModelList(documentId: albumRef.documentID)
-            chatTableView.reloadData()
-        }
     }
     
     deinit {
@@ -80,10 +83,31 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             } else {
                 chatCell.profileName.text = chatModelList[indexPath.row].user.userName
                 chatCell.chatContent.text = chatModelList[indexPath.row].content
-                setIconImage(imageView: chatCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+                if let profilePhoto = chatModelList[indexPath.row].user.profilePhoto {
+                    setCustomImage(imageView: chatCell.profileImage, image: profilePhoto)
+                } else {
+                    setIconImage(imageView: chatCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
+                }
                 return chatCell
             }
         }
+    }
+    
+    // 실시간으로 데이터 변경을 감지하는 함수
+    func observeMessages(documentId: String) {
+        let messagesRef = Database.database().reference(withPath: documentId).queryOrdered(byChild: "timeStamp")
+        messagesRef.observe(.childAdded, with: { snapshot in
+            if let data = snapshot.value as? [String: Any],
+               let text = data["text"] as? String,
+               let senderEmail = data["senderEmail"] as? String,
+               let timeStamp = data["timeStamp"] as? Int64 {
+                let userViewModel = matchUserViewModel(find: senderEmail, in: self.memberInfoList)
+                self.chatModelList.append(ChatModel(user: userViewModel, content: text, timeStatmp: timeStamp))
+                DispatchQueue.main.async {
+                    self.chatTableView.reloadData()
+                }
+            }
+        })
     }
     
     // 버튼 enabled 설정을 바꾸는 함수

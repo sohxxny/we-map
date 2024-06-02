@@ -86,16 +86,17 @@ class MyPageViewController: BaseViewController, UICollectionViewDelegate, UIColl
         return albumPreviewList.count > 4 ? 4 : albumPreviewList.count
     }
     
+    // 앨범 프리뷰 셀 터치시 해당 앨범 프리뷰로 이동
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let memoryAlbumViewController = storyboard.instantiateViewController(withIdentifier: "MemoryAlbumViewController") as! MemoryAlbumViewController
+        memoryAlbumViewController.albumRef = albumPreviewList[indexPath.row].albumRef
+    }
+    
     func reloadPreview() {
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
         albumPreviewCollectionView.reloadData()
         albumPreviewCollectionView.isHidden = false
-        
-//        if albumPreviewList.isEmpty {
-//            noAlbumLabel.isHidden = false
-//        } else {
-//            noAlbumLabel.isHidden = true
-//        }
     }
     
 }
