@@ -80,6 +80,7 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
         picker.dismiss(animated: true)
         if !results.isEmpty {
             loadingIndicator.OnOffLoadingIndicator(isOn: true)
+            emptyPhotosLabel.isHidden = true
         }
         let dispatchGroup = DispatchGroup()
         for result in results {

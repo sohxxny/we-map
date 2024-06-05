@@ -13,6 +13,7 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var chatContent: UILabel!
     @IBOutlet weak var chatView: UIView!
+    @IBOutlet weak var chatTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +34,7 @@ class ContinuousChatTableViewCell: UITableViewCell {
 
     @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var chatContent: UILabel!
+    @IBOutlet weak var chatTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

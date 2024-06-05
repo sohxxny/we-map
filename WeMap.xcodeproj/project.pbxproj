@@ -13,6 +13,7 @@
 		960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */; };
 		960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */; };
 		9613CCA82C1067140009F874 /* MyFriendsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9613CCA72C1067140009F874 /* MyFriendsPageViewController.swift */; };
+		9613CCAA2C10B2580009F874 /* InviteFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9613CCA92C10B2580009F874 /* InviteFriendsModel.swift */; };
 		9619B3362C0B279100939435 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3352C0B279100939435 /* ChatModel.swift */; };
 		9619B3382C0B2ACB00939435 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3372C0B2ACB00939435 /* ChatData.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
@@ -145,6 +146,7 @@
 		960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingTableViewCell.swift; sourceTree = "<group>"; };
 		960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumMemberModel.swift; sourceTree = "<group>"; };
 		9613CCA72C1067140009F874 /* MyFriendsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsPageViewController.swift; sourceTree = "<group>"; };
+		9613CCA92C10B2580009F874 /* InviteFriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsModel.swift; sourceTree = "<group>"; };
 		9619B3352C0B279100939435 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		9619B3372C0B2ACB00939435 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
 				9619B3372C0B2ACB00939435 /* ChatData.swift */,
 				966395822C0F5A50000675E7 /* FriendsModel.swift */,
+				9613CCA92C10B2580009F874 /* InviteFriendsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				96E86B1C2BFA7B41009F9858 /* ConfigManager.swift in Sources */,
 				9622EE0D2BCC25A500D0E677 /* BookMarkViewController.swift in Sources */,
 				965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */,
+				9613CCAA2C10B2580009F874 /* InviteFriendsModel.swift in Sources */,
 				96736B362B8CAEE2008FFB47 /* MainViewController.swift in Sources */,
 				9622EE0F2BCC268600D0E677 /* GlobalViewManager.swift in Sources */,
 				96C04C922B67E880002D3E84 /* AlertHelper.swift in Sources */,

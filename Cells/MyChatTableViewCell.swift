@@ -11,6 +11,7 @@ class MyChatTableViewCell: UITableViewCell {
     
     @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var chatContent: UILabel!
+    @IBOutlet weak var chatTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -19,8 +19,10 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     @IBOutlet weak var albumNameLength: UILabel!
     
     var locationInfo: LocationInfo?
-    var selectedFriends = Set<String>()
-    var selectedFriendsInfo: [FriendsModel] = []
+    var friendsList: [InviteFriendsModel] = []
+    var selectedFriendsList: [InviteFriendsModel] {
+        return friendsList.filter({ $0.isSelected })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,13 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         
         albumName.clearButtonMode = .whileEditing
         albumName.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        
+        friendsList = createInviteFriendsList(userInfoList: GlobalFriendsManager.shared.globalFriendsModelList)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         address.text = locationInfo?.address
+        selectedFriendsCollectionView.reloadData()
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -51,26 +56,25 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectedFriendsInfo.count
+        return selectedFriendsList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let selectedFriendsCell = selectedFriendsCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedFriendsCell", for: indexPath) as! SelectedFriendsCell
 
-        if let profilePhoto = selectedFriendsInfo[indexPath.row].user.profilePhoto {
+        if let profilePhoto = selectedFriendsList[indexPath.row].user.user.profilePhoto {
             setCustomImage(imageView: selectedFriendsCell.profileImage, image: profilePhoto)
         } else {
             setIconImage(imageView: selectedFriendsCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
         }
-        selectedFriendsCell.profileName.text = selectedFriendsInfo[indexPath.row].user.userName
+        selectedFriendsCell.profileName.text = selectedFriendsList[indexPath.row].user.user.userName
         
         return selectedFriendsCell
     }
     
     // 아이템 터치 시 삭제
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedFriends.remove(selectedFriendsInfo[indexPath.row].user.email)
-        selectedFriendsInfo.remove(at: indexPath.row)
+        selectedFriendsList[indexPath.row].isSelected = false
         selectedFriendsCollectionView.reloadData()
     }
     
@@ -78,14 +82,9 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     @IBAction func tapInviteFriends(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let inviteFriendsViewController = storyboard.instantiateViewController(withIdentifier: "InviteFriendsViewController") as? InviteFriendsViewController {
-            inviteFriendsViewController.selectedFriends = self.selectedFriends
             inviteFriendsViewController.modalPresentationStyle = .fullScreen
-            inviteFriendsViewController.sendSelectedFriendsList = { [weak self] emails, userFriendsModels in
-                guard let strongSelf = self else { return }
-                strongSelf.selectedFriends = emails
-                strongSelf.selectedFriendsInfo = userFriendsModels
-                strongSelf.selectedFriendsCollectionView.reloadData()
-            }
+            inviteFriendsViewController.friendsList = self.friendsList
+            print(self.friendsList)
             present(inviteFriendsViewController, animated: true, completion: nil)
         }
     }
@@ -128,17 +127,17 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
             "uid": userInfo.uid,
             "isJoined": true
         ])
-        for friend in selectedFriendsInfo {
-            let memeberFriendsRef = albumRef.collection("member").document(friend.user.email)
+        for friend in selectedFriendsList {
+            let memeberFriendsRef = albumRef.collection("member").document(friend.user.user.email)
             memeberFriendsRef.setData([
-                "uid": friend.user.uid,
+                "uid": friend.user.user.uid,
                 "isJoined": false
             ])
         }
         
         // 내 정보에 앨범 참조 저장, 친구 초대
         addAlbumRef(albumRef, in: userInfo)
-        inviteAlbumToFriends(selectedFriendsInfo, albumRef: albumRef, albumName: albumName)
+        inviteAlbumToFriends(selectedFriendsList, albumRef: albumRef, albumName: albumName)
         
         AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "추억 앨범 생성이 완료되었습니다.")
         NotificationCenter.default.post(name: NSNotification.Name("createAlbum"), object: nil)
@@ -146,11 +145,11 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     // 앨범에 친구 초대 알림 발송
-    func inviteAlbumToFriends(_ friendsList: [FriendsModel], albumRef: DocumentReference, albumName: String) {
+    func inviteAlbumToFriends(_ friendsList: [InviteFriendsModel], albumRef: DocumentReference, albumName: String) {
         guard let userInfo = GlobalUserManager.shared.globalUser else { return }
         let db = Firestore.firestore()
         for friend in friendsList {
-            let ref = db.collection("userInfo").document(friend.user.uid).collection("notification").document()
+            let ref = db.collection("userInfo").document(friend.user.user.uid).collection("notification").document()
             ref.setData([
                 "type": "inviteAlbum",
                 "userEmail": userInfo.email,
