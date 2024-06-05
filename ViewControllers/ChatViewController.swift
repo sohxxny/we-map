@@ -76,14 +76,17 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         if chatModelList[indexPath.row].user.email == myInfo.email {
             myChatTableViewCell.chatContent.text = chatModelList[indexPath.row].content
+            myChatTableViewCell.chatTime.text =  "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
             return myChatTableViewCell
         } else {
             if indexPath.row > 0 && chatModelList[indexPath.row].user.email == chatModelList[indexPath.row - 1].user.email {
                 continuousChatCell.chatContent.text = chatModelList[indexPath.row].content
+                continuousChatCell.chatTime.text = "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
                 return continuousChatCell
             } else {
                 chatCell.profileName.text = chatModelList[indexPath.row].user.userName
                 chatCell.chatContent.text = chatModelList[indexPath.row].content
+                chatCell.chatTime.text = "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
                 if let profilePhoto = chatModelList[indexPath.row].user.profilePhoto {
                     setCustomImage(imageView: chatCell.profileImage, image: profilePhoto)
                 } else {
