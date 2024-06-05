@@ -130,7 +130,7 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
             
             // 친구 리스트 다시 불러오기
             if let userInfo = GlobalUserManager.shared.globalUser {
-                GlobalFriendsManager.shared.globalFriendsList = await GlobalFriendsManager.shared.getFriendsInfo(userInfo: userInfo)
+                await GlobalFriendsManager.shared.getFriendsList(userInfo: userInfo)
             }
             
             // 데이터베이스 친구 요청 삭제 및 notificationModel 삭제

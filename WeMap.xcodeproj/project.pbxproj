@@ -12,6 +12,7 @@
 		960E558C2C0344620031D9D1 /* AlbumSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */; };
 		960E558E2C0345760031D9D1 /* AlbumSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */; };
 		960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */; };
+		9613CCA82C1067140009F874 /* MyFriendsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9613CCA72C1067140009F874 /* MyFriendsPageViewController.swift */; };
 		9619B3362C0B279100939435 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3352C0B279100939435 /* ChatModel.swift */; };
 		9619B3382C0B2ACB00939435 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619B3372C0B2ACB00939435 /* ChatData.swift */; };
 		961ECBB92BD0E4370060512A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961ECBB82BD0E4370060512A /* Extensions.swift */; };
@@ -38,6 +39,7 @@
 		965ED4942BF8E57D00ACB173 /* AlbumPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */; };
 		965ED4962BF8EB1E00ACB173 /* CreateAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */; };
 		965ED49C2BF8F06700ACB173 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */; };
+		966395832C0F5A50000675E7 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966395822C0F5A50000675E7 /* FriendsModel.swift */; };
 		96646ED12BA34F130091C18A /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96646ED02BA34F130091C18A /* MainMapView.swift */; };
 		966678D02BE4B8B300966022 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966678CF2BE4B8B300966022 /* NotificationModel.swift */; };
 		966DFF052BF26BDB007ECC98 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966DFF042BF26BDB007ECC98 /* TabBarViewController.swift */; };
@@ -142,6 +144,7 @@
 		960E558B2C0344620031D9D1 /* AlbumSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingViewController.swift; sourceTree = "<group>"; };
 		960E558D2C0345760031D9D1 /* AlbumSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSettingTableViewCell.swift; sourceTree = "<group>"; };
 		960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumMemberModel.swift; sourceTree = "<group>"; };
+		9613CCA72C1067140009F874 /* MyFriendsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsPageViewController.swift; sourceTree = "<group>"; };
 		9619B3352C0B279100939435 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		9619B3372C0B2ACB00939435 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		961ECBB82BD0E4370060512A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 		965ED4932BF8E57D00ACB173 /* AlbumPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumPreviewModel.swift; sourceTree = "<group>"; };
 		965ED4952BF8EB1E00ACB173 /* CreateAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumViewController.swift; sourceTree = "<group>"; };
 		965ED49B2BF8F06700ACB173 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
+		966395822C0F5A50000675E7 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		96646ED02BA34F130091C18A /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		966678CF2BE4B8B300966022 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		966DFF042BF26BDB007ECC98 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 				9619B3352C0B279100939435 /* ChatModel.swift */,
 				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
 				9619B3372C0B2ACB00939435 /* ChatData.swift */,
+				966395822C0F5A50000675E7 /* FriendsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				967EF18B2BC266F400D11E5B /* FriendsListViewController.swift */,
 				961ECBBC2BD0FE190060512A /* AddFriendsViewController.swift */,
 				96F216A62BDE8679005D58BC /* MyPageViewController.swift */,
+				9613CCA72C1067140009F874 /* MyFriendsPageViewController.swift */,
 				96F773BF2BE24E4D0061E343 /* NotificationViewController.swift */,
 				96BABB392BE8071C0094F7E7 /* SettingViewController.swift */,
 				96BABB352BE806180094F7E7 /* EditProfileViewController.swift */,
@@ -788,6 +794,7 @@
 				9650985E2BE0FE8C009DFCC0 /* UIComponents.swift in Sources */,
 				9639FE842BE3950F000D3066 /* InviteAlbumTableViewCell.swift in Sources */,
 				961ECBC12BD13C9D0060512A /* BaseViewController.swift in Sources */,
+				9613CCA82C1067140009F874 /* MyFriendsPageViewController.swift in Sources */,
 				965C395F2BFFBEA400DE3153 /* MyPageAlbumPreviewCell.swift in Sources */,
 				96F17E512B60F94A003584D3 /* AppDelegate.swift in Sources */,
 				96F216A72BDE8679005D58BC /* MyPageViewController.swift in Sources */,
@@ -817,6 +824,7 @@
 				96EAA0862BFE36B000E6EC9D /* AlbumVideoPreviewCell.swift in Sources */,
 				96B1FBCE2BF8CD4F00BED8A9 /* LocationDetailsAlbumCell.swift in Sources */,
 				96DDD2972BCE807F0034142E /* CustomButton.swift in Sources */,
+				966395832C0F5A50000675E7 /* FriendsModel.swift in Sources */,
 				96C549672BFB6D4D00CCA2DB /* AlbumData.swift in Sources */,
 				96EAA0842BFE367A00E6EC9D /* AlbumPhotoPreviewCell.swift in Sources */,
 				960E55922C0354C60031D9D1 /* AlbumMemberModel.swift in Sources */,

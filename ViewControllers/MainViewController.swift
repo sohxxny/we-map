@@ -99,7 +99,6 @@ class MainViewController: BaseViewController, MapViewDelegate, FloatingPanelCont
         setContent(add: contentVC, from: self, by: self.fpc)
         contentVC.configure(with: locationInfo)
         fpc.move(to: .half, animated: true)
-        
     }
     
     // 앨범 프리뷰 눌렀을 때 이동

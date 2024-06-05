@@ -123,5 +123,17 @@ func deleteImage(path: String) async {
     } catch {
       print("이미지 삭제 실패 에러")
     }
-        
+}
+
+// 친구의 북마크 여부를 바꾸는 함수
+func changeBookMarkStatus(set status: Bool, _ friendsEmail: String, in userInfo: UserModel) async {
+    let db = Firestore.firestore()
+    let friendsRef = db.collection("userInfo").document(userInfo.uid).collection("friends").document(friendsEmail)
+    do {
+      try await friendsRef.updateData([
+        "isBookMarked": status
+      ])
+    } catch {
+      print("북마크 상태 변경 실패: \(error)")
+    }
 }

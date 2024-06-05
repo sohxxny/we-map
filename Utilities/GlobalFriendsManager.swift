@@ -13,6 +13,7 @@ class GlobalFriendsManager {
     
     static let shared = GlobalFriendsManager()
     var globalFriendsList: [UserViewModel] = []
+    var globalFriendsModelList: [FriendsModel] = []
     var globalMyViewModel: UserViewModel?
     
     // 초기화 방지
@@ -21,8 +22,12 @@ class GlobalFriendsManager {
     // 유저 생성하기
     func createFriendsList(userInfo: UserModel) async {
         if globalFriendsList.isEmpty {
-            globalFriendsList = await getFriendsInfo(userInfo: userInfo)
+            (self.globalFriendsList, self.globalFriendsModelList) = await getFriendsInfo(userInfo: userInfo)
         }
+    }
+    
+    func getFriendsList(userInfo: UserModel) async {
+        (self.globalFriendsList, self.globalFriendsModelList) = await getFriendsInfo(userInfo: userInfo)
     }
     
     // 내 정보를 뷰 모델로 생성하기
@@ -39,24 +44,26 @@ class GlobalFriendsManager {
     }
     
     // 친구 리스트를 불러오기
-    func getFriendsInfo(userInfo: UserModel) async -> [UserViewModel] {
+    func getFriendsInfo(userInfo: UserModel) async -> ([UserViewModel], [FriendsModel]) {
         let db = Firestore.firestore()
         let friendsCollection = db.collection("userInfo").document(userInfo.uid).collection("friends")
         do {
+            var userViewModelList: [UserViewModel] = []
+            var friendsModelList: [FriendsModel] = []
             let querySnapshot = try await friendsCollection.getDocuments()
-            var friendsList: [UserViewModel] = []
             for document in querySnapshot.documents {
                 if let userInfo = await UserViewModel.createUserViewModel(email: document.documentID) {
-                    friendsList.append(userInfo)
+                    let isBookMarked = document.data()["isBookMarked"] as! Bool
+                    userViewModelList.append(userInfo)
+                    friendsModelList.append(FriendsModel(user: userInfo, isBookMarked: isBookMarked))
                 }
             }
-            friendsList.sort { $0.userName < $1.userName }
-            return friendsList
+            friendsModelList.sort { $0.user.userName < $1.user.userName }
+            userViewModelList.sort { $0.userName < $1.userName }
+            return (userViewModelList, friendsModelList)
         } catch {
             print("친구 목록 가져오기 에러: \(error)")
-            return []
+            return ([], [])
         }
     }
-    
-    // 즐겨찾기 친구 목록 불러오기
 }

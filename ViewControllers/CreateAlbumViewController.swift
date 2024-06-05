@@ -20,7 +20,7 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     var locationInfo: LocationInfo?
     var selectedFriends = Set<String>()
-    var selectedFriendsInfo: [UserViewModel] = []
+    var selectedFriendsInfo: [FriendsModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,19 +57,19 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let selectedFriendsCell = selectedFriendsCollectionView.dequeueReusableCell(withReuseIdentifier: "SelectedFriendsCell", for: indexPath) as! SelectedFriendsCell
 
-        if let profilePhoto = selectedFriendsInfo[indexPath.row].profilePhoto {
+        if let profilePhoto = selectedFriendsInfo[indexPath.row].user.profilePhoto {
             setCustomImage(imageView: selectedFriendsCell.profileImage, image: profilePhoto)
         } else {
             setIconImage(imageView: selectedFriendsCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
         }
-        selectedFriendsCell.profileName.text = selectedFriendsInfo[indexPath.row].userName
+        selectedFriendsCell.profileName.text = selectedFriendsInfo[indexPath.row].user.userName
         
         return selectedFriendsCell
     }
     
     // 아이템 터치 시 삭제
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedFriends.remove(selectedFriendsInfo[indexPath.row].email)
+        selectedFriends.remove(selectedFriendsInfo[indexPath.row].user.email)
         selectedFriendsInfo.remove(at: indexPath.row)
         selectedFriendsCollectionView.reloadData()
     }
@@ -80,10 +80,10 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         if let inviteFriendsViewController = storyboard.instantiateViewController(withIdentifier: "InviteFriendsViewController") as? InviteFriendsViewController {
             inviteFriendsViewController.selectedFriends = self.selectedFriends
             inviteFriendsViewController.modalPresentationStyle = .fullScreen
-            inviteFriendsViewController.sendSelectedFriendsList = { [weak self] emails, userViewModels in
+            inviteFriendsViewController.sendSelectedFriendsList = { [weak self] emails, userFriendsModels in
                 guard let strongSelf = self else { return }
                 strongSelf.selectedFriends = emails
-                strongSelf.selectedFriendsInfo = userViewModels
+                strongSelf.selectedFriendsInfo = userFriendsModels
                 strongSelf.selectedFriendsCollectionView.reloadData()
             }
             present(inviteFriendsViewController, animated: true, completion: nil)
@@ -129,9 +129,9 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
             "isJoined": true
         ])
         for friend in selectedFriendsInfo {
-            let memeberFriendsRef = albumRef.collection("member").document(friend.email)
+            let memeberFriendsRef = albumRef.collection("member").document(friend.user.email)
             memeberFriendsRef.setData([
-                "uid": friend.uid,
+                "uid": friend.user.uid,
                 "isJoined": false
             ])
         }
@@ -146,11 +146,11 @@ class CreateAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     // 앨범에 친구 초대 알림 발송
-    func inviteAlbumToFriends(_ friendsList: [UserViewModel], albumRef: DocumentReference, albumName: String) {
+    func inviteAlbumToFriends(_ friendsList: [FriendsModel], albumRef: DocumentReference, albumName: String) {
         guard let userInfo = GlobalUserManager.shared.globalUser else { return }
         let db = Firestore.firestore()
         for friend in friendsList {
-            let ref = db.collection("userInfo").document(friend.uid).collection("notification").document()
+            let ref = db.collection("userInfo").document(friend.user.uid).collection("notification").document()
             ref.setData([
                 "type": "inviteAlbum",
                 "userEmail": userInfo.email,

@@ -37,6 +37,4 @@ class InviteFriendsCell: UITableViewCell {
             imageView.image = newImage
         }
     }
-    
-
 }

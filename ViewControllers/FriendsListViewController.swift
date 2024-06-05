@@ -13,7 +13,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var searchFriends: CustomSearchBar!
     
     var loadingIndicator: LoadingIndicator!
-    var filteredFriendsList: [UserViewModel] = []
+    var filteredFriendsList: [FriendsModel] = []
     var sectionTitles = ["내 정보", "즐겨찾기", "친구 목록"]
     
     override func viewDidLoad() {
@@ -44,33 +44,42 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = searchFriends.text else { return }
-        let friendsList = GlobalFriendsManager.shared.globalFriendsList
+        let friendsList = GlobalFriendsManager.shared.globalFriendsModelList
         if text.isEmpty {
             filteredFriendsList = friendsList
         } else {
-            filteredFriendsList = friendsList.filter { $0.userName.localizedCaseInsensitiveContains(text) }
+            filteredFriendsList = friendsList.filter { $0.user.userName.localizedCaseInsensitiveContains(text) }
         }
         friendsListTableView.reloadData()
     }
     
     // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let myInfo = [[GlobalFriendsManager.shared.globalMyViewModel]]
-        let friendsList = [filteredFriendsList]
-        let infoList = myInfo + [[]] + friendsList
-        let sectionItems = infoList[indexPath.section]
+        let myInfo = GlobalFriendsManager.shared.globalMyViewModel
+        let friendsList = filteredFriendsList
         let friendsCell = friendsListTableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as! ProfileTableViewCell
         
-        // 프로필 사진 없으면 기본 사진 넣기
-        if let profilePhoto = sectionItems[indexPath.row]?.profilePhoto {
-            setCustomImage(imageView: friendsCell.profileImageView, image: profilePhoto)
+        if indexPath.section == 0 {
+            if let profilePhoto = myInfo?.profilePhoto {
+                setCustomImage(imageView: friendsCell.profileImageView, image: profilePhoto)
+            } else {
+                setIconImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
+            }
+            friendsCell.profileNameLabel.text = myInfo?.userName
+            friendsCell.profileMessageLabel.text = myInfo?.profileMessage
         } else {
-            setIconImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
+            let friends = (indexPath.section == 1) ? friendsList.filter { $0.isBookMarked }[indexPath.row] : friendsList[indexPath.row]
+            if let profilePhoto = friends.user.profilePhoto {
+                setCustomImage(imageView: friendsCell.profileImageView, image: profilePhoto)
+            } else {
+                setIconImage(imageView: friendsCell.profileImageView, color: .weMapSkyBlue, icon: "user-icon")
+            }
+            
+            // 이름, 프로필 메시지 넣기
+            friendsCell.profileNameLabel.text = friends.user.userName
+            friendsCell.profileMessageLabel.text = friends.user.profileMessage
         }
         
-        // 이름, 프로필 메시지 넣기
-        friendsCell.profileNameLabel.text = sectionItems[indexPath.row]?.userName
-        friendsCell.profileMessageLabel.text = sectionItems[indexPath.row]?.profileMessage
         return friendsCell
     }
     
@@ -80,6 +89,22 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         if indexPath.section == 0 {
             self.performSegue(withIdentifier: "showMyPage", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "showFriendsPage", sender: indexPath)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showFriendsPage" {
+            if let friendPage = segue.destination as? MyFriendsPageViewController, let indexPath = sender as? IndexPath {
+                if indexPath.section == 1 {
+                    let friendInfo = filteredFriendsList.filter { $0.isBookMarked }[indexPath.row]
+                    friendPage.friendInfo = friendInfo
+                } else {
+                    let friendInfo = filteredFriendsList[indexPath.row]
+                    friendPage.friendInfo = friendInfo
+                }
+            }
         }
     }
     
@@ -88,7 +113,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 0
+            return filteredFriendsList.filter { $0.isBookMarked }.count
         } else {
             return filteredFriendsList.count
         }
@@ -139,7 +164,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         // 데이터가 다 불러와지면 friendsList에 데이터 넣기
         if searchFriends.text == "" {
-            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
+            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsModelList
         }
         
         loadingIndicator.OnOffLoadingIndicator(isOn: false)

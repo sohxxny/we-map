@@ -13,10 +13,10 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var searchFriends: CustomSearchBar!
 
     var loadingIndicator: LoadingIndicator!
-    var filteredFriendsList: [UserViewModel] = []
+    var filteredFriendsList: [FriendsModel] = []
     var sectionTitles = ["즐겨찾기", "친구 목록"]
     var selectedFriends = Set<String>()
-    var sendSelectedFriendsList: ((Set<String>, [UserViewModel]) -> Void)?
+    var sendSelectedFriendsList: ((Set<String>, [FriendsModel]) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,43 +41,41 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     // 텍스트 입력할 때마다 호출
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = searchFriends.text else { return }
-        let friendsList = GlobalFriendsManager.shared.globalFriendsList
+        let friendsList = GlobalFriendsManager.shared.globalFriendsModelList
         if text.isEmpty {
             filteredFriendsList = friendsList
         } else {
-            filteredFriendsList = friendsList.filter { $0.userName.localizedCaseInsensitiveContains(text) }
+            filteredFriendsList = friendsList.filter { $0.user.userName.localizedCaseInsensitiveContains(text) }
         }
         inviteFriendsTableView.reloadData()
     }
     
     // 테이블 데이터 내용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let friendsList = [filteredFriendsList]
-        let infoList = [[]] + friendsList
-        let sectionItems = infoList[indexPath.section]
         let friendsCell = inviteFriendsTableView.dequeueReusableCell(withIdentifier: "InviteFriendsCell", for: indexPath) as! InviteFriendsCell
+        let friends = (indexPath.section == 0) ? filteredFriendsList.filter { $0.isBookMarked }[indexPath.row] : filteredFriendsList[indexPath.row]
         
         // 버튼 상태
-        if selectedFriends.contains(sectionItems[indexPath.row].email) {
+        if selectedFriends.contains(friends.user.email) {
             friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: true)
         } else {
             friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: false)
         }
         
         // 프로필 사진 설정
-        if let profilePhoto = sectionItems[indexPath.row].profilePhoto {
+        if let profilePhoto = friends.user.profilePhoto {
             setCustomImage(imageView: friendsCell.profileImage, image: profilePhoto)
         } else {
             setIconImage(imageView: friendsCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
         }
-        friendsCell.profileName.text = sectionItems[indexPath.row].userName
+        friendsCell.profileName.text = friends.user.userName
         return friendsCell
     }
     
     // 테이블 데이터 수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 0
+            return filteredFriendsList.filter { $0.isBookMarked }.count
         } else {
             return filteredFriendsList.count
         }
@@ -85,16 +83,14 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     
     // 셀 선택 시 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let friendsList = [filteredFriendsList]
-        let infoList = [[]] + friendsList
-        let sectionItems = infoList[indexPath.section]
         let friendsCell = inviteFriendsTableView.dequeueReusableCell(withIdentifier: "InviteFriendsCell", for: indexPath) as! InviteFriendsCell
+        let friends = (indexPath.section == 0) ? filteredFriendsList.filter { $0.isBookMarked }[indexPath.row] : filteredFriendsList[indexPath.row]
         
-        if selectedFriends.contains(sectionItems[indexPath.row].email) {
-            selectedFriends.remove(sectionItems[indexPath.row].email)
+        if selectedFriends.contains(friends.user.email) {
+            selectedFriends.remove(friends.user.email)
             friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: false)
         } else {
-            selectedFriends.insert(sectionItems[indexPath.row].email)
+            selectedFriends.insert(friends.user.email)
             friendsCell.setCheckBoxIcon(imageView: friendsCell.checkBox, select: true)
         }
         inviteFriendsTableView.reloadData()
@@ -145,7 +141,7 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
         
         // 데이터가 다 불러와지면 friendsList에 데이터 넣기
         if searchFriends.text == "" {
-            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsList
+            filteredFriendsList = GlobalFriendsManager.shared.globalFriendsModelList
         }
         
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
@@ -160,8 +156,8 @@ class InviteFriendsViewController: BaseViewController, UITableViewDelegate, UITa
     
     // 확인 버튼 터치 시
     @IBAction func tapConfirmButton(_ sender: UIButton) {
-        var friendsList = GlobalFriendsManager.shared.globalFriendsList
-        friendsList = friendsList.filter { selectedFriends.contains($0.email) }
+        var friendsList = GlobalFriendsManager.shared.globalFriendsModelList
+        friendsList = friendsList.filter { selectedFriends.contains($0.user.email) }
         sendSelectedFriendsList?(selectedFriends, friendsList)
         self.dismiss(animated: true, completion: nil)
     }
