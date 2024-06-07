@@ -28,6 +28,9 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         loadingIndicator = LoadingIndicator(in: self.view)
         loadingIndicator.setupLoadingIndicator()
         
+        // 테이블뷰 보이지 않기 (데이터 로딩이 완료되면 보이도록)
+        friendsListTableView.isHidden = true
+        
         // 백 버튼 설정 함수
         setBackButton(vc: self)
         
@@ -36,14 +39,10 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // 테이블뷰 보이지 않기 (데이터 로딩이 완료되면 보이도록)
-        friendsListTableView.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -148,8 +147,8 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         // 마지막 섹션의 푸터는 보이지 않기
         if section == tableView.numberOfSections - 1 {
-                return nil
-            }
+            return nil
+        }
         
         // 구분선 설정
         let padding = 10.0

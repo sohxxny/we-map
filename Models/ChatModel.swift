@@ -57,3 +57,14 @@ func getTimeByTimeStamp(timeStamp: Int64) -> DateTime {
     let minute = calendar.component(.minute, from: date)
     return DateTime(year: year, month: month, day: day, hour: hour, minute: minute)
 }
+
+func isSameDate(date1: DateTime, date2: DateTime) -> Bool {
+    if date1.year == date2.year && date1.month == date2.month && date1.day == date2.day {
+        return true
+    }
+    return false
+}
+
+func formattedDate(_ date: DateTime) -> String {
+    return "\(date.year)년 \(date.month)월 \(date.day)일"
+}

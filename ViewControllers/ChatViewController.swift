@@ -19,6 +19,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     var memberInfoList: [AlbumMemberModel] = []
     var chatModelList: [ChatModel] = []
+    var sectionIndices: [Int] = []
     var albumRef: DocumentReference!
 
     override func viewDidLoad() {
@@ -36,18 +37,17 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         Task {
             chatModelList = await createChatModelList(documentId: albumRef.documentID, userList: memberInfoList)
+            calculateSectionIndex()
+            
             loadingIndicator.stopAnimating()
             loadingIndicator.isHidden = true
             chatTableView.reloadData()
+            
+            self.view.layoutIfNeeded()
+            scrollToBottom()
         }
         
         observeMessages(documentId: albumRef.documentID)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        scrollToBottom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +58,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             setButtonOn(button: sendChatButton, isOn: true)
         }
+        print(chatTableView.contentInset)
     }
     
     deinit {
@@ -75,7 +76,11 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatModelList.count
+        if section < sectionIndices.count - 1 {
+            return sectionIndices[section + 1] - sectionIndices[section]
+        } else {
+            return chatModelList.count - sectionIndices[section]
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,20 +89,22 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let chatCell = chatTableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
         let myInfo = GlobalUserManager.shared.globalUser!
         
-        if chatModelList[indexPath.row].user.email == myInfo.email {
-            myChatTableViewCell.chatContent.text = chatModelList[indexPath.row].content
-            myChatTableViewCell.chatTime.text =  "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
+        let chatIndex = sectionIndices[indexPath.section] + indexPath.row
+        
+        if chatModelList[chatIndex].user.email == myInfo.email {
+            myChatTableViewCell.chatContent.text = chatModelList[chatIndex].content
+            myChatTableViewCell.chatTime.text =  "\(chatModelList[chatIndex].time.dayPeriod.rawValue) \(chatModelList[chatIndex].time.hour):\(chatModelList[chatIndex].time.minute)"
             return myChatTableViewCell
         } else {
-            if indexPath.row > 0 && chatModelList[indexPath.row].user.email == chatModelList[indexPath.row - 1].user.email {
-                continuousChatCell.chatContent.text = chatModelList[indexPath.row].content
-                continuousChatCell.chatTime.text = "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
+            if indexPath.row > 0 && chatModelList[chatIndex].user.email == chatModelList[chatIndex - 1].user.email {
+                continuousChatCell.chatContent.text = chatModelList[chatIndex].content
+                continuousChatCell.chatTime.text = "\(chatModelList[chatIndex].time.dayPeriod.rawValue) \(chatModelList[chatIndex].time.hour):\(chatModelList[chatIndex].time.minute)"
                 return continuousChatCell
             } else {
-                chatCell.profileName.text = chatModelList[indexPath.row].user.userName
-                chatCell.chatContent.text = chatModelList[indexPath.row].content
-                chatCell.chatTime.text = "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
-                if let profilePhoto = chatModelList[indexPath.row].user.profilePhoto {
+                chatCell.profileName.text = chatModelList[chatIndex].user.userName
+                chatCell.chatContent.text = chatModelList[chatIndex].content
+                chatCell.chatTime.text = "\(chatModelList[chatIndex].time.dayPeriod.rawValue) \(chatModelList[chatIndex].time.hour):\(chatModelList[chatIndex].time.minute)"
+                if let profilePhoto = chatModelList[chatIndex].user.profilePhoto {
                     setCustomImage(imageView: chatCell.profileImage, image: profilePhoto)
                 } else {
                     setIconImage(imageView: chatCell.profileImage, color: .weMapSkyBlue, icon: "user-icon")
@@ -105,6 +112,89 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 return chatCell
             }
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionIndices.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard !chatModelList.isEmpty else { return nil }
+        return formattedDate(chatModelList[sectionIndices[section]].time)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        // 헤더 타이틀 설정
+        let headerView = UIView()
+        let headerLabel = UILabel()
+        headerLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+        headerLabel.font = UIFont.systemFont(ofSize: 12)
+        headerLabel.backgroundColor = .white
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel.textAlignment = .center
+        headerLabel.textColor = UIColor.lightGray
+        
+        // 헤더 뷰 생성
+        let labelContainer = UIView()
+        labelContainer.translatesAutoresizingMaskIntoConstraints = false
+        labelContainer.backgroundColor = UIColor.white
+        
+        // 구분선 설정
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor.lightGray
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        
+        headerView.addSubview(lineView)
+        headerView.addSubview(labelContainer)
+        headerView.addSubview(headerLabel)
+
+        // 레이블 제약조건
+        NSLayoutConstraint.activate([
+            headerLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+
+        // 컨테이너 뷰 제약조건
+        NSLayoutConstraint.activate([
+            labelContainer.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
+            labelContainer.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor, constant: -10),
+            labelContainer.trailingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 10),
+            labelContainer.heightAnchor.constraint(equalTo: headerLabel.heightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            lineView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: 1),
+            lineView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+            lineView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20)
+        ])
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    // 섹션 시작 번호 저장
+    func calculateSectionIndex() {
+        guard !chatModelList.isEmpty else {
+            sectionIndices = []
+            return
+        }
+        sectionIndices = [0]
+        if chatModelList.count != 1 {
+            for i in 1..<chatModelList.count {
+                if !isSameDate(date1: chatModelList[i].time, date2: chatModelList[i - 1].time) {
+                    sectionIndices.append(i)
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
     }
     
     // 실시간으로 데이터 변경을 감지하는 함수
@@ -118,6 +208,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 let userViewModel = matchUserViewModel(find: senderEmail, in: self.memberInfoList)
                 self.chatModelList.append(ChatModel(user: userViewModel, content: text, timeStatmp: timeStamp))
                 DispatchQueue.main.async {
+                    self.calculateSectionIndex()
                     self.chatTableView.reloadData()
                     self.chatTableView.layoutIfNeeded()
                     self.scrollToBottom()
@@ -143,7 +234,6 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let newOffset = CGPoint(x: currentOffset.x, y: currentOffset.y + points)
         chatTableView.setContentOffset(newOffset, animated: false)
     }
-
     
     // 버튼 enabled 설정을 바꾸는 함수
     func setButtonOn(button: UIButton, isOn: Bool) {

@@ -340,6 +340,8 @@
 				961ECBBE2BD116490060512A /* GlobalUserManager.swift */,
 				96F216A42BDE2AD6005D58BC /* GlobalFriendsManager.swift */,
 				9622EE0E2BCC268600D0E677 /* GlobalViewManager.swift */,
+				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
+				9619B3372C0B2ACB00939435 /* ChatData.swift */,
 				961ECBB82BD0E4370060512A /* Extensions.swift */,
 			);
 			path = Utilities;
@@ -364,8 +366,6 @@
 				965C395A2BFF999700DE3153 /* PhotoViewModel.swift */,
 				960E55912C0354C60031D9D1 /* AlbumMemberModel.swift */,
 				9619B3352C0B279100939435 /* ChatModel.swift */,
-				96C549662BFB6D4D00CCA2DB /* AlbumData.swift */,
-				9619B3372C0B2ACB00939435 /* ChatData.swift */,
 				966395822C0F5A50000675E7 /* FriendsModel.swift */,
 				9613CCA92C10B2580009F874 /* InviteFriendsModel.swift */,
 			);

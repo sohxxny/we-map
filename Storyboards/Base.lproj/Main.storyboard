@@ -1507,12 +1507,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gO9-Yn-O7r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gO9-Yn-O7r">
                                 <rect key="frame" x="15" y="93.666666666666686" width="398" height="743.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTableViewCell" id="Gzc-TG-fNy" customClass="ChatTableViewCell" customModule="WeMap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="398" height="77.666664123535156"/>
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="398" height="77.666664123535156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gzc-TG-fNy" id="JZn-kD-pu1">
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="77.666664123535156"/>
@@ -1579,7 +1579,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContinuousChatTableViewCell" id="GS5-nI-Q8R" customClass="ContinuousChatTableViewCell" customModule="WeMap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="127.66666412353516" width="398" height="45.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="132.99999618530273" width="398" height="45.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GS5-nI-Q8R" id="2BZ-bf-LuZ">
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="45.666667938232422"/>
@@ -1625,7 +1625,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyChatTableViewCell" id="yhs-W3-42a" customClass="MyChatTableViewCell" customModule="WeMap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="173.33333206176758" width="398" height="45.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="178.66666412353516" width="398" height="45.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yhs-W3-42a" id="HLE-kG-PSn">
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="45.666667938232422"/>
