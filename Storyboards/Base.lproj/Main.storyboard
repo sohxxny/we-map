@@ -1673,6 +1673,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="taf-WK-zvW">
+                                <rect key="frame" x="204" y="453" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yJ7-IT-c2W"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1682,6 +1685,8 @@
                             <constraint firstItem="yJ7-IT-c2W" firstAttribute="trailing" secondItem="JhK-SU-B4A" secondAttribute="trailing" constant="20" id="Dyq-nQ-1lQ"/>
                             <constraint firstItem="JhK-SU-B4A" firstAttribute="top" secondItem="gO9-Yn-O7r" secondAttribute="bottom" constant="10" id="GgO-SL-iT8"/>
                             <constraint firstItem="bfW-id-xzl" firstAttribute="centerX" secondItem="NIC-eC-tXH" secondAttribute="centerX" id="UW4-M4-U5q"/>
+                            <constraint firstItem="taf-WK-zvW" firstAttribute="centerY" secondItem="NIC-eC-tXH" secondAttribute="centerY" id="VVE-Ti-kt7"/>
+                            <constraint firstItem="taf-WK-zvW" firstAttribute="centerX" secondItem="NIC-eC-tXH" secondAttribute="centerX" id="WGC-Qt-lfe"/>
                             <constraint firstItem="bfW-id-xzl" firstAttribute="top" secondItem="yJ7-IT-c2W" secondAttribute="top" constant="15" id="WiB-N3-XWi"/>
                             <constraint firstItem="bfW-id-xzl" firstAttribute="centerY" secondItem="Oeg-oa-ffl" secondAttribute="centerY" id="lEo-YK-M0s"/>
                             <constraint firstItem="gO9-Yn-O7r" firstAttribute="top" secondItem="bfW-id-xzl" secondAttribute="bottom" constant="10" id="rrC-oV-Wyf"/>
@@ -1693,6 +1698,7 @@
                     <connections>
                         <outlet property="chatTableView" destination="gO9-Yn-O7r" id="zbr-CF-BcW"/>
                         <outlet property="chatTextView" destination="2ew-HH-8bI" id="yG7-Il-BSA"/>
+                        <outlet property="loadingIndicator" destination="taf-WK-zvW" id="NZv-eb-1hr"/>
                         <outlet property="sendChatButton" destination="ju7-ez-Yfe" id="Kyw-NB-ggr"/>
                         <outlet property="stackViewBottomConstraint" destination="6Zk-nH-bwA" id="9aD-HQ-Lli"/>
                     </connections>

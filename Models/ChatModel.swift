@@ -21,18 +21,29 @@ struct ChatModel {
 }
 
 struct DateTime: Equatable {
-    var year: Int
-    var month: Int
-    var day: Int
-    var hour: Int
-    var minute: Int
+    var year: String
+    var month: String
+    var day: String
+    var hour: String
+    var minute: String
+    var dayPeriod: DayPeriod
     
     init(year: Int, month: Int, day: Int, hour: Int, minute: Int) {
-        self.year = year
-        self.month = month
-        self.day = day
-        self.hour = hour
-        self.minute = minute
+        self.year = String(year)
+        self.month = String(month)
+        self.day = String(day)
+        if hour > 12 {
+            self.hour = String(hour - 12)
+        } else {
+            self.hour = String(hour == 0 ? 12 : hour)
+        }
+        self.minute = minute < 10 ? "0" + String(minute) : String(minute)
+        self.dayPeriod = hour > 12 ? .PM : .AM
+    }
+    
+    enum DayPeriod: String {
+        case AM = "오전"
+        case PM = "오후"
     }
 }
 

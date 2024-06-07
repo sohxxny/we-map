@@ -15,6 +15,7 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var stackViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var sendChatButton: CustomFilledButton!
     @IBOutlet weak var chatTextView: ChatTextView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var memberInfoList: [AlbumMemberModel] = []
     var chatModelList: [ChatModel] = []
@@ -27,15 +28,25 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         chatTableView.dataSource = self
         chatTextView.delegate = self
         
+        loadingIndicator.isHidden = false
+        loadingIndicator.startAnimating()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         Task {
             chatModelList = await createChatModelList(documentId: albumRef.documentID, userList: memberInfoList)
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
             chatTableView.reloadData()
         }
         
         observeMessages(documentId: albumRef.documentID)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
         scrollToBottom()
     }
     
@@ -47,7 +58,6 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         } else {
             setButtonOn(button: sendChatButton, isOn: true)
         }
-        scrollToBottom()
     }
     
     deinit {
@@ -76,17 +86,17 @@ class ChatViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         if chatModelList[indexPath.row].user.email == myInfo.email {
             myChatTableViewCell.chatContent.text = chatModelList[indexPath.row].content
-            myChatTableViewCell.chatTime.text =  "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
+            myChatTableViewCell.chatTime.text =  "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
             return myChatTableViewCell
         } else {
             if indexPath.row > 0 && chatModelList[indexPath.row].user.email == chatModelList[indexPath.row - 1].user.email {
                 continuousChatCell.chatContent.text = chatModelList[indexPath.row].content
-                continuousChatCell.chatTime.text = "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
+                continuousChatCell.chatTime.text = "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
                 return continuousChatCell
             } else {
                 chatCell.profileName.text = chatModelList[indexPath.row].user.userName
                 chatCell.chatContent.text = chatModelList[indexPath.row].content
-                chatCell.chatTime.text = "\(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
+                chatCell.chatTime.text = "\(chatModelList[indexPath.row].time.dayPeriod.rawValue) \(chatModelList[indexPath.row].time.hour):\(chatModelList[indexPath.row].time.minute)"
                 if let profilePhoto = chatModelList[indexPath.row].user.profilePhoto {
                     setCustomImage(imageView: chatCell.profileImage, image: profilePhoto)
                 } else {

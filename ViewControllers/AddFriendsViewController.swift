@@ -34,28 +34,22 @@ class AddFriendsViewController: BaseViewController {
         addFriendButton.isHidden = true
         invalidFriendRequestLabel.isHidden = true
     }
-    
-    // 다른 화면으로 이동할 경우 이 팝업 닫기
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        self.dismiss(animated: true, completion: nil)
+
+    // 제스쳐 받아 전해주는 함수 오버라이딩
+    override func setupHideKeyboardOnTap() {
+        super.setupHideKeyboardOnTap()
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        dismissTapGesture.delegate = self
+        dismissTapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(dismissTapGesture)
     }
     
-    // 화면 터치 핸들 함수 (팝업 뷰가 아닌 곳을 터치하면 팝업 내리기)
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    // 팝업 바깥을 누르면 팝업 종료
+    @objc func dismissView(_ sender: UITapGestureRecognizer) {
         let touchView = sender.location(in: self.view)
-        if popUpBackgroundView.frame.contains(touchView) {
-            
-        } else {
+        if !popUpBackgroundView.frame.contains(touchView) {
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    // 제스처 입력 받기
-    func getGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        tapGesture.delegate = self
-        view.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func tapSearchUser(_ sender: CustomFilledButton) {

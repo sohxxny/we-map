@@ -12,6 +12,7 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var friendsListTableView: UITableView!
     @IBOutlet weak var searchFriends: CustomSearchBar!
     
+    var addFriendsViewController: AddFriendsViewController!
     var loadingIndicator: LoadingIndicator!
     var filteredFriendsList: [FriendsModel] = []
     var sectionTitles = ["내 정보", "즐겨찾기", "친구 목록"]
@@ -33,6 +34,9 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         // 검색 창 입력 감지
         searchFriends.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +44,11 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
         
         // 테이블뷰 보이지 않기 (데이터 로딩이 완료되면 보이도록)
         friendsListTableView.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        addFriendsViewController.dismiss(animated: false, completion: nil)
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -174,11 +183,8 @@ class FriendsListViewController: BaseViewController, UITableViewDelegate, UITabl
     
     // 친구 추가 화면으로 이동하기
     @IBAction func tapGotoAddFriends(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let addFriendsViewController = storyboard.instantiateViewController(identifier: "AddFriendsViewController") as? AddFriendsViewController {
-            addFriendsViewController.modalPresentationStyle = .overCurrentContext
-            addFriendsViewController.modalTransitionStyle = .crossDissolve
-            self.present(addFriendsViewController, animated: true, completion: nil)
-        }
+        addFriendsViewController.modalPresentationStyle = .overCurrentContext
+        addFriendsViewController.modalTransitionStyle = .crossDissolve
+        self.present(addFriendsViewController, animated: true, completion: nil)
     }
 }
