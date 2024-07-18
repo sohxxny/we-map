@@ -191,8 +191,26 @@ func getMemberNum(albumRef: DocumentReference) async -> Int {
     return memberNum
 }
 
-// 이미지 리스트를 앨범에 저장
-func saveImage(_ image: UIImage, in albumRef: DocumentReference, completion: @escaping () -> Void) {
+// 앨범 대표 이미지 있는지 확인
+func checkMainImage(albumRef: DocumentReference) async -> Bool {
+    let db = Firestore.firestore()
+    do {
+        let doc = try await albumRef.getDocument()
+        if doc.exists {
+            if let mainImage = doc.data()?["mainImage"] as? DocumentReference {
+                return true
+            }
+        }
+    } catch {
+        print("앨범 대표 이미지 확인 실패")
+    }
+    return false
+}
+
+// 앨범 대표 이미지 저장
+
+// 이미지를 앨범에 저장
+func saveImage(_ image: UIImage, in albumRef: DocumentReference, completion: @escaping () -> Void) -> DocumentReference {
     let photoRef = albumRef.collection("photo").document()
     photoRef.setData(["timeStamp": FieldValue.serverTimestamp()])
     
@@ -212,6 +230,8 @@ func saveImage(_ image: UIImage, in albumRef: DocumentReference, completion: @es
             }
         }
     }
+    
+    return photoRef
 }
 
 // 앨범으로부터 이미지 리스트를 불러오기

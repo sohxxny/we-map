@@ -34,6 +34,11 @@ class AddFriendsViewController: BaseViewController {
         addFriendButton.isHidden = true
         invalidFriendRequestLabel.isHidden = true
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchUserTextField.text = ""
+    }
 
     // 제스쳐 받아 전해주는 함수 오버라이딩
     override func setupHideKeyboardOnTap() {
@@ -46,6 +51,7 @@ class AddFriendsViewController: BaseViewController {
     
     // 팝업 바깥을 누르면 팝업 종료
     @objc func dismissView(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
         let touchView = sender.location(in: self.view)
         if !popUpBackgroundView.frame.contains(touchView) {
             self.dismiss(animated: true, completion: nil)
@@ -61,7 +67,6 @@ class AddFriendsViewController: BaseViewController {
         Task {
             if (await searchUserByEmail(email: userEmail)) != nil {
                 // 프로필 다시 보이기
-                hideProfile(value: false)
                 if let foundUser = await UserViewModel.createUserViewModel(email: userEmail) {
                     // 프로필 사진 지정
                     if let userProfilePhoto = foundUser.profilePhoto {
@@ -69,6 +74,7 @@ class AddFriendsViewController: BaseViewController {
                     } else {
                         setIconImage(imageView: profilePhotoView, color: .weMapSkyBlue, icon: "user-icon")
                     }
+                    hideProfile(value: false)
                     profileName.text = foundUser.userName
                     profileEmail.text = foundUser.email
                     

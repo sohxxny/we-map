@@ -92,14 +92,6 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         }
     }
     
-    // UI 업데이트 및 테이블 뷰 보이기
-//    override func updateUI() {
-//        super.updateUI()
-//        loadingIndicator.OnOffLoadingIndicator(isOn: false)
-//        notificationTableView.reloadData()
-//        notificationTableView.isHidden = false
-//    }
-    
     // 테이블 뷰 업데이트
     func updateNotification() {
         loadingIndicator.OnOffLoadingIndicator(isOn: false)
@@ -110,6 +102,7 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
     @IBAction func tapFriendsRequestAccept(_ sender: CustomFilledButton) {
         let row = sender.tag
         AlertHelper.alertWithTwoButton(on: self, with: nil, message: "친구 요청을 수락하시겠습니까?", completion: {
+            self.loadingIndicator.OnOffLoadingIndicator(isOn: true)
             self.acceptFriendsRequest(notification: self.notificationModelList[row], row: row)
         })
     }
@@ -138,8 +131,10 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
             notificationModelList.remove(at: row)
             
             // 알림 및 테이블 뷰 업데이트
+            self.loadingIndicator.OnOffLoadingIndicator(isOn: false)
             AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "친구 추가가 완료되었습니다.")
             notificationTableView.reloadData()
+            emptyNotificationLabel.isHidden = notificationModelList.isEmpty ? false : true
         }
     }
     
@@ -152,6 +147,7 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
     @IBAction func tapInviteAlbumAccept(_ sender: CustomFilledButton) {
         let row = sender.tag
         AlertHelper.alertWithTwoButton(on: self, with: nil, message: "앨범 초대를 수락하시겠습니까?", completion: {
+            self.loadingIndicator.OnOffLoadingIndicator(isOn: true)
             self.acceptInviteAlbum(notification: self.notificationModelList[row], row: row)
         })
     }
@@ -174,8 +170,10 @@ class NotificationViewController: BaseViewController, UITableViewDelegate, UITab
         
         // notificationModel 삭제 및 테이블 뷰 업데이트
         notificationModelList.remove(at: row)
+        self.loadingIndicator.OnOffLoadingIndicator(isOn: false)
         AlertHelper.showAlertWithNoButton(on: self, with: nil, message: "앨범 초대를 수락했습니다.")
         notificationTableView.reloadData()
+        emptyNotificationLabel.isHidden = notificationModelList.isEmpty ? false : true
     }
     
     func rejectInviteAlbum(notification: NotificationModel, row: Int) {

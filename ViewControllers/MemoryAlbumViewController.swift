@@ -20,16 +20,12 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var numberOfMember: UILabel!
     @IBOutlet weak var numberOfPhoto: UILabel!
-    @IBOutlet weak var numberOfVideo: UILabel!
     @IBOutlet weak var emptyPhotoLabel: UILabel!
-    @IBOutlet weak var emptyVideoLabel: UILabel!
     
     @IBOutlet weak var firstLine: UIView!
     @IBOutlet weak var secondLine: UIView!
-    @IBOutlet weak var thirdLine: UIView!
     
     @IBOutlet weak var morePhotoButton: UIButton!
-    @IBOutlet weak var moreVideoButton: UIButton!
     @IBOutlet weak var moreChatButton: UIButton!
     
     @IBOutlet weak var memberListCollectionView: UICollectionView!
@@ -37,7 +33,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var memberLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var photoLoadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var videoLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var chatLoadingIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
@@ -58,7 +53,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         lastChatView.layer.cornerRadius = 10
         
         emptyPhotoLabel.isHidden = true
-        emptyVideoLabel.isHidden = true
         
         memberListCollectionView.delegate = self
         memberListCollectionView.dataSource = self
@@ -68,7 +62,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         
         hideAllMemberViews(true)
         hideAllPhotoViews(true)
-        hideAllVideoViews(true)
         hideAllChatViews(true)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -80,7 +73,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         super.viewWillAppear(animated)
         
         // 처음에 모든 뷰 숨기기
-        emptyVideoLabel.isHidden = true
         emptyPhotoLabel.isHidden = true
         
         Task {
@@ -123,21 +115,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
                 numberOfPhoto.text = "\(imagePreviewList.count)"
                 photoPreviewCollectionView.reloadData()
                 emptyPhotoLabel.isHidden = imagePreviewList.isEmpty ? false : true
-            }
-            
-            // 비디오 정보
-            Task {
-                // 비디오 불러오기
-                if videoPreviewList.isEmpty {
-                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: true)
-                    // 비디오 불러오기 코드
-                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
-                    hideAllVideoViews(false)
-                } else {
-                    OnOffLoadingIndicator(videoLoadingIndicator, isOn: false)
-                    // 비디오 불러오기 코드
-                }
-                emptyVideoLabel.isHidden = videoPreviewList.isEmpty ? false : true
             }
             
             // 채팅 정보
@@ -210,11 +187,6 @@ class MemoryAlbumViewController: BaseViewController, UICollectionViewDelegate, U
         numberOfPhoto.isHidden = on
         morePhotoButton.isHidden = on
         photoPreviewCollectionView.isHidden = on
-    }
-    
-    func hideAllVideoViews(_ on: Bool) {
-        numberOfVideo.isHidden = on
-        moreVideoButton.isHidden = on
     }
     
     func hideAllChatViews(_ on: Bool) {

@@ -78,23 +78,37 @@ class PhotoGalleryViewController: BaseViewController, UICollectionViewDelegate, 
     // 이미지 선택
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
-        if !results.isEmpty {
-            loadingIndicator.OnOffLoadingIndicator(isOn: true)
-            emptyPhotosLabel.isHidden = true
-        }
+        
+        guard !results.isEmpty else { return }
+        loadingIndicator.OnOffLoadingIndicator(isOn: true)
+        emptyPhotosLabel.isHidden = true
+        
+        var photoRefList: [DocumentReference] = []
+        
         let dispatchGroup = DispatchGroup()
         for result in results {
             dispatchGroup.enter()
             result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+                var photoRef: DocumentReference?
                 if let image = object as? UIImage {
-                    saveImage(image, in: self.albumRef) {
+                    photoRef = saveImage(image, in: self.albumRef) {
                         dispatchGroup.leave()
                     }
                 } else {
                     dispatchGroup.leave()
                 }
+                photoRefList.append(photoRef!)
             }
         }
+        
+        // 대표 이미지 값 비었는지 확인
+        Task {
+            if await checkMainImage(albumRef: self.albumRef) {
+                // 비었다면 랜덤 이미지를 골라 변수에 할당
+                let mainImageRef = photoRefList.randomElement()
+            }
+        }
+        
         // 이미지 업로드 완료 후 실행
         dispatchGroup.notify(queue: .main) { [self] in
             Task {
